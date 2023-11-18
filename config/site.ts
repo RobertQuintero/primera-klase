@@ -7,22 +7,42 @@ export const siteConfig = {
 	{
 		label: "Home",
 		href: "/",
+		description: "Home page",
+	},
+	{
+		label: "Talents",
+		href: "/talents",
+		description: "Talents page",
+	},
+	{
+		label: "Instructors",
+		href: "/instructors",
+		description: "Talents page",
 	},
     {
       	label: "About",
       	href: "/about",
+		description: "About page",
     },
-	{
-		label: "Talents",
-		href: "/talents",
-	},
 	{
 		label: "Events",
 		href: "/events",
+		description: "Events page",
 	},
 	{
 		label: "Schedules",
 		href: "/schedules",
+		description: "Schedules page",
+	},
+	{
+		label: "Testimonials",
+		href: "/testimonials",
+		description: "Testimonials page",
+	},
+	{
+		label: "Contact Us",
+		href: "/contact",
+		description: "Contact Us page",
 	}
 	],
 	navMenuItems: [
