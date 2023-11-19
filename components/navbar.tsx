@@ -1,3 +1,4 @@
+"use client";
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -6,16 +7,15 @@ import {
   NavbarBrand,
   NavbarItem,
   NavbarMenuItem,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Kbd,
-  Input,
   Button,
   Link,
+  DropdownItem,
+  DropdownMenu,
+  Dropdown,
+  DropdownTrigger,
 
 } from "@nextui-org/react";
-import { link as linkStyles } from "@nextui-org/theme";
+import { usePathname } from 'next/navigation'
 import { siteConfig } from "@/config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
@@ -23,48 +23,37 @@ import clsx from "clsx";
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
   TwitterIcon,
-  GithubIcon,
-  DiscordIcon,
-  SearchIcon,
   Logo,
 } from "@/components/icons";
 
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { CalendarDaysIcon, ChatBubbleBottomCenterTextIcon, ChevronDownIcon, EnvelopeIcon, InformationCircleIcon, SwatchIcon } from "@heroicons/react/24/outline";
+import React from "react";
+
+
 
 export const Navbar = () => {
-  const searchInput = (
-    <Input
-      aria-label="Search"
-      classNames={{
-        inputWrapper: "bg-default-100",
-        input: "text-sm",
-      }}
-      endContent={
-        <Kbd className="hidden lg:inline-block" keys={["command"]}>
-          K
-        </Kbd>
-      }
-      labelPlacement="outside"
-      placeholder="Search..."
-      startContent={
-        <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
-      }
-      type="search"
-    />
-  );
+
+  const pathname = usePathname()
+  const icons: { [key: string]: JSX.Element } = {
+  // Change the icon color to text-default-800 if the pathname is equal to the href
+  about: <InformationCircleIcon className={pathname === "/about" ? "text-default-800 w-8 h-8" : "text-default-500 w-8 h-8"} />,
+  events: <SwatchIcon className={pathname === "/events" ? "text-default-800 w-8 h-8" : "text-default-500 w-8 h-8"} />,
+  schedules: <CalendarDaysIcon className={pathname === "/schedules" ? "text-default-800 w-8 h-8" : "text-default-500 w-8 h-8"} />,
+  testimonials: <ChatBubbleBottomCenterTextIcon className={pathname === "/testimonials" ? "text-default-800 w-8 h-8" : "text-default-500 w-8 h-8"} />,
+  contact: <EnvelopeIcon className={pathname === "/contact" ? "text-default-800 w-8 h-8" : "text-default-500 w-8 h-8"} />,
+};
+
 
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.slice(0, 3).map((item) => (
-            <NavbarItem key={item.href}>
+            <NavbarItem key={item.href} >
               <NextLink
                 className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                  pathname === item.href ? "text-default-900 font-semibold" : " text-default-500 "
                 )}
-                color="foreground"
                 href={item.href}
               >
                 {item.label}
@@ -72,39 +61,45 @@ export const Navbar = () => {
             </NavbarItem>
             //add limit of 3 item only
           ))}
-        <Popover>
-        <PopoverTrigger className="h-fit " >
-          <Button disableRipple
-                className="py-1 px-0 bg-transparent data-[hover=true]:bg-transparent "
-                endContent={<ChevronDownIcon className="text-default-500 w-4" />}
-                radius="sm"
-                variant="light">Resources</Button>
-        </PopoverTrigger>
-        <PopoverContent>
-          {siteConfig.navItems.slice(3).map((item) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
-                )}
-                color="foreground"
+        <Dropdown classNames={{trigger:"", content:""}} radius="sm"  shadow="sm" >
+          <NavbarItem>
+            <DropdownTrigger>
+              <Button
+                disableRipple
+                className={clsx
+
+                ( pathname === "/about" || pathname ==="/events" || pathname ==="/schedules" || pathname ==="/testimonials" ||pathname ==="/contact"  ? "h-fit p-0 bg-transparent data-[hover=true]:bg-transparent text-base text-default-900 font-semibold" : " h-fit p-0 bg-transparent data-[hover=true]:bg-transparent text-base text-default-500")}
+
+                endContent={<ChevronDownIcon className="w-4 h-4" />}
+                radius="none"
+                variant="light"
+              >
+                Resources
+              </Button>
+            </DropdownTrigger>
+          </NavbarItem>
+          {/* // change the color of the dropdown if the pathname is equal to the href */}
+          <DropdownMenu
+            itemClasses={{
+              base: "text-default-500 gap-3",
+              title:"text-base",
+            }}
+          >
+            {siteConfig.navItems.slice(3).map((item) => (
+              <DropdownItem
+                key={item.href}
+                description={item.description}
+                startContent={icons[item.href.split("/")[1]]}
                 href={item.href}
               >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
-
-          ))}
-        </PopoverContent>
-      </Popover>
+                <span className={pathname === item.href ? "text-default-900 font-semibold" : ""}>{item.label}</span>
+              </DropdownItem>
+            ))}
+          </DropdownMenu>
+        </Dropdown>
         </ul>
 
       </NavbarContent>
-
-
-
-
 
 
 
@@ -128,12 +123,7 @@ export const Navbar = () => {
           <Link isExternal href={siteConfig.links.twitter} aria-label="Twitter">
             <TwitterIcon className="text-default-500" />
           </Link>
-          <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
-            <DiscordIcon className="text-default-500" />
-          </Link>
-          <Link isExternal href={siteConfig.links.github} aria-label="Github">
-            <GithubIcon className="text-default-500" />
-          </Link>
+
           <ThemeSwitch />
         </NavbarItem>
       </NavbarContent>
@@ -144,9 +134,7 @@ export const Navbar = () => {
 
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <Link isExternal href={siteConfig.links.github} aria-label="Github">
-          <GithubIcon className="text-default-500" />
-        </Link>
+
         <ThemeSwitch />
         <NavbarMenuToggle />
       </NavbarContent>

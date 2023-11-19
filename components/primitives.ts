@@ -1,7 +1,7 @@
 import { tv } from "tailwind-variants";
 
 export const title = tv({
-	base: "tracking-tight inline font-semibold",
+	base: "tracking-tight inline font-semibold text-left ",
 	variants: {
 		color: {
 			violet: "from-[#FF1CF7] to-[#b249f8]",
@@ -13,16 +13,17 @@ export const title = tv({
 			foreground: "dark:from-[#FFFFFF] dark:to-[#4B4B4B]",
 		},
 		size: {
-			sm: "text-3xl lg:text-4xl",
-			md: "text-[2.3rem] lg:text-5xl leading-9",
-			lg: "text-4xl lg:text-6xl",
-		},
-		fullWidth: {
-			true: "w-full block",
+			sm: "text-sm  md:text-base ",
+			md: "text-base md:text-lg ",
+			lg: "text-xl md:text-2xl leading-6 2xl:leading-7 pb-1 ",
+			xl: "text-3xl md:text-4xl",
+			v2xl: "text-2xl md:text-3xl",
+			xxl: "text-4xl md:text-5xl scroll-m-20 pb-[0.5rem]  font-bold",
+			xxxl: "text-4xl md:text-5xl 2xl:text-6xl font-bold",
 		},
 	},
 	defaultVariants: {
-		size: "md",
+		size: "sm",
 	},
 	compoundVariants: [
 		{
@@ -40,14 +41,48 @@ export const title = tv({
 	],
 });
 
-export const subtitle = tv({
-	base: "w-full md:w-1/2 my-2 text-lg lg:text-xl text-default-600 block max-w-full",
+export const paragraph = tv({
+	base: " md:leading-8 leading-7 text-default-600 text-left ",
 	variants: {
-		fullWidth: {
-			true: "!w-full",
+		size: {
+				xs: "text-xs md:text-sm xl:leading-5 md:leading-5 leading-4",
+				sm: "text-sm  md:text-base ",
+				md: "text-base md:text-lg ",
+				lg: "text-lg md:text-xl 2xl:leading-8 leading-7 ",
+				xl: "text-xl md:text-2xl",
 		},
 	},
   defaultVariants:{
-    fullWidth: true
+    size: "sm"
   }
 });
+
+export const descriptionShort = tv({
+	base: "leading-7 text-default-500 ",
+	variants: {
+		size: {
+				sm: "text-sm md:text-base line-clamp-2 ",
+				md: "text-base md:text-lg line-clamp-3 ",
+				lg: "text-lg md:text-xl line-clamp-3",
+		},
+	},
+  defaultVariants:{
+    size: "md"
+  }
+});
+
+export const subtitle = tv({
+	base: "",
+	variants: {
+		size: {
+				sm: "text-sm sm:text-base 2xl:text-lg line-clamp-3 ",
+		},
+	},
+  defaultVariants:{
+    size: "sm"
+  }
+});
+
+
+
+
