@@ -3,7 +3,21 @@ import { title } from "@/components/primitives";
 export default function AboutPage() {
 	return (
 		<div>
-			<h1 className={title()}>About</h1>
+			Introduction and mission
+
+			history
+
+			team
+
+			service offered
+
+			Client success stories
+
+			philosophy and values
+
+			testimonials
+
+			faqs
 		</div>
 	);
 }

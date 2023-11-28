@@ -47,38 +47,46 @@ export const siteConfig = {
 	}
 	],
 	navMenuItems: [
-		{
-			label: "Profile",
-			href: "/profile",
-		},
-		{
-			label: "Dashboard",
-			href: "/dashboard",
-		},
-		{
-			label: "Projects",
-			href: "/projects",
-		},
-		{
-			label: "Team",
-			href: "/team",
-		},
-		{
-			label: "Calendar",
-			href: "/calendar",
-		},
-		{
-			label: "Settings",
-			href: "/settings",
-		},
-		{
-			label: "Help & Feedback",
-			href: "/help-feedback",
-		},
-		{
-			label: "Logout",
-			href: "/logout",
-		},
+	{
+		label: "Work",
+		href: "/",
+		description: "Work page",
+	},
+	{
+		label: "Talents",
+		href: "/talents",
+		description: "Talents page",
+	},
+	{
+		label: "Instructors",
+		href: "/instructors",
+		description: "Talents page",
+	},
+    {
+      	label: "About",
+      	href: "/about",
+		description: "About page",
+    },
+	{
+		label: "Events",
+		href: "/events",
+		description: "Events page",
+	},
+	{
+		label: "Schedules",
+		href: "/schedules",
+		description: "Schedules page",
+	},
+	{
+		label: "Testimonials",
+		href: "/testimonials",
+		description: "Testimonials page",
+	},
+	{
+		label: "Contact Us",
+		href: "/contact",
+		description: "Contact Us page",
+	}
 	],
 	links: {
 		twitter: "https://twitter.com/getnextui",
