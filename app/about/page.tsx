@@ -1,23 +1,34 @@
-import { title } from "@/components/primitives";
+import { getAboutData, getFaqsData, getTeamsData } from "@/sanity/utils/sanity-about";
+import React from "react";
+import { AboutValues } from "./components/values";
+import { AboutServices } from "./components/services";
+import { IntroductionMissionHistory } from "./components/introductionMissionhistory";
+import { Teams } from "./components/team";
+import { AboutTestimonials } from "./components/testimonials";
 
-export default function AboutPage() {
+// revalidate every 1sec
+
+export const revalidate = 1;
+
+export default async function AboutPage() {
+
+	const aboutData = await getAboutData();
+	const faqsData = await getFaqsData();
+	const teamsData = await getTeamsData();
+
+	console.log(aboutData.testimonials);
 	return (
-		<div>
-			Introduction and mission
+		<React.Fragment>
+			<IntroductionMissionHistory introductionMissionHistory={aboutData} />
 
-			history
+			<AboutValues aboutValues={aboutData.values} />
 
-			team
+			<AboutServices aboutServices={aboutData.services} />
 
-			service offered
+			<Teams teams={teamsData} />
 
-			Client success stories
+			<AboutTestimonials aboutTestimonials={aboutData.testimonials} />
 
-			philosophy and values
-
-			testimonials
-
-			faqs
-		</div>
+			</React.Fragment>
 	);
 }
