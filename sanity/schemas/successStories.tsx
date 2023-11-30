@@ -6,6 +6,17 @@ export default defineType({
     title: "Success Stories",
     type: "document",
     fields: [
+
+        defineField({
+            name: "image",
+            title: "Image",
+            type: "image",
+            options: {
+                hotspot: true,
+            },
+            validation: (Rule) => Rule.required(),
+        }),
+
         defineField({
             name: "name",
             title: "Name",
@@ -14,7 +25,7 @@ export default defineType({
         }),
 
         defineField({
-            name: "company",
+            name: "companyOrAffiliation",
             title: "Company",
             type: "string",
             description: "Company name of the person giving the testimonial or Field (optional)",
@@ -24,7 +35,6 @@ export default defineType({
             name: "profession",
             title: "Profession",
             type: "string",
-            validation: (Rule) => Rule.required(),
         }),
 
         defineField({
@@ -53,8 +63,8 @@ export default defineType({
                             type: "date",
                         },
                         {
-                            name: "impact",
-                            title: "Impact",
+                            name: "description",
+                            title: "Description",
                             type: "text",
                         },
                     ],
@@ -65,8 +75,9 @@ export default defineType({
 
         defineField({
             name: "date",
-            title: "Date",
+            title: "Date of Success Story",
             type: "date",
+            description: "Date when the success story was given",
             validation: (Rule) => Rule.required(),
         }),
     ],

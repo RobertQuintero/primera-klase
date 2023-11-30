@@ -1,4 +1,4 @@
-import { Testimonials } from "./testimonials"
+import { Testimonials } from "./testimonialsType"
 
 // about page types
 export type aboutType={
