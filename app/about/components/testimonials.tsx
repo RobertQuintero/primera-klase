@@ -9,12 +9,13 @@ type testimonialsProps = {
 
 const AboutTestimonials = ({aboutTestimonials}:testimonialsProps) => {
   return (
-    <div>
-    {aboutTestimonials.map((testimonial) => (
-        <TestimonialCard testimonial={testimonial} />
-    ))}
-
-    </div>
+    <React.Fragment>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 ">
+              {aboutTestimonials.map((testimonial) => (
+                  <TestimonialCard testimonial={testimonial}/>
+              ))}
+          </div>
+    </React.Fragment>
   )
 }
 

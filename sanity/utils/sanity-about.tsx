@@ -63,7 +63,7 @@ export async function getFaqsData(): Promise<faqsType> {
   return data;
 }
 
-export async function getTeamsData(): Promise<teamsType> {
+export async function getTeamsData(): Promise<teamsType[]> {
   const data = await client.fetch(groq`*[_type=="teams"]{...,
         _createdAt,
         _updatedAt,

@@ -11,23 +11,22 @@ type testimonialProps = {
 
 const TestimonialCard = ({testimonial}:testimonialProps ) => {
   return (
-    <Card className='max-w-sm'>
+    <Card className='max-w-sm p-3 w-full'>
         <CardHeader>
-            <Avatar src={testimonial.image} className='w-10 h-10 md:w-12 md:h-12 2xl:w-14 2xl:h-14' />
+            <Avatar src={testimonial.image} className='w-10 h-10 md:w-12 md:h-12 2xl:w-16 2xl:h-16 mr-4' />
             <div className='flex flex-col'>
-                <p className={paragraph({size:"md"})}>{testimonial.name}</p>
+                <p className={title({size:"md"})}>{testimonial.name}</p>
                 <div className='flex flex-wrap'>
-                    <p className={paragraph({size:"sm"})}>{testimonial.profession}</p>
+                    <p className={`after:text-default-600 after:mx-2 after:content-['at'] empty:hidden ${paragraph({size:"sm"})}`}>{testimonial.profession}</p>
                     <p className={paragraph({size:"sm"})}>{testimonial.companyOrAffiliation}</p>
                 </div>
-
             </div>
         </CardHeader>
         <CardBody>
-            <p>{testimonial.testimonial}</p>
+            <p className={paragraph({size:"sm"})}>{testimonial.testimonial}</p>
         </CardBody>
-        <CardFooter>
-            <p>{testimonial.date}</p>
+        <CardFooter className='flex-row-reverse'>
+            <p className={`self-end ${paragraph({size:"xs"})}`}>{testimonial.date}</p>
         </CardFooter>
     </Card>
   )

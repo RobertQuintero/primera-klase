@@ -16,7 +16,9 @@ export default async function AboutPage() {
 	const faqsData = await getFaqsData();
 	const teamsData = await getTeamsData();
 
+
 	console.log(aboutData.testimonials);
+
 	return (
 		<React.Fragment>
 			<IntroductionMissionHistory introductionMissionHistory={aboutData} />
