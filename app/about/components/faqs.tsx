@@ -1,23 +1,27 @@
+"use client";
 // faqs component
-import { aboutType } from '@/types/aboutType';
-import { faqsType } from '@/types/faqsType';
-import React from 'react'
+import { faqsType } from "@/types/faqsType";
+import React, { Fragment } from "react";
+import { Accordion, AccordionItem } from "@nextui-org/react";
 
 type faqsProps = {
-    faqs: faqsType[];
-}
+  faqs: faqsType[];
+};
 
-const Mission = ({faqs}:faqsProps) => {
+const Faqs = ({ faqs }: faqsProps) => {
   return (
-    <div>
-        {faqs.map((faq) => (
-            <div key={faq.question}>
-                <h3>{faq.question}</h3>
-                <p>{faq.answer}</p>
-            </div>
-        ))}
-    </div>
-  )
-}
+    <Accordion variant="shadow">
+      {faqs.map((faq) => (
+        <AccordionItem
+          key={faq.question}
+          aria-label={faq.question}
+          title={faq.question}
+        >
+          <p>{faq.answer}</p>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  );
+};
 
-export { Mission};
+export { Faqs };

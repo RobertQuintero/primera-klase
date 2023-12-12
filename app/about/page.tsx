@@ -5,10 +5,11 @@ import { AboutServices } from "./components/services";
 import { IntroductionMissionHistory } from "./components/introductionMissionhistory";
 import { Teams } from "./components/team";
 import { AboutTestimonials } from "./components/testimonials";
+import { Faqs } from "./components/faqs";
 
 // revalidate every 1sec
 
-export const revalidate = 1;
+
 
 export default async function AboutPage() {
 
@@ -17,8 +18,7 @@ export default async function AboutPage() {
 	const teamsData = await getTeamsData();
 
 
-	console.log(aboutData.testimonials);
-
+	console.log(teamsData);
 	return (
 		<React.Fragment>
 			<IntroductionMissionHistory introductionMissionHistory={aboutData} />
@@ -30,6 +30,8 @@ export default async function AboutPage() {
 			<Teams teams={teamsData} />
 
 			<AboutTestimonials aboutTestimonials={aboutData.testimonials} />
+
+			<Faqs faqs={faqsData} />
 
 			</React.Fragment>
 	);
