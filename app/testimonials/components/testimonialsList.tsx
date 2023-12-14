@@ -1,5 +1,5 @@
 // testimonials.tsx
-import { TestimonialCard } from '@/app/testimonials/components/testimonialCard';
+import { TestimonialCard } from '@/components/Cards/testimonialCard';
 import { Testimonials } from '@/types/testimonialsType';
 import React from 'react'
 

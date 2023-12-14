@@ -155,39 +155,22 @@ export default defineType({
             type: "array",
             of: [
                 {
-                    type: "object",
-                    fields: [
-                        defineField({
-                            name: "facebook",
-                            title: "Facebook",
-                            type: "string",
-                        }),
-                        defineField({
-                            name: "instagram",
-                            title: "Instagram",
-                            type: "string",
-                        }),
-                        defineField({
-                            name: "twitter",
-                            title: "Twitter",
-                            type: "string",
-                        }),
-                        defineField({
-                            name: "tiktok",
-                            title: "Tiktok",
-                            type: "string",
-                        }),
-                        defineField({
-                            name: "youtube",
-                            title: "Youtube",
-                            type: "string",
-                        }),
-                        defineField({
-                            name: "website",
-                            title: "Website",
-                            type: "string",
-                        }),
-                    ],
+                type: "object",
+                fields: [
+                    {
+                    name: "linkType",
+                    title: "Link Type",
+                    type: "string",
+                    options: {
+                        list: ["Website", "Facebook","LinkedIn","Instagram","Twitter","Pinterest","Tiktok","Youtube", "Other"], // You can define your options here
+                    },
+                    },
+                    {
+                    name: "url",
+                    title: "URL",
+                    type: "url",
+                    },
+                ],
                 },
             ],
         }),

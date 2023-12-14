@@ -1,3 +1,4 @@
+import { SuccessStories } from "./successStoriesType"
 import { Testimonials } from "./testimonialsType"
 
 // about page types
@@ -11,6 +12,7 @@ export type aboutType={
     values: Values[],
     services: Services[],
     testimonials: Testimonials[],
+    successStories: SuccessStories[],
 }
 export type Values={
     image: string,

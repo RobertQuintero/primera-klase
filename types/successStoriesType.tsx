@@ -1,6 +1,6 @@
 import { achievementsType } from "./talentsType.";
 
-export type SuccessStory = {
+export type SuccessStories = {
     image: string,
     name: string,
     companyOrAffiliation: string,

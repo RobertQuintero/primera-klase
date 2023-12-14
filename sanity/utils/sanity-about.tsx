@@ -36,6 +36,19 @@ export async function getAboutData(): Promise<aboutType> {
             testimonial,
             date,
         },
+        "successStories": successStories[]->{
+            "image": image.asset->url,
+            name,
+            companyOrAffiliation,
+            profession,
+            successStory,
+            "achievements": achievements[]{
+                title,
+                date,
+                description,
+            },
+            date,
+        },
     }`);
   return data;
 }

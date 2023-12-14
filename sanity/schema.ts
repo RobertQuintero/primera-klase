@@ -2,7 +2,7 @@ import { type SchemaTypeDefinition } from 'sanity'
 import about from './schemas/about'
 import successStories from './schemas/successStories'
 import testimonials from './schemas/testimonials'
-import team from './schemas/team'
+import teams from './schemas/teams'
 import faqs from './schemas/faqs'
 import services from './schemas/services'
 import contact from './schemas/contact'
@@ -17,7 +17,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
   talents,
   instructors,
   about,
-  team,
+  teams,
   faqs,
   services,
   successStories,

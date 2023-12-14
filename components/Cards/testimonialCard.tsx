@@ -3,6 +3,7 @@ import { paragraph, title } from '@/components/primitives'
 import { Testimonials } from '@/types/testimonialsType'
 import { Avatar, Card, CardBody, CardFooter, CardHeader } from '@nextui-org/react'
 import React from 'react'
+import { DateComponent } from '../time/date'
 
 
 type testimonialProps = {
@@ -11,7 +12,7 @@ type testimonialProps = {
 
 const TestimonialCard = ({testimonial}:testimonialProps ) => {
   return (
-    <Card className='max-w-sm p-3 w-full'>
+    <Card className='max-w-sm p-3'>
         <CardHeader>
             <Avatar src={testimonial.image} className='w-10 h-10 md:w-12 md:h-12 2xl:w-16 2xl:h-16 mr-4' />
             <div className='flex flex-col'>
@@ -23,10 +24,10 @@ const TestimonialCard = ({testimonial}:testimonialProps ) => {
             </div>
         </CardHeader>
         <CardBody>
-            <p className={paragraph({size:"sm"})}>{testimonial.testimonial}</p>
+            <blockquote className={paragraph({size:"sm"})}>{testimonial.testimonial}</blockquote>
         </CardBody>
         <CardFooter className='flex-row-reverse'>
-            <p className={`self-end ${paragraph({size:"xs"})}`}>{testimonial.date}</p>
+                <DateComponent className={paragraph({size:"xs"})} Date={testimonial.date}/>
         </CardFooter>
     </Card>
   )

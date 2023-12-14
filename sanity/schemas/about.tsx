@@ -105,7 +105,16 @@ export default defineType({
         description: "Testimonials of the company",
         type: "array",
         of: [{ type: "reference", to: [{ type: "testimonials" }] }],
-
         }),
+
+        defineField({
+        name: "successStories",
+        title: "Success Stories",
+        description: "Success Stories of the company",
+        type: "array",
+        of: [{ type: "reference", to: [{ type: "successStories" }] }],
+        validation: (Rule) => Rule.required(),
+        }),
+
     ]
 });

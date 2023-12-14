@@ -1,5 +1,7 @@
+"use client";
 import { teamsType } from '@/types/teamsType';
 import React from 'react'
+import {Image} from "@nextui-org/react";
 
 type teamsProps = {
     teams: teamsType[];
@@ -9,11 +11,11 @@ const Teams = ({teams}:teamsProps) => {
   return (
     <div>
       {teams.map((team) => (
-          <div key={team.name}>
-              <img src={team.image} alt={team.name} />
-              <h3>{team.name}</h3>
+          <div className='grid'>
+              <Image src={team.image} alt={team.name} />
+              <p>{team.name}</p>
               <h4>{team.position}</h4>
-              <p>{team.quote}</p>
+              <blockquote>{team.quote}</blockquote>
           </div>
       ))}
     </div>
