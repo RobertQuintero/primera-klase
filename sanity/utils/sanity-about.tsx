@@ -86,8 +86,7 @@ export async function getTeamsData(): Promise<teamsType[]> {
         position,
         quote,
         "socialMedia": socialMedia[]{
-            "image": image.asset->url,
-            name,
+            linkType,
             url,
         },
     }`);
