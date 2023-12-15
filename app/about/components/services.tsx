@@ -1,7 +1,8 @@
 
 
+import { paragraph, title } from '@/components/primitives';
 import { Services } from '@/types/aboutType';
-import { Image } from '@nextui-org/react';
+import { Card, CardFooter, CardHeader, Image } from '@nextui-org/react';
 import React from 'react'
 
 type aboutServicesProps = {
@@ -10,13 +11,17 @@ type aboutServicesProps = {
 
 const AboutServices = ({aboutServices}: aboutServicesProps) => {
   return (
-    <div>
+    <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
         {aboutServices.map((services) => (
-            <div key={services.title}>
-                <Image src={services.image} width={200} height={200} />
-                <h3>{services.title}</h3>
-                <p>{services.description}</p>
-            </div>
+          <Card shadow="none" isBlurred >
+            <CardHeader className="">
+              <Image src={services.image} alt={services.title} width={100} height={100} className="rounded-full w-16 h-16"/>
+              <p className={title({size:"lg"})}>{services.title}</p>
+            </CardHeader>
+            <CardFooter>
+              <p className={paragraph({size:"md"})}>{services.description}</p>
+            </CardFooter>
+          </Card>
         ))}
     </div>
   )
