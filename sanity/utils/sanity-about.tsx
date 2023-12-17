@@ -18,11 +18,11 @@ export async function getAboutData(): Promise<aboutType> {
         introduction,
         mission,
         history,
-        "values": values[]{
-            "image": image.asset->url,
-            title,
-            description,
-        },
+        // "values": values[]{
+        //     "image": image.asset->url,
+        //     title,
+        //     description,
+        // },
         "services": services[]->{
             "image": image.asset->url,
             title,

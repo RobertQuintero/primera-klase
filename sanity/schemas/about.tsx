@@ -54,39 +54,39 @@ export default defineType({
         validation: (Rule) => Rule.required(),
         }),
 
-        defineField({
-            name: "values",
-            title: "Values",
-            description: "Values of the company",
-            type: "array",
-            of: [{
-                    type: "object",
-                    fields: [
-                        defineField({
-                            name: "image",
-                            title: "Image",
-                            type: "image",
-                            options: {
-                                hotspot: true,
-                            },
-                        validation: (Rule) => Rule.required(),
-                        }),
-                        defineField({
-                            name: "title",
-                            title: "Title",
-                            type: "string",
-                        validation: (Rule) => Rule.required(),
-                        }),
-                        defineField({
-                            name: "description",
-                            title: "Description",
-                            type: "text",
-                        validation: (Rule) => Rule.required(),
-                        }),
-                    ],
-                },
-            ],
-        }),
+        // defineField({
+        //     name: "values",
+        //     title: "Values",
+        //     description: "Values of the company",
+        //     type: "array",
+        //     of: [{
+        //             type: "object",
+        //             fields: [
+        //                 defineField({
+        //                     name: "image",
+        //                     title: "Image",
+        //                     type: "image",
+        //                     options: {
+        //                         hotspot: true,
+        //                     },
+        //                 validation: (Rule) => Rule.required(),
+        //                 }),
+        //                 defineField({
+        //                     name: "title",
+        //                     title: "Title",
+        //                     type: "string",
+        //                 validation: (Rule) => Rule.required(),
+        //                 }),
+        //                 defineField({
+        //                     name: "description",
+        //                     title: "Description",
+        //                     type: "text",
+        //                 validation: (Rule) => Rule.required(),
+        //                 }),
+        //             ],
+        //         },
+        //     ],
+        // }),
 
         defineField({
         name: "services",

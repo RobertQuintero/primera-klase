@@ -59,7 +59,7 @@ const SocialMediaLink = ({
         const Icon = projectTypeIcons[projectType];
         return (
 
-              <Button as={Link} href={socialMediaLink.url} target={socialMediaLink.url} isIconOnly radius="full" variant="light" size={size} aria-label={socialMediaLink.linkType}>
+              <Button key={socialMediaLink.linkType} as={Link} href={socialMediaLink.url} target={socialMediaLink.url} isIconOnly radius="full" variant="light" size={size} aria-label={socialMediaLink.linkType}>
                 {Icon && <Icon className="w-6 h-6  md:w-8 md:h-8 " />}
               </Button>
 
