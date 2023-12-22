@@ -1,6 +1,5 @@
 import {
   AnimatedDivLeftRightUpDown,
-  AnimatedShow,
 } from "@/components/animation/animatedDiv";
 import { paragraph, title } from "@/components/primitives";
 import { aboutType } from "@/types/aboutType";
@@ -15,7 +14,7 @@ const IntroductionMissionHistory = ({
 }: introductionMissionHistoryProps) => {
   return (
     <div className="flex flex-col">
-      <div className="place-self-end max-w-sm md:max-w-lg xl:max-w-3xl py-14 sm:py-16 md:py-24 lg:py-28 xl:py-32">
+      <div className="place-self-end max-w-sm md:max-w-lg xl:max-w-3xl py-14 sm:py-16 md:py-24 lg:py-28 xl:py-32 ">
         <AnimatedDivLeftRightUpDown direction="right">
           <h2 className="font-extrabold text-default-900/5 text-[6rem] sm:text-[10rem] lg:text-[12rem] xl:text-[14rem]">
             Introduction

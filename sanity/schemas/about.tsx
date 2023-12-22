@@ -48,6 +48,13 @@ export default defineType({
         }),
 
         defineField({
+        name: "vision",
+        title: "Vision",
+        type: "text",
+        validation: (Rule) => Rule.required(),
+        }),
+
+        defineField({
         name: "history",
         title: "History",
         type: "text",

@@ -10,7 +10,7 @@ type faqsProps = {
 
 const Faqs = ({ faqs }: faqsProps) => {
   return (
-    <div className="py-14 sm:py-16 md:py-24 lg:py-28 xl:py-32">
+    <div className="max-w-7xl mx-auto py-14 sm:py-16 md:py-24 lg:py-28 xl:py-32">
       <Accordion variant="shadow">
         {faqs.map((faq) => (
           <AccordionItem

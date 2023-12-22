@@ -8,6 +8,7 @@ export type aboutType={
     companyPhrase: string,
     introduction: string,
     mission: string,
+    vision: string,
     history: string,
     values: Values[],
     services: Services[],

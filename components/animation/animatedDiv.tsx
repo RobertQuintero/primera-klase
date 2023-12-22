@@ -28,7 +28,7 @@ const AnimatedDivLeftRightUpDown = ({ children, delay, direction ,className}: Pr
   }, [isInView, controls]);
 
   return (
-      <motion.div ref={ref} className={`w-full h-full ${className}`}
+      <motion.div ref={ref} className={` ${className}`}
         variants={{
           hidden: {
             opacity: 0,

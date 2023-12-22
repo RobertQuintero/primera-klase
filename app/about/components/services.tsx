@@ -12,7 +12,8 @@ type aboutServicesProps = {
 
 const AboutServices = ({aboutServices}: aboutServicesProps) => {
   return (
-    <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 py-14 sm:py-16 md:py-24 lg:py-28 xl:py-32'>
+    <div className='max-w-7xl mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 py-14 sm:py-16 md:py-24 lg:py-28 xl:py-32'>
+
         {aboutServices.map((services, index) => (
           <AnimatedDivLeftRightUpDown key={services.title} direction="right" delay={index} className="w-full h-full">
             <Card shadow="none" isBlurred>

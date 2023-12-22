@@ -17,6 +17,7 @@ export async function getAboutData(): Promise<aboutType> {
         companyPhrase,
         introduction,
         mission,
+        vision,
         history,
         // "values": values[]{
         //     "image": image.asset->url,
