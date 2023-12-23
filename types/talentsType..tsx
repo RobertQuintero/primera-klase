@@ -1,9 +1,11 @@
 import { portfolioImagesType } from "./portfolioType"
 import { socialMediaType } from "./socialMediaType"
 
-export type talents={
-    firstName: string,
-    lastName: string,
+export type TalentsType={
+    _createdAt: string,
+    _updatedAt: string,
+    _id: string,
+    fullName: string,
     dateOfBirth: string,
     gender: string,
     nationality: string,
@@ -18,19 +20,12 @@ export type talents={
     dressSize: string,
     tattoos: boolean,
     piercings: boolean,
-    contactInfo: contactInfo,
     modelingPreferences: modelingPreferencesType[],
     socialMedia: socialMediaType[],
     portfolioFile: string,
     portfolioImages: portfolioImagesType[],
     achievements: achievementsType[],
 
-}
-
-export type contactInfo={
-    email: string,
-    mobile: string,
-    telephone: string,
 }
 
 export type achievementsType={

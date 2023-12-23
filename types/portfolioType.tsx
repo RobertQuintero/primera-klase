@@ -2,5 +2,5 @@
 
 export type portfolioImagesType={
     title: string,
-    images: string,
+    image: string,
 }

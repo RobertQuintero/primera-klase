@@ -13,16 +13,11 @@ export default defineType({
     fields: [
         // Personal Info
         defineField({
-        name: "firstName",
-        title: "First Name",
+        name: "fullName",
+        title: "Full Name",
         type: "string",
-        validation: (Rule) => Rule.required(),
-        }),
-
-        defineField({
-        name: "lastName",
-        title: "Last Name",
-        type: "string",
+        // full name with example
+        description: "Enter your full name (e.g. John Doe)",
         validation: (Rule) => Rule.required(),
         }),
 
@@ -121,33 +116,6 @@ export default defineType({
         type: "boolean",
         }),
 
-        defineField({
-            name: "contactInfo",
-            title: "Contact Info",
-            type: "array",
-            of: [
-                {
-                    type: "object",
-                    fields: [
-                        defineField({
-                            name: "mobileNumber",
-                            title: "Mobile Number",
-                            type: "string",
-                        }),
-                        defineField({
-                            name: "email",
-                            title: "Email",
-                            type: "string",
-                        }),
-                        defineField({
-                            name: "mailingAddress",
-                            title: "Mailing Address",
-                            type: "string",
-                        }),
-                    ],
-                },
-            ],
-        }),
 
         defineField({
             name: "socialMedia",

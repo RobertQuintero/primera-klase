@@ -2,15 +2,16 @@ import { portfolioImagesType } from "./portfolioType"
 import { socialMediaType } from "./socialMediaType"
 
 export type instructorsType={
-    firstName: string,
-    lastName: string,
+    _createdAt: string,
+    _updatedAt: string,
+    _id: string,
+    fullName: string,
     dateOfBirth: string,
     gender: string,
     experience: experienceType[],
     education: educationType[],
-    Specialties: specialtiesType[],
+    specialties: string[],
     // skills: skillsType[],
-    contactInfo: contactInfo,
     socialMedia: socialMediaType[],
     portfolioFile: string,
     portfolioImages: portfolioImagesType[],
@@ -30,13 +31,4 @@ export type educationType={
     endDate: string,
 }
 
-export type specialtiesType={
-    specialty: string,
-}
-
-export type contactInfo={
-    email: string,
-    mobile: string,
-    telephone: string,
-}
 

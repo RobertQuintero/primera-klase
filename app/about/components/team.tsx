@@ -18,7 +18,7 @@ const Teams = ({teams}:teamsProps) => {
                 img: "rounded-b-none rounded-t-xl ",
               }}/>
                 <div className='flex flex-col  bg-default/10 rounded-b-xl px-4 py-1'>
-                  <p className={`!font-semibold ${paragraph({size:"lg"})} `}>{team.name}</p>
+                  <p className={`!font-semibold ${paragraph({size:"lg"})}`}>{team.name}</p>
                   <p className={paragraph({size:"md"})}>{team.position}</p>
                 </div>
                 <div className='flex flex-col items-center justify-center absolute z-10 top-0 h-full w-full bg-background/50 animate duration-1000 group-hover:duration-1000 ease-in-out group-hover:ease-in-out animate-appearance-out group-hover:animate-appearance-in '>
