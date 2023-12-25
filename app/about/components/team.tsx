@@ -14,7 +14,7 @@ const Teams = ({teams}:teamsProps) => {
       {teams.map((team) => (
           <div key={team.name} className='relative max-w-sm group'>
                 <Image src={team.image} alt={team.name} classNames={{
-                zoomedWrapper: "rounded-b-none rounded-t-lg ",
+
                 img: "rounded-b-none rounded-t-xl ",
               }}/>
                 <div className='flex flex-col  bg-default/10 rounded-b-xl px-4 py-1'>
