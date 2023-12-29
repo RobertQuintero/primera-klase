@@ -1,9 +1,19 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-	name: "Next.js + NextUI",
-	description: "Make beautiful websites regardless of your design experience.",
-	footerText: "If you have any questions or need information, please feel free to contact me. Your feedback is highly valued, and I eagerly anticipate hearing from you.",
+	name: "Robert Quintero",
+	description: "Robert Portfolio",
+	url: "https://robertquintero.me",
+	image:"/siteLogo.png",
+	siteName: "Robert Quintero",
+	keywords: ["Portfolio", "Robert Quintero", "Robert", "Quintero"],
+	lang: "en-US",
+	locale: "en_us",
+	email: "work@robertquintero.me",
+	google: "UA-XXXXXXXX-X",
+	bing: "UA-XXXXXXXX-X",
+	yandex: "UA-XXXXXXXX-X",
+	yahoo: "UA-XXXXXXXX-X",
 	navItems: [
 	{
 		label: "Work",

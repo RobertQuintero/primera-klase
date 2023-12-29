@@ -22,6 +22,17 @@ export default defineType({
         }),
 
         defineField({
+        name: "slug",
+        title: "Slug",
+        type: "slug",
+        options: {
+            source: "fullName",
+            maxLength: 96,
+        },
+        validation: (Rule) => Rule.required(),
+        }),
+
+        defineField({
         name: "dateOfBirth",
         title: "Date of Birth",
         type: "date",
@@ -103,6 +114,13 @@ export default defineType({
         title: "Dress Size",
         type: "string",
         }),
+
+        defineField({
+        name: "pantsSize",
+        title: "Dress Size",
+        type: "string",
+        }),
+
 
         defineField({
         name: "tattoos",
@@ -235,7 +253,7 @@ export default defineType({
 
         // Portfolio images
         defineField({
-            name: "Portfolio",
+            name: "portfolioImages",
             title: "Portfolio images",
             description: "Upload your portfolio images",
             type: "array",

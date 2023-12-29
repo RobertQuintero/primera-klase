@@ -3,9 +3,9 @@ import { client } from "@/sanity/lib/client";
 import { TalentsType } from "@/types/talentsType.";
 import { instructorsType } from "@/types/instructorsType";
 
-export async function getTalentsData(): Promise<TalentsType> {
+export async function getTalentsData(): Promise<TalentsType[]> {
   const data = await client.fetch(groq`
-    *[_type == "talents"]{...,
+    *[_type == "talents"]| order(_createdAt asc) {...,
       _createdAt,
       _updatedAt,
       _id,
@@ -22,21 +22,18 @@ export async function getTalentsData(): Promise<TalentsType> {
         hips,
         shoeSize,
         dressSize,
+        pantsSize,
         tattoos,
         piercings,
-        "modelingPreferences": modelingPreferences[]{
-            modelingPreference,
-        },
-        "socialMedia": socialMedia[]{
-            "image": image.asset->url,
-            socialMedia,
-            url,
-        },
+        modelingPreferences,
+        "slug": slug.current,
         "portfolioFile": portfolioFile.asset->url,
-        "portfolioImages": portfolioImages[]{
-            "image": image.asset->url,
-            title,
-        },
+
+      "portfolioImages": portfolioImages[]{
+        "image": image.asset->url,
+        title,
+      },
+
         "achievements": achievements[]{
             achievement,
             description,
@@ -46,6 +43,50 @@ export async function getTalentsData(): Promise<TalentsType> {
   `);
   return data;
 }
+
+export async function getTalentPage(slug:string): Promise<TalentsType> {
+  const data = await client.fetch(groq`
+    *[_type == "talents" && slug.current== $slug ][0]{...,
+      _createdAt,
+      _updatedAt,
+      _id,
+        fullName,
+        dateOfBirth,
+        gender,
+        nationality,
+        height,
+        weight,
+        hairColor,
+        eyeColor,
+        bust,
+        waist,
+        hips,
+        shoeSize,
+        dressSize,
+        pantsSize,
+        tattoos,
+        piercings,
+        modelingPreferences,
+        "slug": slug.current,
+        "portfolioFile": portfolioFile.asset->url,
+
+      "portfolioImages": portfolioImages[]{
+        "image": image.asset->url,
+        title,
+      },
+
+        "achievements": achievements[]{
+            achievement,
+            description,
+            year,
+        },
+      }`,{slug}
+  );
+  return data;
+}
+
+
+
 
 export async function getInstructorsData(): Promise<instructorsType[]> {
   const data = await client.fetch(groq`

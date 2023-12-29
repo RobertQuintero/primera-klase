@@ -34,12 +34,10 @@ function AgeComponent({
     >
       <p
         className={cn(
-          "before:text-default-500 before:text-sm  before:content-['Age__:__']  ",
+          "",
           iconClassName
         )}
-      />
-      {age}
-    </div>
+      />{age}</div>
   );
 }
 

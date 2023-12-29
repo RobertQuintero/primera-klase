@@ -1,7 +1,14 @@
-export default function Talents() {
-	return (
-		<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-			Talents
-		</section>
-	);
+import { getTalentsData } from "@/sanity/utils/sanity-talents-instructors";
+import { TalentsList } from "./components.tsx/talentsList";
+
+
+export const revalidate = 0;
+
+
+export default async function Talents() {
+  const Talents = await getTalentsData();
+
+	console.log(Talents)
+
+  return <TalentsList talents={Talents} />;
 }

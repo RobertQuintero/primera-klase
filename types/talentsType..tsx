@@ -1,3 +1,4 @@
+import { Slug } from "sanity"
 import { portfolioImagesType } from "./portfolioType"
 import { socialMediaType } from "./socialMediaType"
 
@@ -18,6 +19,7 @@ export type TalentsType={
     hips: string,
     shoeSize: string,
     dressSize: string,
+    pantsSize: string,
     tattoos: boolean,
     piercings: boolean,
     modelingPreferences: modelingPreferencesType[],
@@ -25,7 +27,7 @@ export type TalentsType={
     portfolioFile: string,
     portfolioImages: portfolioImagesType[],
     achievements: achievementsType[],
-
+    slug: Slug,
 }
 
 export type achievementsType={

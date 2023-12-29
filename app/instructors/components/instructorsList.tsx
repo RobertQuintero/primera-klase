@@ -11,7 +11,7 @@ type instructorsListProps = {
 const InstructorsList = ({ instructors }: instructorsListProps) => {
 
   return (
-    <div className="w-full justify-center max-w-7xl  flex flex-wrap gap-4 md:gap-6 xl:gap-10 py-14 sm:py-16 md:py-24 lg:py-28 xl:py-32">
+    <div className="w-full mx-auto justify-center max-w-7xl  grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 py-14 sm:py-16 md:py-24 lg:py-28 xl:py-32">
       {instructors.map((instructor) => (
           <InstructorCard key={instructor.fullName} instructor={instructor} />
       ))}
