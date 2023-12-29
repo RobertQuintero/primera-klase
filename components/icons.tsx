@@ -99,7 +99,7 @@ export const FacebookIcon: React.FC<IconSvgProps> = ({
   <svg
     fill="none"
     height={size || height}
-    viewBox="0 0 25 27"
+    viewBox="0 -1 25 26"
     width={size || width}
     {...props}
   >

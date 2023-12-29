@@ -30,6 +30,13 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
 
+    defineField({
+      name: "summary",
+      title: "Summary",
+      type: "text",
+      validation: (Rule) => Rule.required(),
+    }),
+
     // Professional Experience
 
     defineField({

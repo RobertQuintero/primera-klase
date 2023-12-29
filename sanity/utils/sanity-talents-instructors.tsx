@@ -55,6 +55,7 @@ export async function getInstructorsData(): Promise<instructorsType[]> {
       _id,
       fullName,
       dateOfBirth,
+      summary,
       gender,
       specialties,
       "portfolioImages": portfolioImages[]{

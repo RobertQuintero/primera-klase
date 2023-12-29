@@ -8,6 +8,7 @@ export type instructorsType={
     fullName: string,
     dateOfBirth: string,
     gender: string,
+    summary: string,
     experience: experienceType[],
     education: educationType[],
     specialties: string[],
