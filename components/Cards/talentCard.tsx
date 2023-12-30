@@ -3,10 +3,8 @@ import React, { useEffect, useState } from "react";
 import {
   Button,
   Card,
-  CardBody,
   CardFooter,
   Chip,
-  Divider,
   Image,
   Modal,
   ModalBody,
@@ -19,12 +17,12 @@ import {
 } from "@nextui-org/react";
 import { paragraph, title } from "@/components/primitives";
 import { SocialMediaLink } from "@/components/links/socialMediaLink";
-import { DateRangeComponent } from "@/components/time/dateStartEnd";
 import { AgeComponent } from "../time/age";
 import { TalentsType } from "@/types/talentsType.";
 import { DateComponent } from "../time/date";
-import { ArrowDownTrayIcon, ArrowLongRightIcon, DocumentArrowUpIcon } from "@heroicons/react/24/outline";
+import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { DocumentArrowDownIcon } from "@heroicons/react/24/solid";
 
 type talentCardProps = {
   talent: TalentsType;
@@ -37,7 +35,7 @@ const TalentCard = ({ talent }: talentCardProps) => {
 
   return (
     <React.Fragment>
-      <Card onPress={onOpen} isPressable className="">
+      <Card onPress={onOpen} isPressable className="" radius="none">
         {talent.portfolioImages ? (
           <Image
             src={talent.portfolioImages[0].image}
@@ -45,10 +43,7 @@ const TalentCard = ({ talent }: talentCardProps) => {
             width={800}
             height={800}
             className=" object-cover object-center h-72 md:h-80 xl:h-96"
-            classNames={{
-              zoomedWrapper: "rounded-b-none rounded-t-lg ",
-              img: "rounded-b-none rounded-t-xl ",
-            }}
+            radius="none"
           />
         ) : null}
 
@@ -66,6 +61,7 @@ const TalentCard = ({ talent }: talentCardProps) => {
           body: "flex xl:flex-row p-2 sm:p-4 lg:p-6",
           footer: "p-0 flex-col",
           header: "p-0  pb-2",
+          base: "rounded-none",
         }}
       >
         <ModalContent>
@@ -74,24 +70,24 @@ const TalentCard = ({ talent }: talentCardProps) => {
               className="flex flex-col sm:flex-row w-full h-full sm:h-fit "
               hideScrollBar
             >
-              <div className="flex  w-full sm:max-w-md lg:max-w-xl bg-default-100 rounded-md">
+              <div className="flex justify-center items-center w-full sm:max-w-md lg:max-w-xl bg-default-100 ">
                 <Image
                   src={talent.portfolioImages[0].image}
                   alt={talent.fullName}
-                  radius="sm"
+                  radius="none"
                   width={500}
                   height={500}
-                  className="w-full h-full object-contain !object-center"
+                  className="w-full max-h-80  sm:max-h-96   xl:max-h-[36rem] object-contain !object-center"
                 />
               </div>
 
-              <div className="flex flex-col w-full p-0 md:px-4 lg:px-6">
+              <div className="flex flex-col h-full w-full p-0 md:px-4 lg:px-6">
                 <ModalHeader>
                   <h4 className={` !font-bold ${title({ size: "xl" })}`}>
                     {talent.fullName}
                   </h4>
                 </ModalHeader>
-                <div className="flex flex-row justify-between pb-3">
+                <div className="flex flex-row  justify-between ">
                   <div>
                     {talent.dateOfBirth ? (
                       <AgeComponent
@@ -231,19 +227,19 @@ const TalentCard = ({ talent }: talentCardProps) => {
 
                 {talent.modelingPreferences &&
                 talent.modelingPreferences.length > 0 ? (
-                  <div className="flex flex-col border border-default-200 rounded-md relative my-4 p-2">
+                  <div className="flex flex-col my-4 sm:my-6">
                     <p
-                      className={`absolute left-2 -top-3.5 bg-white dark:bg-default-50 rounded-full font-semibold  ${paragraph(
+                      className={` font-semibold  ${paragraph(
                         { size: "sm" }
                       )}`}
                     >
                     {/* // Goog nameing convention for this   */}
                       Preferences
                     </p>
-                    <ul className="flex flex-wrap gap-3 px-2 py-2">
+                    <ul className="flex flex-wrap gap-3 py-2">
                       {talent.modelingPreferences.map((preferences) => (
                         <li key={preferences.modelingPreference}>
-                          <Chip variant="dot" color="warning">
+                          <Chip variant="dot" radius="none" color="warning">
                             {preferences.modelingPreference}
                           </Chip>
                         </li>
@@ -253,64 +249,54 @@ const TalentCard = ({ talent }: talentCardProps) => {
                 ) : null}
 
                 {talent.achievements && talent.achievements.length > 0 ? (
-                  <div className="flex flex-col border border-default-200 rounded-md relative my-4 p-2">
-                    <p
-                      className={`absolute left-2 -top-3.5 bg-white dark:bg-default-50 rounded-full font-semibold  ${paragraph(
-                        { size: "sm" }
-                      )}`}
-                    >
+                  <div className="flex flex-col mb-4 sm:mb-6">
+                    <p className={`rounded-full font-semibold ${paragraph({ size: "sm" })}`}>
                       Achievements
                     </p>
-                    {talent.achievements.map((achievement) => (
-                      <div
-                        className="flex flex-col w-full gap-1 px-2 py-2"
-                        key={achievement.achievement}
+                    <div
+                      className="flex flex-col w-full gap-1 py-2"
+                      key={talent.achievements[talent.achievements.length - 1].achievement}
+                    >
+                      <p
+                        className={`before:text-default-500 before:font-normal before:text-sm before:content-['Title__:__'] font-semibold empty:hidden ${paragraph({ size: "sm" })}`}
                       >
-                        <p
-                          className={`before:text-default-500 before:font-normal before:text-sm  before:content-['Title__:__'] font-semibold empty:hidden  ${paragraph(
-                            { size: "sm" }
-                          )}`}
-                        >
-                          {achievement.achievement}
-                        </p>
-                        <p
-                          className={`before:text-default-500 before:text-sm  before:content-['Description__:__'] empty:hidden font-semibold ${paragraph(
-                            { size: "sm" }
-                          )}`}
-                        >
-                          {achievement.description}
-                        </p>
-                        <DateComponent
-                          className={paragraph({ size: "sm" })}
-                          Date={achievement.year}
-                          iconClassName="text-default-500 "
-                        />
-                        <Divider className="mt-4" />
-                      </div>
-                    ))}
+                        {talent.achievements[talent.achievements.length - 1].achievement}
+                      </p>
+                      <p
+                        className={`before:text-default-500 before:text-sm before:content-['Description__:__'] empty:hidden font-semibold ${paragraph({ size: "sm" })}`}
+                      >
+                        {talent.achievements[talent.achievements.length - 1].description}
+                      </p>
+                      <DateComponent
+                        className={paragraph({ size: "sm" })}
+                        Date={talent.achievements[talent.achievements.length - 1].year}
+                        iconClassName="text-default-500 "
+                      />
+                    </div>
                   </div>
                 ) : null}
 
                 <ModalFooter >
-                  <div className="flex flex-col w-full border border-default-200 rounded-md relative my-4 px-1 py-3">
-                    <p
-                      className={`absolute left-2 -top-3.5 bg-white dark:bg-default-50 rounded-full font-semibold  ${paragraph(
-                        { size: "sm" }
-                      )}`}
-                    >
-                      Contact info
-                    </p>
-                    {talent.socialMedia ? (
+                 {talent.socialMedia ? (
                       <SocialMediaLink socialMediaLinks={talent.socialMedia} />
-                    ) : null}
-                  </div>
-                  <div className="flex flex-row gap-4 w-full">
-                  <Tooltip content="Download Portfolio Documents">
-                    <Button isIconOnly radius="sm" className=" bg-default-100">
-                    <ArrowDownTrayIcon className="w-3.5 h-3.5 md:w-4 md:h-4" />
-                  </Button>
+                  ) : null}
+                  <div className="flex flex-row gap-4 w-full mt-4">
+                  {talent.portfolioFile ? (
+                  <Tooltip radius="none" content="Download Portfolio Documents">
+                    <Button
+                      download={talent.portfolioFile}
+                      href={talent.portfolioFile}
+                      as={Link}
+                      target="_blank"
+                      radius="none"
+                      variant="light"
+                      isIconOnly
+                    >
+                      <DocumentArrowDownIcon className="text-default-600 w-5 h-5 md:w-7 md:h-7" />
+                    </Button>
                   </Tooltip>
-                  <Button as={Link} href={`/talents/${talent.slug}`} endContent={<ArrowLongRightIcon className="w-3.5 h-3.5 md:w-4 md:h-4" />} radius="sm" className="w-full" color="warning">
+                  ) : null}
+                  <Button as={Link} href={`/talents/${talent.slug}`} endContent={<ArrowLongRightIcon className="w-4 h-4 md:w-5 md:h-5" />} radius="none" className="w-full" color="warning">
                     View Portfolio
                   </Button>
                   </div>

@@ -4,7 +4,7 @@ export default function TalentsLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<section className="w-full h-full  px-4 sm:px-8  lg:mx-auto overflow-hidden ">
+		<section className="w-full h-full mx-auto px-4 sm:px-8 py-14 sm:py-16 md:py-24 lg:py-28 xl:py-32 overflow-hidden ">
 				{children}
 		</section>
 	);

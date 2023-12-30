@@ -61,6 +61,7 @@ export default defineType({
         name: "height",
         title: "Height",
         type: "string",
+        description: "Enter your height in centimeters (e.g. 180)",
         validation: (Rule) => Rule.required(),
         }),
 
@@ -68,6 +69,7 @@ export default defineType({
         name: "weight",
         title: "Weight",
         type: "string",
+        description: "Enter your weight in kilograms (e.g. 60)",
         validation: (Rule) => Rule.required(),
         }),
 
@@ -89,18 +91,21 @@ export default defineType({
         name: "bust",
         title: "Bust",
         type: "string",
+        description: "Enter your bust size in centimeters (e.g. 90)",
         }),
 
         defineField({
         name: "waist",
         title: "Waist",
         type: "string",
+        description: "Enter your waist size in centimeters (e.g. 60)",
         }),
 
         defineField({
         name: "hips",
         title: "Hips",
         type: "string",
+        description: "Enter your hips size in centimeters (e.g. 90)",
         }),
 
         defineField({
@@ -148,7 +153,7 @@ export default defineType({
                     title: "Link Type",
                     type: "string",
                     options: {
-                        list: ["Website", "Facebook","LinkedIn","Instagram","Twitter","Pinterest","Tiktok","Youtube", "Other"], // You can define your options here
+                        list: ["Website", "Facebook","LinkedIn","Instagram","Twitter","Pinterest","Tiktok","Youtube","Phone","Email", "Other"], // You can define your options here
                     },
                     },
                     {
@@ -156,6 +161,7 @@ export default defineType({
                     title: "URL",
                     type: "url",
                     },
+
                 ],
                 },
             ],
@@ -232,17 +238,20 @@ export default defineType({
                             name: "achievement",
                             title: "Achievement",
                             type: "string",
+                            validation: (Rule) => Rule.required(),
                         }),
 
                         defineField({
                             name: "description",
                             title: "Description",
                             type: "text",
+                            validation: (Rule) => Rule.required(),
                         }),
                         defineField({
                             name: "year",
                             title: "Year",
                             type: "date",
+                            validation: (Rule) => Rule.required(),
                         }),
 
                     ],

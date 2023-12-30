@@ -3,6 +3,8 @@ import React from "react";
 import { TalentSlug } from "./talentSlug";
 
 
+export const revalidate = 1;
+
 type Props = {
   params: { slug: string };
 };
