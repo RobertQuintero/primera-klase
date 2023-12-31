@@ -2,24 +2,19 @@ import { getTalentPage } from "@/sanity/utils/sanity-talents-instructors";
 import React from "react";
 import { TalentSlug } from "./talentSlug";
 
-
 export const revalidate = 1;
 
 type Props = {
   params: { slug: string };
 };
 
-
-export default async function Page({params}:Props) {
+export default async function Page({ params }: Props) {
   const { slug } = params;
   const talent = await getTalentPage(slug);
 
-
-
-    return (
-        <React.Fragment>
-        <TalentSlug talent={talent} params={params} />
-        </React.Fragment>
-    );
-
+  return (
+    <React.Fragment>
+      <TalentSlug talent={talent} params={params} />
+    </React.Fragment>
+  );
 }

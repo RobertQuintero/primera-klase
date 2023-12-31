@@ -12,7 +12,7 @@ type successStoriesProps = {
 
 const SuccessStoriesCard = ({successStories}:successStoriesProps ) => {
   return (
-    <Card className='max-w-lg p-3 w-full'>
+    <Card className='max-w-lg p-3  border' radius="none" isBlurred shadow="none" >
         <CardHeader>
             <Avatar src={successStories.image} className='w-10 h-10 md:w-12 md:h-12 2xl:w-16 2xl:h-16 mr-4' />
             <div className='flex flex-col'>

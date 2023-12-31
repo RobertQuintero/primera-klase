@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, {} from "react";
 import {
   Button,
   Card,
@@ -35,20 +35,20 @@ const TalentCard = ({ talent }: talentCardProps) => {
 
   return (
     <React.Fragment>
-      <Card onPress={onOpen} isPressable className="" radius="none">
+      <Card onPress={onOpen} isPressable className=" max-w-sm" radius="none" isBlurred shadow="none">
         {talent.portfolioImages ? (
           <Image
             src={talent.portfolioImages[0].image}
             alt={talent.fullName}
             width={800}
             height={800}
-            className=" object-cover object-center h-72 md:h-80 xl:h-96"
+            className=" object-cover object-center h-56 sm:h-[22rem] md:h-[25rem] lg:h-[26rem] xl:h-[28rem]"
             radius="none"
           />
         ) : null}
 
-        <CardFooter>
-          <h2 className={`pl-3 pb-3 !font-bold ${title({ size: "xl" })}`}>
+        <CardFooter className="p-2 sm:p-4 justify-center">
+         <h2 className="capitalize font-medium text-center text-md md:text-lg lg:text-xl xl:text-2xl">
             {talent.fullName}
           </h2>
         </CardFooter>
@@ -233,7 +233,6 @@ const TalentCard = ({ talent }: talentCardProps) => {
                         { size: "sm" }
                       )}`}
                     >
-                    {/* // Goog nameing convention for this   */}
                       Preferences
                     </p>
                     <ul className="flex flex-wrap gap-3 py-2">

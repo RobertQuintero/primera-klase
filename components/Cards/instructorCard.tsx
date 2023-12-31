@@ -1,19 +1,18 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, {} from "react";
 import {
   Button,
   Card,
-  CardBody,
   CardFooter,
   Chip,
-  Divider,
   Image,
+  Link,
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ScrollShadow,
+  Tooltip,
   useDisclosure,
 } from "@nextui-org/react";
 import { paragraph, title } from "@/components/primitives";
@@ -21,6 +20,7 @@ import { SocialMediaLink } from "@/components/links/socialMediaLink";
 import { instructorsType } from "@/types/instructorsType";
 import { DateRangeComponent } from "@/components/time/dateStartEnd";
 import { AgeComponent } from "../time/age";
+import { DocumentArrowDownIcon } from "@heroicons/react/24/solid";
 
 type instructorCardProps = {
   instructor: instructorsType;
@@ -31,23 +31,20 @@ const InstructorCard = ({ instructor }: instructorCardProps) => {
 
   return (
     <React.Fragment key={instructor.fullName}>
-      <Card onPress={onOpen} isPressable className="">
+      <Card onPress={onOpen} isPressable className="w-full max-w-sm" radius="none" isBlurred shadow="none" >
         {instructor.portfolioImages ? (
           <Image
             src={instructor.portfolioImages[0].image}
             alt={instructor.fullName}
+            radius="none"
             width={800}
             height={800}
-            className=" object-cover object-center h-72 md:h-80 xl:h-96"
-            classNames={{
-              zoomedWrapper: "rounded-b-none rounded-t-lg ",
-              img: "rounded-b-none rounded-t-xl ",
-            }}
+            className=" object-cover object-center h-56 sm:h-[22rem] md:h-[25rem] lg:h-[26rem] xl:h-[28rem]"
           />
         ) : null}
 
-        <CardFooter>
-          <h2 className={`pl-3 pb-3 !font-bold ${title({ size: "xl" })}`}>
+        <CardFooter className="p-2 sm:p-4 justify-center" >
+          <h2 className="capitalize font-medium text-center text-md sm:text-xl lg:text-2xl xl:text-3xl">
             {instructor.fullName}
           </h2>
           {/* <h3 className={title({ size: "xl" })}>
@@ -59,20 +56,19 @@ const InstructorCard = ({ instructor }: instructorCardProps) => {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         size="4xl"
-        classNames={{ body: "flex xl:flex-row p-2 sm:p-4 lg:p-6",footer: "p-0 ",header: "p-0  pb-2"}}
+        classNames={{ body: "flex xl:flex-row p-2 sm:p-4 lg:p-6",footer: "p-0 ",header: "p-0  pb-2",base: "rounded-none" }}
       >
         <ModalContent>
 
           <ModalBody>
-          <ScrollShadow className="flex flex-col sm:flex-row w-full h-full sm:h-fit " hideScrollBar>
-            <div className="flex  w-full sm:max-w-md lg:max-w-xl bg-default-100 rounded-md">
+            <div className="flex justify-center items-center w-full bg-default-100 ">
               <Image
                 src={instructor.portfolioImages[0].image}
                 alt={instructor.fullName}
-                radius="sm"
+                radius="none"
                 width={500}
                 height={500}
-                className="w-full h-full object-contain !object-center"
+                className="w-full  max-h-80  sm:max-h-96   xl:max-h-[36rem] object-contain !object-center"
               />
             </div>
 
@@ -101,21 +97,21 @@ const InstructorCard = ({ instructor }: instructorCardProps) => {
               </p>
 
               {instructor.dateOfBirth ? (
-              <AgeComponent className={`font-semibold mb-2 ${paragraph(
+              <AgeComponent className={`before:text-default-500 before:font-normal before:text-sm  before:content-['Age__:__'] font-semibold ${paragraph(
                   { size: "md" }
                 )}`} Date={instructor.dateOfBirth} />
               ) : null}
 
               {instructor.specialties && instructor.specialties.length > 0 ? (
-              <div className="flex flex-col border border-default-200 rounded-md relative my-4 p-2">
+              <div className="flex flex-col my-4 sm:my-6">
                 <p
-                  className={`absolute left-2 -top-3.5 bg-white dark:bg-default-50 rounded-full font-semibold  ${paragraph(
+                  className={`font-semibold  ${paragraph(
                     { size: "sm" }
                   )}`}
                 >
                   Specializes
                 </p>
-                <ul className="flex flex-wrap gap-3 px-2 py-2">
+                <ul className="flex flex-wrap gap-3 py-2">
                   {instructor.specialties.map((specialty) => (
                     <li key={specialty}>
                       <Chip variant="dot" color="warning">
@@ -128,105 +124,105 @@ const InstructorCard = ({ instructor }: instructorCardProps) => {
               ): null}
 
              {instructor.experience && instructor.experience.length > 0 ? (
-              <div className="flex flex-col border border-default-200 rounded-md relative my-4 p-2">
+              <div className="flex flex-col mb-4 sm:mb-6">
                 <p
-                  className={`absolute left-2 -top-3.5 bg-white dark:bg-default-50 rounded-full font-semibold  ${paragraph(
+                  className={`font-semibold  ${paragraph(
                     { size: "sm" }
                   )}`}
                 >
                   Experience
                 </p>
-                { instructor.experience.map((experience) => (
                       <div
-                        className="flex flex-col w-full px-2 py-2"
-                        key={experience.company}
+                        className="flex flex-col w-full py-2"
+                        key={instructor.experience[instructor.experience.length - 1].company}
                       >
                         <p
                           className={`before:text-default-500 before:font-normal before:text-sm  before:content-['Company__:__'] font-semibold empty:hidden  ${paragraph(
                             { size: "sm" }
                           )}`}
                         >
-                          {experience.company}
+                          {instructor.experience[instructor.experience.length - 1].company}
                         </p>
                         <p
-                          className={`before:text-default-500 before:text-sm  before:content-['Position__:__'] empty:hidden  ${paragraph(
+                          className={`before:text-default-500 before:text-sm  before:content-['Position__:__'] empty:hidden font-semibold ${paragraph(
                             { size: "sm" }
                           )}`}
                         >
-                          {experience.position}
+                          {instructor.experience[instructor.experience.length - 1].position}
                         </p>
                         <DateRangeComponent
-                          className={paragraph({ size: "xs" })}
-                          startDate={experience.startDate}
-                          endDate={experience.endDate}
+                          className={`font-semibold ${paragraph({ size: "xs" })}`}
+                          startDate={instructor.experience[instructor.experience.length - 1].startDate}
+                          endDate={instructor.experience[instructor.experience.length - 1].endDate}
                           iconClassName="w-3.5 h-3.5  sm:w-4 sm:h-4"
                         />
-                        <Divider className="mt-4" />
                       </div>
-                    ))}
                   </div>
                 ) : null}
 
 
 
                 {instructor.education && instructor.education.length > 0 ? (
-                  <div className="flex flex-col border border-default-200 rounded-md relative my-4 p-2 empty:hidden ">
+                  <div className="flex flex-col ">
                     <p
-                      className={`absolute left-2 -top-3.5 bg-white dark:bg-default-50 rounded-full font-semibold empty:hidden  ${paragraph(
+                      className={` font-semibold ${paragraph(
                         { size: "sm" }
                       )}`}
                     >
                       Education
                     </p>
-
-                    {instructor.education.map((education) => (
-                      <div className="flex flex-col w-full px-2 py-2" key={education.school}>
+                      <div className="flex flex-col w-full py-2" key={instructor.education[instructor.education.length - 1].school}>
                         <p
-                          className={`before:text-default-500 before:text-sm  before:content-['School__:__'] empty:hidden  ${paragraph(
+                          className={`before:text-default-500 before:text-sm  before:content-['School__:__'] empty:hidden font-semibold ${paragraph(
                             { size: "sm" }
                           )}`}
                         >
-                          {education.school}
+                          {instructor.education[instructor.education.length - 1].school}
                         </p>
                         <p
-                          className={`before:text-default-500 before:text-sm  before:content-['Degree__:__'] empty:hidden  ${paragraph(
+                          className={`before:text-default-500 before:text-sm  before:content-['Degree__:__'] empty:hidden font-semibold ${paragraph(
                             { size: "sm" }
                           )}`}
                         >
-                          {education.degree}
+                          {instructor.education[instructor.education.length - 1].degree}
                         </p>
-                      {education.startDate && education.endDate ? (
                         <DateRangeComponent
-                          className={` empty:hidden  ${paragraph({ size: "xs" })}`}
-                          startDate={education.startDate}
-                          endDate={education.endDate}
+                          className={`font-semibold empty:hidden  ${paragraph({ size: "xs" })}`}
+                          startDate={instructor.education[instructor.education.length - 1].startDate}
+                          endDate={instructor.education[instructor.education.length - 1].endDate}
                           iconClassName=" w-3.5 h-3.5  sm:w-4 sm:h-4 "
                         />
-                      ) : null}
-
                       </div>
-                    ))}
                   </div>
                 ) : null}
 
               <ModalFooter>
-                <div className="flex flex-col w-full border border-default-200 rounded-md relative my-4 px-1 py-3">
-                <p
-                  className={`absolute left-2 -top-3.5 bg-white dark:bg-default-50 rounded-full font-semibold  ${paragraph(
-                    { size: "sm" }
-                  )}`}
-                >
-                  Contact info
-                </p>
+                <div className="flex flex-col w-full mt-4">
+                  <div className="flex flex-wrap">
                   {instructor.socialMedia ? (
                     <SocialMediaLink
                       socialMediaLinks={instructor.socialMedia}
                     />
                   ) : null}
+                  {instructor.portfolioFile ? (
+                  <Tooltip radius="none" content="Download Portfolio Documents">
+                    <Button
+                      download={instructor.portfolioFile}
+                      href={instructor.portfolioFile}
+                      as={Link}
+                      target="_blank"
+                      radius="none"
+                      variant="light"
+                      isIconOnly
+                    >
+                      <DocumentArrowDownIcon className="text-default-600 w-5 h-5 md:w-7 md:h-7" />
+                    </Button>
+                  </Tooltip>
+                  ) : null}
+                </div>
                 </div>
               </ModalFooter>
             </div>
-            </ScrollShadow>
           </ModalBody>
         </ModalContent>
       </Modal>
