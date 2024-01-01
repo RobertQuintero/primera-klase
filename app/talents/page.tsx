@@ -9,9 +9,8 @@ export default async function Talents() {
 
   return (
     <React.Fragment>
-      <div className="flex flex-col justify-center ml-auto w-full">
+      <div className="flex flex-col w-full">
         <TalentsList talents={Talents} />
-        <h1>sample</h1>
       </div>
     </React.Fragment>
   );

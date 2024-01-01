@@ -42,7 +42,7 @@ const TalentCard = ({ talent }: talentCardProps) => {
             alt={talent.fullName}
             width={800}
             height={800}
-            className=" object-cover object-center h-56 sm:h-[22rem] md:h-[25rem] lg:h-[26rem] xl:h-[28rem]"
+            className=" object-cover object-center h-56 sm:h-[22rem] md:h-[25rem] 2xl:h-[28rem]"
             radius="none"
           />
         ) : null}
