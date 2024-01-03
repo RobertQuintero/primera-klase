@@ -1,4 +1,4 @@
-export default function TalentsLayout({
+export default function WorksLayout({
 	children,
 }: {
 	children: React.ReactNode;

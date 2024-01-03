@@ -22,6 +22,26 @@ export default defineType({
         validation: (Rule) => Rule.required(),
         }),
 
+        defineField({
+        name: "location",
+        title: "Location",
+        type: "string",
+        validation: (Rule) => Rule.required(),
+        }),
+
+        defineField({
+        name: "date",
+        title: "Date",
+        type: "date",
+        validation: (Rule) => Rule.required(),
+        }),
+
+        defineField({
+        name: "time",
+        title: "Time",
+        type: "string",
+        }),
+
         // service catered should be an array of references to about services documents
         // title only
         defineField({
@@ -34,33 +54,62 @@ export default defineType({
         }),
 
         defineField({
-        name: "image",
-        title: "Image",
-        type: "array",
+        name:"specialGuest",
+        title:"Special Guest",
+        description:"",
+        type:"array",
         of: [
-            {
+                {
                 type: "object",
                 fields: [
-                    defineField({
-                        name: "image",
-                        title: "Image",
-                        type: "image",
-                        options: {
-                            hotspot: true,
-                        },
-                        validation: (Rule) => Rule.required(),
-                    }),
+                    {
+                    name: "name",
+                    title: "Full name of the Guest",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                    },
+                    {
+                    name: "title",
+                    title: "Title of Guest",
+                    type: "string",
+                    },
+
                 ],
-            },
-        ],
+                },
+            ],
         }),
 
-        defineField({
-        name: "date",
-        title: "Date",
-        type: "date",
+
+       defineField({
+            name: "portfolioImages",
+            title: "Image Gallery",
+            description: "First image will be the cover image",
+            type: "array",
+            of: [
+                {
+                    type: "object",
+                    fields: [
+                        defineField({
+                            name: "title",
+                            title: "Title",
+                            type: "string",
+                            validation: (Rule) => Rule.required(),
+                        }),
+                        defineField({
+                            name: "image",
+                            title: "Image",
+                            type: "image",
+                            options: {
+                                hotspot: true,
+                            },
+                            validation: (Rule) => Rule.required(),
+                        }),
+                    ],
+                },
+            ],
         validation: (Rule) => Rule.required(),
         }),
+
 
 
     ]
