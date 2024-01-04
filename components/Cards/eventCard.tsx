@@ -25,38 +25,35 @@ import { DateComponent } from "../time/date";
 import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { DocumentArrowDownIcon } from "@heroicons/react/24/solid";
-import { WorksType } from "@/types/worksType";
 import { AnimatedDivLeftRightUpDown } from "../animation/animatedDiv";
+import { EventType } from "@/types/eventType";
 
-type workCardProps = {
-  work: WorksType;
+type eventCardProps = {
+  event: EventType;
   placement?: "left" | "right";
 };
 
-const WorkCard = ({ placement, work }: workCardProps) => {
+const EventCard = ({ placement, event }: eventCardProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
 
   return (
     <React.Fragment>
-      <Card onPress={onOpen} isPressable className=" max-w-2xl relative" radius="none" isBlurred shadow="none">
-        {work.portfolioImages ? (
+      <Card onPress={onOpen} isPressable className="flex-row max-w-2xl" radius="none"  shadow="sm">
+        {event.eventImage ? (
           <Image
-            src={work.portfolioImages[0].image}
-            alt={work.title}
+            src={event.eventImage}
+            alt={event.eventTitle}
             width={800}
             height={800}
-            className=" object-cover object-center h-56 sm:h-[22rem] md:h-[28rem] 2xl:h-[36rem]"
+            className=" object-cover object-center h-32 "
             radius="none"
           />
         ) : null}
-
-        <CardFooter className="p-2 sm:p-4 justify-center absolute z-20">
-        <AnimatedDivLeftRightUpDown direction={placement} className="w-full">
-         <h2 className="capitalize font-bold text-center text-lg md:text-xl lg:text-3xl xl:text-5xl">
-            {work.title}
-          </h2>
-          </AnimatedDivLeftRightUpDown>
+        <CardFooter className="p-2 sm:p-4 flex-col justify-center ">
+         <DateComponent className="" iconClassName="" Date={event.date} />
+         <h3 className="capitalize font-bold text-center text-base md:text-lg lg:text-xl 2xl:text-2xl">
+            {event.eventTitle}
+         </h3>
         </CardFooter>
       </Card>
       <Modal
@@ -74,8 +71,8 @@ const WorkCard = ({ placement, work }: workCardProps) => {
           <ModalBody>
               <div className="flex justify-center items-center w-full sm:max-w-md lg:max-w-xl bg-default-100 ">
                 <Image
-                  src={work.portfolioImages[0].image}
-                  alt={work.title}
+                  src={event.eventImage}
+                  alt={event.eventTitle}
                   radius="none"
                   width={800}
                   height={800}
@@ -86,7 +83,7 @@ const WorkCard = ({ placement, work }: workCardProps) => {
               <div className="flex flex-col h-full w-full p-0 md:px-4 lg:px-6">
                 <ModalHeader>
                   <h4 className={` !font-bold ${title({ size: "xl" })}`}>
-                    {work.title}
+                    {event.eventTitle}
                   </h4>
                 </ModalHeader>
 
@@ -98,4 +95,4 @@ const WorkCard = ({ placement, work }: workCardProps) => {
   );
 };
 
-export { WorkCard };
+export { EventCard };

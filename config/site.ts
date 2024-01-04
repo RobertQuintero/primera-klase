@@ -40,11 +40,11 @@ export const siteConfig = {
 		href: "/events",
 		description: "Events page",
 	},
-	{
-		label: "Schedules",
-		href: "/schedules",
-		description: "Schedules page",
-	},
+	// {
+	// 	label: "Schedules",
+	// 	href: "/schedules",
+	// 	description: "Schedules page",
+	// },
 	{
 		label: "Testimonials",
 		href: "/testimonials",

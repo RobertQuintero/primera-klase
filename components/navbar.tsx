@@ -36,11 +36,11 @@ export const Navbar = () => {
   const pathname = usePathname()
   const icons: { [key: string]: JSX.Element } = {
   // Change the icon color to text-default-800 if the pathname is equal to the href
-  about: <InformationCircleIcon className={pathname === "/about" ? "text-default-800 w-8 h-8" : "text-default-500 w-8 h-8"} />,
-  events: <SwatchIcon className={pathname === "/events" ? "text-default-800 w-8 h-8" : "text-default-500 w-8 h-8"} />,
-  schedules: <CalendarDaysIcon className={pathname === "/schedules" ? "text-default-800 w-8 h-8" : "text-default-500 w-8 h-8"} />,
-  testimonials: <ChatBubbleBottomCenterTextIcon className={pathname === "/testimonials" ? "text-default-800 w-8 h-8" : "text-default-500 w-8 h-8"} />,
-  contact: <EnvelopeIcon className={pathname === "/contact" ? "text-default-800 w-8 h-8" : "text-default-500 w-8 h-8"} />,
+  about: <InformationCircleIcon className={pathname === "/about" ? "text-default-800 w-8 h-8" : "text-default-500 w-8 h-8 group-hover:text-default-800" } />,
+  events: <SwatchIcon className={pathname === "/events" ? "text-default-800 w-8 h-8" : "text-default-500 w-8 h-8 group-hover:text-default-800"} />,
+  // schedules: <CalendarDaysIcon className={pathname === "/schedules" ? "text-default-800 w-8 h-8" : "text-default-500 w-8 h-8"} />,
+  testimonials: <ChatBubbleBottomCenterTextIcon className={pathname === "/testimonials" ? "text-default-800 w-8 h-8 " : "text-default-500 w-8 h-8 group-hover:text-default-800"} />,
+  contact: <EnvelopeIcon className={pathname === "/contact" ? "text-default-800 w-8 h-8" : "text-default-500 w-8 h-8 group-hover:text-default-800"} />,
 };
 
 
@@ -61,9 +61,9 @@ export const Navbar = () => {
             </NavbarItem>
             //add limit of 3 item only
           ))}
-        <Dropdown classNames={{trigger:"", content:""}} radius="sm"  shadow="sm" >
+        <Dropdown classNames={{trigger:""}} radius="none"  shadow="sm" >
           <NavbarItem>
-            <DropdownTrigger>
+            <DropdownTrigger >
               <Button
                 disableRipple
                 className={clsx
@@ -81,14 +81,18 @@ export const Navbar = () => {
           {/* // change the color of the dropdown if the pathname is equal to the href */}
           <DropdownMenu
             itemClasses={{
-              base: "text-default-500 gap-3",
+              base: "text-default-500 gap-3 !rounded-none group",
               title:"text-base",
+              // change the color of description if the pathname is equal to the what is active path
             }}
           >
             {siteConfig.navItems.slice(3).map((item) => (
               <DropdownItem
                 key={item.href}
-                description={item.description}
+                description={
+                <p className={pathname === item.href ? "text-default-900" : ""}>
+                  {item.description}
+                </p>}
                 startContent={icons[item.href.split("/")[1]]}
                 href={item.href}
               >

@@ -3,36 +3,10 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-    name: "schedule",
-    title: "Schedule",
+    name: "events",
+    title: "Events",
     type: "document",
     fields: [
-
-        defineField({
-        name: "date",
-        title: "Date",
-        type: "date",
-        validation: (Rule) => Rule.required(),
-        }),
-
-        defineField({
-        name: "time",
-        title: "Time",
-        type: "string",
-        }),
-
-        defineField({
-        name: "location",
-        title: "Location",
-        type: "string",
-        validation: (Rule) => Rule.required(),
-        }),
-
-        defineField({
-        name: "eventLink",
-        title: "Event Link",
-        type: "string",
-        }),
 
         defineField({
         name: "eventImage",
@@ -59,6 +33,32 @@ export default defineType({
         }),
 
         defineField({
+        name: "date",
+        title: "Event Date",
+        type: "date",
+        validation: (Rule) => Rule.required(),
+        }),
+
+        defineField({
+        name: "time",
+        title: "Event Time",
+        type: "string",
+        }),
+
+        defineField({
+        name: "location",
+        title: "Event Location",
+        type: "string",
+        validation: (Rule) => Rule.required(),
+        }),
+
+        defineField({
+        name: "eventLink",
+        title: "Event Link",
+        type: "string",
+        }),
+
+        defineField({
         name: "eventType",
         title: "Event Type",
         type: "string",
@@ -78,6 +78,32 @@ export default defineType({
                 { title: "Other", value: "other" },
             ],
         },
+        }),
+
+        defineField({
+        name:"specialGuest",
+        title:"Special Guest",
+        description:"",
+        type:"array",
+        of: [
+                {
+                type: "object",
+                fields: [
+                    {
+                    name: "name",
+                    title: "Full name of the Guest",
+                    type: "string",
+                    validation: (Rule) => Rule.required(),
+                    },
+                    {
+                    name: "title",
+                    title: "Title of Guest",
+                    type: "string",
+                    },
+
+                ],
+                },
+            ],
         }),
 
 

@@ -9,7 +9,7 @@ import contact from './schemas/contact'
 import works from './schemas/works'
 import talents from './schemas/talents'
 import instructors from './schemas/instructors'
-import schedule from './schemas/schedule'
+import events from './schemas/events'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -23,6 +23,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
   successStories,
   testimonials,
   contact,
-  schedule,
+  events,
   ],
 }
