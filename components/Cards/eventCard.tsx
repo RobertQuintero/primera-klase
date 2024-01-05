@@ -38,23 +38,26 @@ const EventCard = ({ placement, event }: eventCardProps) => {
 
   return (
     <React.Fragment>
-      <Card onPress={onOpen} isPressable className="flex-row max-w-2xl" radius="none"  shadow="sm">
+      <Card onPress={onOpen} isPressable className="flex-row w-full " radius="none"  shadow="sm">
         {event.eventImage ? (
-          <Image
-            src={event.eventImage}
-            alt={event.eventTitle}
-            width={800}
-            height={800}
-            className=" object-cover object-center h-32 "
-            radius="none"
-          />
+         <div className="flex justify-center items-center w-full h-full ">
+                <Image
+                  isZoomed
+                  src={event.eventImage}
+                  alt={event.eventTitle}
+                  radius="none"
+                  width={500}
+                  height={500}
+                  className="w-full max-h-20  sm:max-h-96   xl:max-h-[36rem] object-cover !object-center"
+                />
+        </div>
         ) : null}
-        <CardFooter className="p-2 sm:p-4 flex-col justify-center ">
-         <DateComponent className="" iconClassName="" Date={event.date} />
-         <h3 className="capitalize font-bold text-center text-base md:text-lg lg:text-xl 2xl:text-2xl">
+        <div className="p-2 sm:p-4 flex flex-col w-full">
+         <DateComponent className="!gap-1 md:!gap-2" iconClassName="!w-3.5 !h-3.5 sm:!w-4 sm:!h-4" Date={event.date} />
+         <h3 className="capitalize font-bold text-default-700 text-left text-base md:text-lg lg:text-xl 2xl:text-2xl">
             {event.eventTitle}
          </h3>
-        </CardFooter>
+        </div>
       </Card>
       <Modal
         isOpen={isOpen}
@@ -69,14 +72,14 @@ const EventCard = ({ placement, event }: eventCardProps) => {
       >
         <ModalContent>
           <ModalBody>
-              <div className="flex justify-center items-center w-full sm:max-w-md lg:max-w-xl bg-default-100 ">
+              <div className="flex justify-center items-center w-full sm:max-w-md lg:max-w-3xl bg-default-100 ">
                 <Image
                   src={event.eventImage}
                   alt={event.eventTitle}
                   radius="none"
                   width={800}
                   height={800}
-                  className=" object-contain object-center h-56 sm:h-[22rem] md:h-[28rem] 2xl:h-[36rem]"
+                  className=" object-contain object-center "
                 />
               </div>
 

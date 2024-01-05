@@ -37,7 +37,7 @@ const TalentCard = ({ talent }: talentCardProps) => {
     <React.Fragment>
       <Card onPress={onOpen} isPressable className=" max-w-sm" radius="none" isBlurred shadow="none">
         {talent.portfolioImages ? (
-          <Image
+          <Image isZoomed
             src={talent.portfolioImages[0].image}
             alt={talent.fullName}
             width={800}

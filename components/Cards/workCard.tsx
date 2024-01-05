@@ -41,7 +41,7 @@ const WorkCard = ({ placement, work }: workCardProps) => {
     <React.Fragment>
       <Card onPress={onOpen} isPressable className=" max-w-2xl relative" radius="none" isBlurred shadow="none">
         {work.portfolioImages ? (
-          <Image
+          <Image isZoomed
             src={work.portfolioImages[0].image}
             alt={work.title}
             width={800}

@@ -2,6 +2,8 @@ import { getEventsData } from "@/sanity/utils/sanity-events";
 import React from "react"
 import { EventsList } from "./eventsList";
 
+export const revalidate = 1;
+
 export default async function Events() {
 
 	const events = await getEventsData();

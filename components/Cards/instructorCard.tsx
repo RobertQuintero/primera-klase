@@ -33,7 +33,7 @@ const InstructorCard = ({ instructor }: instructorCardProps) => {
     <React.Fragment key={instructor.fullName}>
       <Card onPress={onOpen} isPressable className="w-full max-w-sm" radius="none" isBlurred shadow="none" >
         {instructor.portfolioImages ? (
-          <Image
+          <Image isZoomed
             src={instructor.portfolioImages[0].image}
             alt={instructor.fullName}
             radius="none"
