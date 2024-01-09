@@ -5,7 +5,7 @@ import { Testimonials } from "@/types/testimonialsType";
 import { SuccessStories } from "@/types/successStoriesType";
 
 // About page data
-export async function getTestimonialsData(): Promise<Testimonials> {
+export async function getTestimonialsData(): Promise<Testimonials[]> {
   const data = await client.fetch(groq`*[_type=="testimonials"]{...,
         _createdAt,
         _updatedAt,
@@ -21,8 +21,8 @@ export async function getTestimonialsData(): Promise<Testimonials> {
   return data;
 }
 
-export async function getSuccessStoriesData(): Promise<SuccessStories> {
-  const data = await client.fetch(groq`*[_type=="successStories"][0]{...,
+export async function getSuccessStoriesData(): Promise<SuccessStories[]> {
+  const data = await client.fetch(groq`*[_type=="successStories"]{...,
         _createdAt,
         _updatedAt,
         _id,

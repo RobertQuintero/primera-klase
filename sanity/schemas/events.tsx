@@ -55,7 +55,7 @@ export default defineType({
         defineField({
         name: "eventLink",
         title: "Event Link",
-        type: "string",
+        type: "url",
         }),
 
         defineField({
@@ -78,6 +78,7 @@ export default defineType({
                 { title: "Other", value: "other" },
             ],
         },
+        validation: (Rule) => Rule.required(),
         }),
 
         defineField({

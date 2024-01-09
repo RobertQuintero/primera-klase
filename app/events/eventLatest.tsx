@@ -4,6 +4,8 @@ import {
   Button,
   Card,
   CardBody,
+  CardFooter,
+  Chip,
   Image,
   Modal,
   ModalBody,
@@ -14,56 +16,60 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { paragraph, title } from "@/components/primitives";
-import { DateComponent } from "../time/date";
+import { SocialMediaLink } from "@/components/links/socialMediaLink";
+
 import {
+  ArrowLongRightIcon,
   ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { EventType } from "@/types/eventType";
+import { DocumentArrowDownIcon } from "@heroicons/react/24/solid";
 
-type eventCardProps = {
-  event: EventType;
+import { EventType } from "@/types/eventType";
+import { DateComponent } from "@/components/time/date";
+
+type eventLatestProps = {
+  eventLatest: EventType;
   placement?: "left" | "right";
 };
 
-const EventCard = ({ placement, event }: eventCardProps) => {
+const EventLatest = ({ placement, eventLatest }: eventLatestProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <React.Fragment>
+    <div className="w-full h-full">
       <Card
         onPress={onOpen}
         isPressable
-        className="sm:flex-row w-full "
+        className="sm:flex-row w-full max-h-[34rem] max-w-7xl mx-auto relative mb-4 sm:mb-6 md:mb-8 2xl:mb-10"
         radius="none"
-        shadow="sm"
+        shadow="none"
       >
-        {event.eventImage ? (
-          <CardBody className="h-full p-0 w-full lg:w-64 xl:w-[30rem]">
+
+        {eventLatest.eventImage ? (
             <Image
-              src={event.eventImage}
-              alt={event.eventTitle}
+              src={eventLatest.eventImage}
+              alt={eventLatest.eventTitle}
               radius="none"
-              width={800}
-              height={800}
-              className=" w-full object-cover"
+              width={1800}
+              height={1800}
+              className="h-full w-full object-cover object-center"
             />
-          </CardBody>
         ) : null}
 
-        <div className=" p-2 sm:p-4 flex flex-col gap-1 w-full">
+        <CardFooter className="bg-gradient-to-t from-background/0 via-background/10 to-background  p-2 sm:p-4  flex-col gap-1 md:absolute z-10 h-[50%]">
           <DateComponent
-            className={` ${title({ size: "lg" })}`}
+            className={` ${title({ size: "xl" })}`}
             iconClassName="hidden"
-            Date={event.date}
+            Date={eventLatest.date}
           />
-          <h4 className={` !line-clamp-1 ${title({ size: "md" })}`}>
-            {event.eventTitle}
-          </h4>
-          <p className={`line-clamp-2 ${paragraph({ size: "sm" })}`}>
-            {event.eventDescription}
-          </p>
-        </div>
+          <h1 className={` !line-clamp-1 ${title({ size: "lg" })}`}>
+            {eventLatest.eventTitle}
+          </h1>
+          <Chip variant="dot" color="warning" className={`border-warning !text-black dark:!text-default-600  capitalize  ${paragraph({ size: "sm" })}`}>
+            {eventLatest.eventType}
+          </Chip>
+        </CardFooter>
       </Card>
       <Modal
         isOpen={isOpen}
@@ -80,8 +86,8 @@ const EventCard = ({ placement, event }: eventCardProps) => {
           <ModalBody>
             <div className="flex justify-center items-center w-full sm:max-w-md lg:max-w-3xl bg-default-100 ">
               <Image
-                src={event.eventImage}
-                alt={event.eventTitle}
+                src={eventLatest.eventImage}
+                alt={eventLatest.eventTitle}
                 radius="none"
                 width={800}
                 height={800}
@@ -92,7 +98,7 @@ const EventCard = ({ placement, event }: eventCardProps) => {
             <div className="flex flex-col h-full w-full p-0 md:px-4 lg:px-6">
               <ModalHeader>
                 <p className={` !font-bold ${title({ size: "lg" })}`}>
-                  {event.eventTitle}
+                  {eventLatest.eventTitle}
                 </p>
               </ModalHeader>
 
@@ -103,12 +109,12 @@ const EventCard = ({ placement, event }: eventCardProps) => {
                       { size: "sm" }
                     )}`}
                   >
-                    {event.eventDescription}{" "}
+                    {eventLatest.eventDescription}{" "}
                   </p>
                 </ScrollShadow>
                 <DateComponent
                   iconClassName="hidden"
-                  Date={event.date}
+                  Date={eventLatest.date}
                   className={`before:text-default-500 before:font-normal before:text-sm before:content-['Date__:__'] empty:hidden font-semibold ${paragraph(
                     { size: "sm" }
                   )}`}
@@ -118,14 +124,14 @@ const EventCard = ({ placement, event }: eventCardProps) => {
                     { size: "sm" }
                   )}`}
                 >
-                  {event.time}
+                  {eventLatest.time}
                 </p>
                 <p
                   className={`before:text-default-500 before:font-normal before:text-sm before:content-['Event__:__'] empty:hidden font-semibold ${paragraph(
                     { size: "sm" }
                   )}`}
                 >
-                  {event.eventType}
+                  {eventLatest.eventType}
                 </p>
 
                 <p
@@ -133,11 +139,11 @@ const EventCard = ({ placement, event }: eventCardProps) => {
                     { size: "sm" }
                   )}`}
                 >
-                  {event.location}
+                  {eventLatest.location}
                 </p>
 
-                {event.specialGuest &&
-                event.specialGuest.length > 0 ? (
+                {eventLatest.specialGuest &&
+                eventLatest.specialGuest.length > 0 ? (
                   <div className="flex flex-col mb-4 sm:mb-6">
                     <p
                       className={` font-semibold  ${paragraph(
@@ -147,7 +153,7 @@ const EventCard = ({ placement, event }: eventCardProps) => {
                       Preferences
                     </p>
                     <ul className="flex flex-col gap-3 py-2">
-                      {event.specialGuest.map((guest) => (
+                      {eventLatest.specialGuest.map((guest) => (
                         <li key={guest.title} className="flex flex-wrap items-center">
                           <p className={`!text-default-500 capitalize mr-1 empty:hidden after:text-default-500 after:font-normal after:text-sm after:content-[',_'] ${paragraph({ size: "xs" })}`}>
                             {guest.title}
@@ -163,14 +169,14 @@ const EventCard = ({ placement, event }: eventCardProps) => {
 
 
               </div>
-              {event.eventLink ? (
+              {eventLatest.eventLink ? (
                 <ModalFooter>
                   <Button
                     radius="none"
                     color="warning"
                     as={Link}
-                    href={event.eventLink}
-                    target={event.eventLink}
+                    href={eventLatest.eventLink}
+                    target={eventLatest.eventLink}
                     endContent={
                       <ArrowTopRightOnSquareIcon className="w-4 h-4 md:w-5 md:h-5" />
                     }
@@ -183,8 +189,8 @@ const EventCard = ({ placement, event }: eventCardProps) => {
           </ModalBody>
         </ModalContent>
       </Modal>
-    </React.Fragment>
+    </div>
   );
 };
 
-export { EventCard };
+export { EventLatest };

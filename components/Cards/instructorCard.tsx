@@ -12,6 +12,7 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
+  ScrollShadow,
   Tooltip,
   useDisclosure,
 } from "@nextui-org/react";
@@ -68,7 +69,7 @@ const InstructorCard = ({ instructor }: instructorCardProps) => {
                 radius="none"
                 width={500}
                 height={500}
-                className="w-full  max-h-80  sm:max-h-96   xl:max-h-[36rem] object-contain !object-center"
+                className="w-full  max-h-80  sm:max-h-96  xl:max-h-[36rem] object-contain !object-center"
               />
             </div>
 
@@ -79,14 +80,19 @@ const InstructorCard = ({ instructor }: instructorCardProps) => {
                 </h4>
               </ModalHeader>
 
+            <div className="flex flex-col w-full mb-4 sm:mb-6">
+               <ScrollShadow
+                  hideScrollBar
+                  className="w-full  max-h-[7rem]  "
+                >
               <p
-                className={`py-2 empty:hidden ${paragraph(
+                className={`pt-2 empty:hidden ${paragraph(
                   { size: "md" }
                 )}`}
               >
                {instructor.summary}
               </p>
-
+              </ScrollShadow>
 
               <p
                 className={`before:text-default-500 before:font-normal before:text-sm  before:content-['Gender__:__'] font-semibold empty:hidden  ${paragraph(
@@ -101,9 +107,10 @@ const InstructorCard = ({ instructor }: instructorCardProps) => {
                   { size: "md" }
                 )}`} Date={instructor.dateOfBirth} />
               ) : null}
+              </div>
 
               {instructor.specialties && instructor.specialties.length > 0 ? (
-              <div className="flex flex-col my-4 sm:my-6">
+              <div className="flex flex-col mb-4 sm:mb-6">
                 <p
                   className={`font-semibold  ${paragraph(
                     { size: "sm" }
@@ -163,7 +170,7 @@ const InstructorCard = ({ instructor }: instructorCardProps) => {
 
 
                 {instructor.education && instructor.education.length > 0 ? (
-                  <div className="flex flex-col ">
+                  <div className="flex flex-col mb-4 sm:mb-6">
                     <p
                       className={` font-semibold ${paragraph(
                         { size: "sm" }
@@ -197,7 +204,7 @@ const InstructorCard = ({ instructor }: instructorCardProps) => {
                 ) : null}
 
               <ModalFooter>
-                <div className="flex flex-col w-full mt-4">
+                <div className="flex flex-col w-full ">
                   <div className="flex flex-wrap">
                   {instructor.socialMedia ? (
                     <SocialMediaLink

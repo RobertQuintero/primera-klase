@@ -18,8 +18,8 @@ const TestimonialCard = ({testimonial}:testimonialProps ) => {
             <div className='flex flex-col'>
                 <p className={title({size:"md"})}>{testimonial.name}</p>
                 <div className='flex flex-wrap'>
-                    <p className={`after:text-default-600 after:mx-2 after:content-['at'] empty:hidden ${paragraph({size:"sm"})}`}>{testimonial.profession}</p>
-                    <p className={paragraph({size:"sm"})}>{testimonial.companyOrAffiliation}</p>
+                    <p className={`after:text-default-600 after:mx-2 after:content-['at'] empty:hidden ${paragraph({size:"xs"})}`}>{testimonial.profession}</p>
+                    <p className={paragraph({size:"xs"})}>{testimonial.companyOrAffiliation}</p>
                 </div>
             </div>
         </CardHeader>

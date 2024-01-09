@@ -11,7 +11,6 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ScrollShadow,
   Tooltip,
   useDisclosure,
 } from "@nextui-org/react";
@@ -66,10 +65,6 @@ const TalentCard = ({ talent }: talentCardProps) => {
       >
         <ModalContent>
           <ModalBody>
-            <ScrollShadow
-              className="flex flex-col sm:flex-row w-full h-full sm:h-fit "
-              hideScrollBar
-            >
               <div className="flex justify-center items-center w-full sm:max-w-md lg:max-w-xl bg-default-100 ">
                 <Image
                   src={talent.portfolioImages[0].image}
@@ -87,7 +82,7 @@ const TalentCard = ({ talent }: talentCardProps) => {
                     {talent.fullName}
                   </h4>
                 </ModalHeader>
-                <div className="flex flex-row  justify-between ">
+                <div className="flex flex-row  justify-between mb-4 ">
                   <div>
                     {talent.dateOfBirth ? (
                       <AgeComponent
@@ -227,7 +222,7 @@ const TalentCard = ({ talent }: talentCardProps) => {
 
                 {talent.modelingPreferences &&
                 talent.modelingPreferences.length > 0 ? (
-                  <div className="flex flex-col my-4 sm:my-6">
+                  <div className="flex flex-col mb-4 sm:mb-6">
                     <p
                       className={` font-semibold  ${paragraph(
                         { size: "sm" }
@@ -262,7 +257,7 @@ const TalentCard = ({ talent }: talentCardProps) => {
                         {talent.achievements[talent.achievements.length - 1].achievement}
                       </p>
                       <p
-                        className={`before:text-default-500 before:text-sm before:content-['Description__:__'] empty:hidden font-semibold ${paragraph({ size: "sm" })}`}
+                        className={`before:text-default-500 before:font-normal before:text-sm before:content-['Description__:__'] empty:hidden font-semibold ${paragraph({ size: "sm" })}`}
                       >
                         {talent.achievements[talent.achievements.length - 1].description}
                       </p>
@@ -275,11 +270,11 @@ const TalentCard = ({ talent }: talentCardProps) => {
                   </div>
                 ) : null}
 
-                <ModalFooter >
+                <ModalFooter className="">
                  {talent.socialMedia ? (
                       <SocialMediaLink socialMediaLinks={talent.socialMedia} />
                   ) : null}
-                  <div className="flex flex-row gap-4 w-full mt-4">
+                  <div className="flex flex-row gap-4 w-full ">
                   {talent.portfolioFile ? (
                   <Tooltip radius="none" content="Download Portfolio Documents">
                     <Button
@@ -301,7 +296,6 @@ const TalentCard = ({ talent }: talentCardProps) => {
                   </div>
                 </ModalFooter>
               </div>
-            </ScrollShadow>
           </ModalBody>
         </ModalContent>
       </Modal>

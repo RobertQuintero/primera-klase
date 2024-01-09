@@ -18,8 +18,8 @@ const SuccessStoriesCard = ({successStories}:successStoriesProps ) => {
             <div className='flex flex-col'>
                 <p className={title({size:"md"})}>{successStories.name}</p>
                 <div className='flex flex-wrap'>
-                    <p className={`after:text-default-600 after:mx-2 after:content-['at'] empty:hidden ${paragraph({size:"sm"})}`}>{successStories.profession}</p>
-                    <p className={paragraph({size:"sm"})}>{successStories.companyOrAffiliation}</p>
+                    <p className={`after:text-default-600 after:mx-2 after:content-['at'] empty:hidden ${paragraph({size:"xs"})}`}>{successStories.profession}</p>
+                    <p className={paragraph({size:"xs"})}>{successStories.companyOrAffiliation}</p>
                 </div>
             </div>
         </CardHeader>

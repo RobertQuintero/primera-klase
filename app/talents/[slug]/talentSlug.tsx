@@ -123,7 +123,7 @@ const TalentSlug = ({ talent, params }: talentSlugProps) => {
                     {achievement.achievement}
                   </p>
                   <p
-                    className={`before:text-default-500 before:text-sm  before:content-['Description__:__'] empty:hidden font-semibold ${paragraph(
+                    className={`before:text-default-500 before:font-normal before:text-sm  before:content-['Description__:__'] empty:hidden font-semibold ${paragraph(
                       { size: "sm" }
                     )}`}
                   >
