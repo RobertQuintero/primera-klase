@@ -39,7 +39,7 @@ const AnimatedButtonLink = ({
       >
         {hoverTitle}
       </span>
-      <ChevronRightIcon className="w-7 h-7  relative opacity-1 -z-20 -ml-28 duration-700 ease-in-out group-hover:text-primary group-hover:w-8 group-hover:h-8 group-hover:-ml-4 group-hover:opacity-100  group-hover:duration-700 group-hover:ease-in-out" />
+      <ChevronRightIcon className="w-7 h-7  relative opacity-1 -z-20 -ml-28 duration-700 ease-in-out group-hover:text-warning group-hover:w-8 group-hover:h-8 group-hover:-ml-4 group-hover:opacity-100  group-hover:duration-700 group-hover:ease-in-out" />
     </Link>
   );
 };
@@ -48,11 +48,11 @@ const AnimatedButtonNavLink = ({ link, titleLink }: LinkArrowProps) => {
     <div className="relative group flex flex-row items-center z-10">
       <Link
         href={link}
-        className="text-default-500 hover:text-foreground transition-colors  gap-4 z-10 "
+        className="text-default-500 hover:text-warning transition-colors  gap-4 z-10 "
       >
         {titleLink}
       </Link>
-      <ChevronRightIcon className="w-4 h-4  relative opacity-0 -z-20 right-3 duration-700 ease-in-out group-hover:text-foreground group-hover:w-4 group-hover:h-4 group-hover:right-0 group-hover:opacity-100  group-hover:duration-700 group-hover:ease-in-out" />
+      <ChevronRightIcon className="w-4 h-4  relative opacity-0 -z-20 right-3 duration-700 ease-in-out group-hover:text-warning group-hover:w-4 group-hover:h-4 group-hover:right-0 group-hover:opacity-100  group-hover:duration-700 group-hover:ease-in-out" />
     </div>
   );
 };

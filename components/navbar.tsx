@@ -32,7 +32,7 @@ import React from "react";
 
 
 export const Navbar = () => {
-
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const pathname = usePathname()
   const icons: { [key: string]: JSX.Element } = {
   // Change the icon color to text-default-800 if the pathname is equal to the href
@@ -45,7 +45,7 @@ export const Navbar = () => {
 
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
+    <NextUINavbar maxWidth="xl" shouldHideOnScroll onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.slice(0, 3).map((item) => (

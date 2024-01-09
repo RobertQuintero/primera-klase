@@ -102,5 +102,7 @@ export const siteConfig = {
 		twitter: "https://twitter.com/getnextui",
 		facebook: "https://www.facebook.com/getnextui",
 		instagram: "https://www.instagram.com/getnextui",
+		linkedin: "https://www.linkedin.com/company/getnextui",
+		pinterest: "https://www.pinterest.com/getnextui",
 	},
 };
