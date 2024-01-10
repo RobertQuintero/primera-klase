@@ -10,9 +10,11 @@ import works from './schemas/works'
 import talents from './schemas/talents'
 import instructors from './schemas/instructors'
 import events from './schemas/events'
+import blockContent from './schemas/blockContent'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
+  blockContent,
   works,
   talents,
   instructors,

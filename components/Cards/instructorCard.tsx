@@ -86,7 +86,7 @@ const InstructorCard = ({ instructor }: instructorCardProps) => {
                   className="w-full  max-h-[7rem]  "
                 >
               <p
-                className={`pt-2 empty:hidden ${paragraph(
+                className={` empty:hidden ${paragraph(
                   { size: "md" }
                 )}`}
               >

@@ -89,7 +89,7 @@ export const Footer = () => {
               <Button
                 radius="none"
                 variant="flat"
-                className=""
+                className="font-semibold "
                 color="warning"
               >
 

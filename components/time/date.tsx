@@ -21,16 +21,23 @@ interface DateRangeProps {
 }
 
 function DateComponent({props, Date, className, iconClassName}: DateRangeProps) {
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 640);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 640);
     };
 
-    window.addEventListener('resize', handleResize);
+    // Check if window is defined (i.e., we're in a browser context)
+    if (typeof window !== 'undefined') {
+      setIsSmallScreen(window.innerWidth < 640);
+      window.addEventListener('resize', handleResize);
+    }
+
     return () => {
-      window.removeEventListener('resize', handleResize);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', handleResize);
+      }
     };
   }, []);
 

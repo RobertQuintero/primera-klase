@@ -7,6 +7,7 @@ export const revalidate = 1;
 export default async function Works() {
 
   const works = await getWorksData();
+  console.log(works);
 
   return (
     <React.Fragment>

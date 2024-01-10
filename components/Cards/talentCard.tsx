@@ -22,6 +22,7 @@ import { DateComponent } from "../time/date";
 import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { DocumentArrowDownIcon } from "@heroicons/react/24/solid";
+import SocialMediaShareTalent from "../links/socialMediaShareTelent";
 
 type talentCardProps = {
   talent: TalentsType;
@@ -290,6 +291,10 @@ const TalentCard = ({ talent }: talentCardProps) => {
                     </Button>
                   </Tooltip>
                   ) : null}
+
+                  <SocialMediaShareTalent socialMediaShareTalent={talent} />
+
+
                   <Button as={Link} href={`/talents/${talent.slug}`} endContent={<ArrowLongRightIcon className="w-4 h-4 md:w-5 md:h-5" />} radius="none" className="w-full" color="warning">
                     View Portfolio
                   </Button>

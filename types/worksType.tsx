@@ -1,3 +1,4 @@
+import { PortableTextBlock,Slug } from "sanity"
 import { portfolioImagesType } from "./portfolioType"
 import { servicesType } from "./servicesType"
 
@@ -7,17 +8,11 @@ export type WorksType={
     _id: string,
     title: string,
     description: string,
-    location: string,
     date: string,
-    time: string,
     services: servicesType[],
-    specialGuest: specialGuestType[],
     portfolioImages: portfolioImagesType[],
-
+    slug:Slug,
+    body:PortableTextBlock[],
 }
 
-export type specialGuestType={
-    name: string,
-    title: string,
-}
 
