@@ -22,6 +22,7 @@
     "@nextui-org/switch": "2.0.25",
     "@nextui-org/system": "2.0.15",
     "@nextui-org/theme": "2.1.17",
+    "@portabletext/react": "^3.0.11",
     "@react-aria/ssr": "^3.8.0",
     "@react-aria/visually-hidden": "^3.8.6",
     "@sanity/image-url": "^1.0.2",
@@ -42,13 +43,18 @@
     "next-themes": "^0.2.1",
     "postcss": "8.4.31",
     "react": "18.2.0",
+    "react-datepicker": "^4.25.0",
     "react-dom": "18.2.0",
     "react-simple-typewriter": "^5.0.1",
+    "resend": "^2.1.0",
     "sanity": "^3.20.2",
     "styled-components": "^6.1.1",
     "swiper": "^11.0.5",
     "tailwind-variants": "^0.1.18",
     "tailwindcss": "3.3.5",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/react-datepicker": "^4.19.5"
   }
 }

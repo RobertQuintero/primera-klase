@@ -37,7 +37,7 @@ export const Footer = () => {
             >
               Created by{" "}
               <Link as={NextLink} href="/about">
-                Robert Quintero
+                smaple name
               </Link>
             </p>
             <Button

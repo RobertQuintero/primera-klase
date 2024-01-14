@@ -1,7 +1,5 @@
 "use client";
 
-import { SocialMediaLink } from "@/components/links/socialMediaLink";
-import { SocialMediaShareTalent } from "@/components/links/socialMediaShareTelent";
 import { paragraph, title } from "@/components/primitives";
 import { AgeComponent } from "@/components/time/age";
 import { CreatedAt } from "@/components/time/createdAt";
@@ -13,7 +11,7 @@ import {
 import { WorksType } from "@/types/worksType";
 import { DocumentArrowDownIcon } from "@heroicons/react/24/solid";
 
-import { BreadcrumbItem, Breadcrumbs, Button, Chip, Divider, Image, Link, Tooltip } from "@nextui-org/react";
+import { BreadcrumbItem, Breadcrumbs, Button, Chip, Divider, Image, Modal, ModalBody, ModalContent, Tooltip, useDisclosure } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import React, { useRef, useState } from "react";
 
@@ -21,6 +19,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs, Zoom } from "swiper/modules";
 import "swiper/css/bundle";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { RichTextComponents } from "@/components/portableText/portableTextComponents";
+import { PortableText } from "@portabletext/react";
+import SocialMediaShareWork from "@/components/links/socialMediaShareWork";
 
 type workSlugProps = {
   params: { slug: string };
@@ -28,8 +30,8 @@ type workSlugProps = {
 };
 
 const WorkSlug = ({ work, params }: workSlugProps) => {
+
   const [thumbsSwiper, setThumbsSwiper] = useState<any | null>(null);
-  const [selectedImage, setSelectedImage] = useState(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
 
@@ -44,31 +46,36 @@ const WorkSlug = ({ work, params }: workSlugProps) => {
   return (
     <article className="w-full h-full ">
       <div className="flex flex-col  gap-4 sm:gap-6 md:gap-8 w-full  max-w-4xl mx-auto">
-          <Breadcrumbs>
+          <Breadcrumbs >
           <BreadcrumbItem >
-            <Link color="foreground" href="/">Home</Link>
+            <Link  href="/">Home</Link>
           </BreadcrumbItem>
           <BreadcrumbItem>
-            <Link color="foreground" href="/">Works</Link>
+            <Link  href="/">Works</Link>
           </BreadcrumbItem>
           <BreadcrumbItem>
             {work.title}
           </BreadcrumbItem>
         </Breadcrumbs>
+        <figure className="flex flex-col ">
         <Image
           src={work.portfolioImages[0].image}
-          alt={work.title}
+          alt={work.portfolioImages[0].title}
           radius="none"
           width={1920}
           height={1920}
           className="w-full max-w-5xl aspect-video object-cover object-center "
         />
+          <figcaption className=" self-end  rounded-sm w-fit   px-2 text-default-500 text-xs  md:text-sm empty:hidden">
+            {work.portfolioImages[0].title}
+          </figcaption>
+        </figure>
         <div className=" w-full flex flex-col gap-2">
           <h1 className={`capitalize !font-bold ${title({ size: "xxl" })}`}>
             {work.title}
           </h1>
 
-          <div className="flex flex-row w-full  gap-2">
+          <div className="flex flex-row items-center w-full gap-2">
             <DateComponent Date={work.date} />
             <ReadingTime
               size="sm"
@@ -76,6 +83,7 @@ const WorkSlug = ({ work, params }: workSlugProps) => {
               averageWordsPerMinute={200}
               className={` ${paragraph({ size: "xs" })}`}
             />
+            <SocialMediaShareWork classNameShare="ml-auto" socialMediaShareWork={work} />
           </div>
 
           <p
@@ -102,6 +110,11 @@ const WorkSlug = ({ work, params }: workSlugProps) => {
           </p>
         </div>
       </div>
+      {work.body ? (
+        <PortableText value={work.body} components={RichTextComponents} />
+      ) : null}
+
+
       {work.portfolioImages.length > 1 ? (
       <div className="w-full mx-auto max-w-4xl  ">
         <Swiper
@@ -136,7 +149,7 @@ const WorkSlug = ({ work, params }: workSlugProps) => {
                   width={1920}
                   height={1080}
                   radius="none"
-                  className="w-full h-full bg-default-100 aspect-square object-contain "
+                  className="w-full bg-default-100 aspect-video object-contain "
                 />
               </div>
             </SwiperSlide>
@@ -171,9 +184,6 @@ const WorkSlug = ({ work, params }: workSlugProps) => {
               <ChevronRightIcon className="w-full" />
             </Button>
           )}
-
-
-
 
         </Swiper>
         {/* Swiper for thumbnails */}

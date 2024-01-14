@@ -83,7 +83,8 @@ export default defineType({
 
         defineField({
         name: "body",
-        title: "Body",
+        title: "Content",
+        description: "Add content for the work page note: this is not the same as the description above Dont used H1 AND H2 tags",
         type: "blockContent",
         }),
 

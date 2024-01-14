@@ -11,10 +11,7 @@ export async function getWorksData(): Promise<WorksType[]> {
       _id,
         title,
         description,
-        location,
         date,
-        time,
-
         "slug":slug.current,
 
         "portfolioImages": portfolioImages[]{
@@ -42,9 +39,7 @@ export async function getWorkPage(slug: string): Promise<WorksType> {
       _id,
         title,
         description,
-        location,
         date,
-        time,
         "portfolioImages": portfolioImages[]{
           "image": image.asset->url,
           title,
@@ -52,7 +47,6 @@ export async function getWorkPage(slug: string): Promise<WorksType> {
         "services": service[]->{
           title,
         },
-
         "slug":slug.current,
         body,
 
