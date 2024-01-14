@@ -222,7 +222,11 @@ const TalentApplicationForm = () => {
               description="Your first name"
               isInvalid={isInvalidFirstName}
               errorMessage={
-                isInvalidFirstName ? "Please enter your first name" : ""
+                isInvalidFirstName
+                  ? firstName.trim() === ""
+                    ? "Please enter your first name"
+                    : "Please enter a valid character"
+                  : ""
               }
               color={isInvalidFirstName ? "danger" : "warning"}
               variant="bordered"
@@ -230,7 +234,7 @@ const TalentApplicationForm = () => {
               value={firstName}
               onChange={(e) => {
                 setFirstName(e.target.value);
-                setIsInvalidFirstName(!e.target.value);
+                setIsInvalidFirstName(!/^[a-zA-Z]+$/.test(e.target.value));
                 checkFormValidity();
               }}
             />
@@ -251,7 +255,7 @@ const TalentApplicationForm = () => {
               value={lastName}
               onChange={(e) => {
                 setLastName(e.target.value);
-                setIsInvalidLastName(!e.target.value);
+                setIsInvalidLastName(!/^[a-zA-Z]+$/.test(e.target.value));
                 checkFormValidity();
               }}
             />
