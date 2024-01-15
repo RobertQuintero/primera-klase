@@ -166,6 +166,8 @@ const TalentApplicationFormFemale = () => {
       body: JSON.stringify({
         firstName,
         lastName,
+        dateOfBirth,
+        nationality,
         instagramUrl,
         phoneNumber,
         address,
@@ -173,9 +175,22 @@ const TalentApplicationFormFemale = () => {
         country,
         stateProvince,
         postalCode,
-        dateOfBirth,
-        nationality,
         yourStory,
+
+        height,
+        weight,
+        bust,
+        waist,
+        hips,
+        shoeSize,
+        dressSize,
+        pantsSize,
+        hairColor,
+        eyeColor,
+        tattoos,
+        piercings,
+
+
       }),
     });
     if (!response.ok) {
