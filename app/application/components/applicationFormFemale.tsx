@@ -21,7 +21,6 @@ const ApplicationFormFemale = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
 
-
   //Personal Information
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -115,7 +114,6 @@ const ApplicationFormFemale = () => {
       // dateOfBirth &&
       nationality &&
       yourStory.length > 8 &&
-
       // Measurements
       height &&
       weight &&
@@ -129,7 +127,6 @@ const ApplicationFormFemale = () => {
       eyeColor &&
       tattoos &&
       piercings &&
-
       // Polaroid
       frontView &&
       profileView &&
@@ -161,7 +158,6 @@ const ApplicationFormFemale = () => {
       // !dateOfBirth ||
       !nationality ||
       yourStory.length < 8 ||
-
       // Measurements
       !height ||
       !weight ||
@@ -175,7 +171,6 @@ const ApplicationFormFemale = () => {
       !eyeColor ||
       !tattoos ||
       !piercings ||
-
       //Polaroid
       !frontView ||
       !profileView ||
@@ -279,6 +274,11 @@ const ApplicationFormFemale = () => {
   };
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    // jpg, jpeg, png
+    accept: {
+      "image/png": [".png"],
+      "image/jpeg": [".jpg", ".jpeg"],
+    },
     maxFiles: 4,
     onDrop: (acceptedFiles: any) => {
       // Handle the dropped files here and set the state variables accordingly
@@ -312,257 +312,318 @@ const ApplicationFormFemale = () => {
       >
         {!isSubmitted ? (
           <form className=" flex flex-col " onSubmit={handleSubmit}>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
+              {/* //Personal Information */}
+              {/* // firstName */}
+              <Input
+                type="text"
+                id="firstName"
+                name="firstName"
+                label="First Name"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={firstName}
+                isInvalid={isInvalidFirstName}
+                errorMessage={
+                  isInvalidFirstName
+                    ? firstName.trim() === ""
+                      ? "Please enter your first name"
+                      : "Please enter a valid character"
+                    : ""
+                }
+                classNames={{
+                  inputWrapper:
+                    firstName.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidFirstName
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    firstName.trim() !== ""
+                      ? "text-success"
+                      : "text-default-500",
+                }}
+                color={isInvalidFirstName ? "danger" : "warning"}
+                onChange={(e) => {
+                  setFirstName(e.target.value);
+                  setIsInvalidFirstName(!/^[a-zA-Z]+$/.test(e.target.value));
+                  checkFormValidity();
+                }}
+              />
+
+              {/* // lastName */}
+              <Input
+                type="text"
+                id="lastName"
+                name="lastName"
+                label="Last Name"
+                isRequired
+                isInvalid={isInvalidLastName}
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={lastName}
+                errorMessage={
+                  isInvalidLastName
+                    ? lastName.trim() === ""
+                      ? "Please enter your last name"
+                      : "Please enter a valid character"
+                    : ""
+                }
+                classNames={{
+                  inputWrapper:
+                    lastName.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidLastName
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    lastName.trim() !== ""
+                      ? "text-success"
+                      : "text-default-500",
+                }}
+                color={isInvalidLastName ? "danger" : "warning"}
+                onChange={(e) => {
+                  setLastName(e.target.value);
+                  setIsInvalidLastName(!/^[a-zA-Z]+$/.test(e.target.value));
+                  checkFormValidity();
+                }}
+              />
+              {/* // dateOfBirth */}
+              <div className="relative w-full">
                 <Input
                   type="text"
-                  id="firstName"
-                  name="firstName"
-                  placeholder="First Name*"
-                  description="Your first name"
-                  isInvalid={isInvalidFirstName}
+                  id="dateOfBirth"
+                  name="dateOfBirth"
+                  label="Date of Birth"
+                  isRequired
+                  variant="bordered"
+                  radius="none"
+                  value={formattedDate}
+                  size="lg"
+                  isInvalid={isInvalidDateOfBirth}
                   errorMessage={
-                    isInvalidFirstName
-                      ? firstName.trim() === ""
-                        ? "Please enter your first name"
-                        : "Please enter a valid character"
+                    isInvalidDateOfBirth
+                      ? "Please enter your date of birth"
                       : ""
                   }
-                  // change the input border color if the input is valid to success
-
                   classNames={{
                     inputWrapper:
-                      firstName.trim() !== "" ? "border-success " : "danger",
-                    errorMessage: isInvalidFirstName
+                      dateOfBirth.trim() !== "" ? "border-success " : "danger",
+                    errorMessage: isInvalidDateOfBirth
                       ? "text-danger"
                       : "text-success",
+                    label:
+                      dateOfBirth.trim() !== ""
+                        ? "text-success"
+                        : "text-default-500",
                   }}
-                  color={isInvalidFirstName ? "danger" : "warning"}
-                  variant="bordered"
-                  radius="none"
-                  value={firstName}
+                  color={isInvalidDateOfBirth ? "danger" : "warning"}
                   onChange={(e) => {
-                    setFirstName(e.target.value);
-                    setIsInvalidFirstName(!/^[a-zA-Z]+$/.test(e.target.value));
+                    setFormattedDate(e.target.value);
+                    setIsInvalidDateOfBirth(!e.target.value);
                     checkFormValidity();
                   }}
                 />
-
-                <Input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  placeholder="Last Name"
-                  description="Your last name"
-                  isInvalid={isInvalidLastName}
-                  errorMessage={
-                    isInvalidLastName
-                      ? lastName.trim() === ""
-                        ? "Please enter your last name"
-                        : "Please enter a valid character"
-                      : ""
-                  }
-                  classNames={{
-                    inputWrapper:
-                      lastName.trim() !== "" ? "border-success " : "danger",
-                  }}
-                  color={isInvalidLastName ? "danger" : "warning"}
-                  variant="bordered"
-                  radius="none"
-                  value={lastName}
-                  onChange={(e) => {
-                    setLastName(e.target.value);
-                    setIsInvalidLastName(!/^[a-zA-Z]+$/.test(e.target.value));
-                    checkFormValidity();
-                  }}
+                <Datepicker
+                  asSingle={true}
+                  useRange={false}
+                  value={selectedDate}
+                  onChange={handleDateOfBirthChange}
+                  containerClassName={`z-30 absolute right-1 text-default-100  w-[3.3rem] bottom-[7%]  border-default-200 h-14 }`}
+                  inputClassName={`w-0 h-0 text-default-100  `}
+                  toggleClassName={`w-full text-default-300 hover:text-default-500  mt-1  pl-4 h-[3.3rem]`}
+                  primaryColor="amber"
                 />
-
-
-                <div className="relative w-full">
-                  <Input
-                    type="text"
-                    id="dateOfBirth"
-                    name="dateOfBirth"
-                    placeholder="Date of Birth"
-                    description="Your date of birth"
-                    isInvalid={isInvalidDateOfBirth}
-                    errorMessage={
-                      isInvalidDateOfBirth
-                        ? "Please enter your date of birth"
-                        : ""
-                    }
-                    classNames={{inputWrapper: dateOfBirth.trim() !== "" ? "border-success " : "danger" }}
-                    color={isInvalidDateOfBirth ? "danger" : "warning"}
-                    variant="bordered"
-                    radius="none"
-                    value={formattedDate} // Use the formatted date
-                    onChange={(e) => {
-                      // This is just for handling manual input, not necessary for Datepicker
-                      setFormattedDate(e.target.value);
-                      setIsInvalidDateOfBirth(!e.target.value);
-                      checkFormValidity();
-                    }}
-                  />
-                  <Datepicker
-                    asSingle={true}
-                    useRange={false}
-                    value={selectedDate}
-                    placeholder=""
-                    onChange={handleDateOfBirthChange}
-                    containerClassName={`z-30 absolute right-0 text-default-100  w-[3.3rem] bottom-[34%]  border-default-200 h-14 }`}
-                    inputClassName={`w-0 h-0 text-default-100  `}
-                    toggleClassName={`w-full text-default-300 hover:text-default-500  mt-1  pl-4 h-[3.3rem]`}
-                    primaryColor="amber"
-                  />
-                </div>
-                {/* // nationality */}
-                <Input
-                  type="text"
-                  id="nationality"
-                  name="nationality"
-                  placeholder="Nationality"
-                  description="Country of Citizenship"
-                  isInvalid={isInvalidNationality}
-                  errorMessage={
-                    isInvalidNationality ? "Please enter your Nationality" : ""
-                  }
-                  classNames={{
-                    inputWrapper:
-                      nationality.trim() !== "" ? "border-success " : "danger",
-                  }}
-                  color={isInvalidNationality ? "danger" : "warning"}
-                  variant="bordered"
-                  radius="none"
-                  value={nationality}
-                  onChange={(e) => {
-                    setNationality(e.target.value);
-                    setIsInvalidNationality(!e.target.value);
-                    checkFormValidity();
-                  }}
-                />
-
-
-
-                <Input
-                  type="text"
-                  id="instagramUrl"
-                  name="instagramUrl"
-                  placeholder="Instagram Url"
-                  description="Your Instagram Url or username (e.g. @username)"
-                  isInvalid={isInvalidInstagramUrl}
-                  errorMessage={
-                    isInvalidInstagramUrl
-                      ? "Please enter your Instagram Url"
-                      : ""
-                  }
-                  classNames={{
-                    inputWrapper:
-                      instagramUrl.trim() !== "" ? "border-success " : "danger",
-                  }}
-                  color={isInvalidInstagramUrl ? "danger" : "warning"}
-                  variant="bordered"
-                  radius="none"
-                  value={instagramUrl}
-                  onChange={(e) => {
-                    setInstagramUrl(e.target.value);
-                    setIsInvalidInstagramUrl(!e.target.value);
-                    checkFormValidity();
-                  }}
-                />
-
-                <Input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Email"
-                  description="This is where will send you a response"
-                  isInvalid={isInvalidEmail}
-                  errorMessage={
-                    isInvalidEmail ? "Please enter a valid email" : ""
-                  }
-                  classNames={{
-                    inputWrapper:
-                      email.trim() !== "" ? "border-success " : "danger",
-                  }}
-                  color={isInvalidEmail ? "danger" : "warning"}
-                  variant="bordered"
-                  radius="none"
-                  value={email}
-                  onChange={handleEmailChange}
-                />
-
-
-                <Input
-                  type="text"
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  placeholder="Phone Number"
-                  description="This is where will send you a response"
-                  isInvalid={isInvalidPhoneNumber}
-                  errorMessage={
-                    isInvalidPhoneNumber
-                      ? phoneNumber.trim() === ""
-                        ? "Please enter your phone number"
-                        : "Please enter a number"
-                      : ""
-                  }
-                  classNames={{
-                    inputWrapper:
-                      phoneNumber.trim() !== "" ? "border-success " : "danger",
-                  }}
-                  color={isInvalidPhoneNumber ? "danger" : "warning"}
-                  variant="bordered"
-                  radius="none"
-                  value={phoneNumber}
-                  onChange={(e) => {
-                    setPhoneNumber(e.target.value);
-                    setIsInvalidPhoneNumber(!/^\d+$/.test(e.target.value));
-                    checkFormValidity();
-                  }}
-                />
-
-                <Input
-                  type="text"
-                  id="address"
-                  name="address"
-                  placeholder="Address"
-                  description="The address you currently live in (e.g. street, house number, etc.)"
-                  isInvalid={isInvalidAddress}
-                  errorMessage={
-                    isInvalidAddress ? "Please enter your address" : ""
-                  }
-                  classNames={{
-                    inputWrapper:
-                      address.trim() !== "" ? "border-success " : "danger",
-                  }}
-                  color={isInvalidAddress ? "danger" : "warning"}
-                  variant="bordered"
-                  radius="none"
-                  value={address}
-                  onChange={(e) => {
-                    setAddress(e.target.value);
-                    setIsInvalidAddress(!e.target.value);
-                    checkFormValidity();
-                  }}
-                />
-
-              <Textarea id="yourStory"
+              </div>
+              {/* // nationality */}
+              <Input
+                type="text"
+                id="nationality"
+                name="nationality"
+                label="Nationality"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                isInvalid={isInvalidNationality}
+                errorMessage={
+                  isInvalidNationality ? "Please enter your Nationality" : ""
+                }
+                classNames={{
+                  inputWrapper:
+                    nationality.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidNationality
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    nationality.trim() !== ""
+                      ? "text-success"
+                      : "text-default-500",
+                }}
+                color={isInvalidNationality ? "danger" : "warning"}
+                value={nationality}
+                onChange={(e) => {
+                  setNationality(e.target.value);
+                  setIsInvalidNationality(!e.target.value);
+                  checkFormValidity();
+                }}
+              />
+              {/* // instagramUrl */}
+              <Input
+                type="text"
+                id="instagramUrl"
+                name="instagramUrl"
+                label="Instagram Url"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={instagramUrl}
+                isInvalid={isInvalidInstagramUrl}
+                errorMessage={
+                  isInvalidInstagramUrl ? "Please enter your Instagram Url" : ""
+                }
+                classNames={{
+                  inputWrapper:
+                    instagramUrl.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidInstagramUrl
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    instagramUrl.trim() !== ""
+                      ? "text-success"
+                      : "text-default-500",
+                }}
+                color={isInvalidInstagramUrl ? "danger" : "warning"}
+                onChange={(e) => {
+                  setInstagramUrl(e.target.value);
+                  setIsInvalidInstagramUrl(!e.target.value);
+                  checkFormValidity();
+                }}
+              />
+              {/* // email */}
+              <Input
+                type="email"
+                id="email"
+                name="email"
+                label="Email"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                isInvalid={isInvalidEmail}
+                errorMessage={
+                  isInvalidEmail ? "Please enter a valid email" : ""
+                }
+                classNames={{
+                  inputWrapper:
+                    email.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidEmail ? "text-danger" : "text-success",
+                  label:
+                    email.trim() !== "" ? "text-success" : "text-default-500",
+                }}
+                color={isInvalidEmail ? "danger" : "warning"}
+                value={email}
+                onChange={handleEmailChange}
+              />
+              {/* // phoneNumber */}
+              <Input
+                type="text"
+                id="phoneNumber"
+                name="phoneNumber"
+                label="Phone Number"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={phoneNumber}
+                isInvalid={isInvalidPhoneNumber}
+                errorMessage={
+                  isInvalidPhoneNumber
+                    ? phoneNumber.trim() === ""
+                      ? "Please enter your phone number"
+                      : "Please enter a number"
+                    : ""
+                }
+                classNames={{
+                  inputWrapper:
+                    phoneNumber.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidPhoneNumber
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    phoneNumber.trim() !== ""
+                      ? "text-success"
+                      : "text-default-500",
+                }}
+                color={isInvalidPhoneNumber ? "danger" : "warning"}
+                onChange={(e) => {
+                  setPhoneNumber(e.target.value);
+                  setIsInvalidPhoneNumber(!/^\d+$/.test(e.target.value));
+                  checkFormValidity();
+                }}
+              />
+              {/* // address */}
+              <Input
+                type="text"
+                id="address"
+                name="address"
+                label="Address"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={address}
+                isInvalid={isInvalidAddress}
+                errorMessage={
+                  isInvalidAddress ? "Please enter your address" : ""
+                }
+                classNames={{
+                  inputWrapper:
+                    address.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidAddress
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    address.trim() !== "" ? "text-success" : "text-default-500",
+                }}
+                color={isInvalidAddress ? "danger" : "warning"}
+                onChange={(e) => {
+                  setAddress(e.target.value);
+                  setIsInvalidAddress(!e.target.value);
+                  checkFormValidity();
+                }}
+              />
+              {/* // yourStory */}
+              <Textarea
+                id="yourStory"
                 name="yourStory"
-                placeholder="Your Story"
-                description="Tell me about yourself"
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={yourStory}
                 isInvalid={isInvalidYourStory}
+                label="Your Story"
+                isRequired
                 errorMessage={
                   isInvalidYourStory
                     ? "Your story should have at least 8 characters "
                     : ""
                 }
+                className="col-span-2"
                 classNames={{
                   inputWrapper:
                     yourStory.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidYourStory
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    yourStory.trim() !== ""
+                      ? "text-success"
+                      : "text-default-500",
                 }}
                 color={isInvalidYourStory ? "danger" : "warning"}
-                variant="bordered"
-                radius="none"
-                value={yourStory}
                 onChange={(e) => {
                   setYourStory(e.target.value);
                   setIsInvalidYourStory(e.target.value.length < 8);
@@ -572,409 +633,571 @@ const ApplicationFormFemale = () => {
             </div>
 
             {/* //Measurements */}
-            <div className="w-full">
-              <p
-                className={`text-default-700  text-center ${title({
-                  size: "lg",
-                })}`}
-              >
-                BECOME ELITE
-              </p>
-              <p
-                className={`!text-default-500 mb-4 ${paragraph({
-                  size: "sm",
-                })}`}
-              >
-                Your feedback is valuable. Feel free to drop me a message when
-                you can. I appreciate your time and thoughts!
-              </p>
 
-              <div className="flex flex-row  gap-4 md:gap-10">
-                <div className="flex flex-col  gap-4 md:gap-10 w-full">
-                  <Input
-                    type="number"
-                    id="height"
-                    name="height"
-                    placeholder="Height"
-                    description="Your height in cm"
-                    isInvalid={isInvalidHeight}
-                    errorMessage={
-                      isInvalidHeight ? "Please enter your height" : ""
-                    }
-                    color={isInvalidHeight ? "danger" : "warning"}
-                    variant="bordered"
-                    radius="none"
-                    value={height}
-                    onChange={(e) => {
-                      setHeight(e.target.value);
-                      setIsInvalidHeight(!e.target.value);
-                      checkFormValidity();
-                    }}
-                    endContent={
-                      <div className="pointer-events-none flex items-center">
-                        <span className="text-default-400 font-bold text-base">
-                          kg
-                        </span>
-                      </div>
-                    }
-                  />
+            <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
 
-                  <Input
-                    type="number"
-                    id="weight"
-                    name="weight"
-                    placeholder="Weight"
-                    description="Your weight in kg"
-                    isInvalid={isInvalidWeight}
-                    errorMessage={
-                      isInvalidWeight ? "Please enter your weight" : ""
-                    }
-                    color={isInvalidWeight ? "danger" : "warning"}
-                    variant="bordered"
-                    radius="none"
-                    value={weight}
-                    onChange={(e) => {
-                      setWeight(e.target.value);
-                      setIsInvalidWeight(!e.target.value);
-                      checkFormValidity();
-                    }}
-                    endContent={
-                      <div className="pointer-events-none flex items-center">
-                        <span className="text-default-400 font-bold text-base">
-                          kg
-                        </span>
-                      </div>
-                    }
-                  />
+              {/* // height */}
+              <Input
+                type="text"
+                id="height"
+                name="height"
+                label="Height"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={height}
+                isInvalid={isInvalidHeight}
+                errorMessage={isInvalidHeight ? "Please enter your height" : ""}
+                classNames={{
+                  inputWrapper:
+                    height.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidHeight
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    height.trim() !== "" ? "text-success" : "text-default-500",
+                }}
+                color={isInvalidHeight ? "danger" : "warning"}
+                onChange={(e) => {
+                  setHeight(e.target.value);
+                  setIsInvalidHeight(!e.target.value);
+                  checkFormValidity();
+                }}
+                endContent={
+                  <div className="pointer-events-none flex items-center mb-2">
+                    <span className="text-default-400 font-bold text-base">
+                      kg
+                    </span>
+                  </div>
+                }
+              />
 
-                  <Input
-                    type="text"
-                    id="hairColor"
-                    name="hairColor"
-                    placeholder="Hair Color"
-                    description="Your hair color"
-                    isInvalid={isInvalidHairColor}
-                    errorMessage={
-                      isInvalidHairColor ? "Please enter your hair color" : ""
-                    }
-                    color={isInvalidHairColor ? "danger" : "warning"}
-                    variant="bordered"
-                    radius="none"
-                    value={hairColor}
-                    onChange={(e) => {
-                      setHairColor(e.target.value);
-                      setIsInvalidHairColor(!e.target.value);
-                      checkFormValidity();
-                    }}
-                  />
+              {/* // weight */}
+              <Input
+                type="text"
+                id="weight"
+                name="weight"
+                label="Weight"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={weight}
+                isInvalid={isInvalidWeight}
+                errorMessage={isInvalidWeight ? "Please enter your weight" : ""}
+                classNames={{
+                  inputWrapper:
+                    weight.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidWeight
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    weight.trim() !== "" ? "text-success" : "text-default-500",
+                }}
+                color={isInvalidWeight ? "danger" : "warning"}
+                onChange={(e) => {
+                  setWeight(e.target.value);
+                  setIsInvalidWeight(!e.target.value);
+                  checkFormValidity();
+                }}
+                endContent={
+                  <div className="pointer-events-none flex items-center mb-2">
+                    <span className="text-default-400 font-bold text-base">
+                      kg
+                    </span>
+                  </div>
+                }
+              />
 
-                  <Input
-                    type="text"
-                    id="eyeColor"
-                    name="eyeColor"
-                    placeholder="Eye Color"
-                    description="Your eye color"
-                    isInvalid={isInvalidEyeColor}
-                    errorMessage={
-                      isInvalidEyeColor ? "Please enter your eye color" : ""
-                    }
-                    color={isInvalidEyeColor ? "danger" : "warning"}
-                    variant="bordered"
-                    radius="none"
-                    value={eyeColor}
-                    onChange={(e) => {
-                      setEyeColor(e.target.value);
-                      setIsInvalidEyeColor(!e.target.value);
-                      checkFormValidity();
-                    }}
-                  />
-                </div>
-                <div className="flex flex-col  gap-4 md:gap-10 w-full">
-                  <Input
-                    type="text"
-                    id="waist"
-                    name="waist"
-                    placeholder="Waist"
-                    description="Your waist in cm"
-                    isInvalid={isInvalidWaist}
-                    errorMessage={
-                      isInvalidWaist ? "Please enter your waist" : ""
-                    }
-                    color={isInvalidWaist ? "danger" : "warning"}
-                    variant="bordered"
-                    radius="none"
-                    value={waist}
-                    onChange={(e) => {
-                      setWaist(e.target.value);
-                      setIsInvalidWaist(!e.target.value);
-                      checkFormValidity();
-                    }}
-                    endContent={
-                      <div className="pointer-events-none flex items-center">
-                        <span className="text-default-400 font-bold text-base">
-                          cm
-                        </span>
-                      </div>
-                    }
-                  />
+              {/* // hairColor */}
+              <Input
+                type="text"
+                id="hairColor"
+                name="hairColor"
+                label="Hair Color"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={hairColor}
+                isInvalid={isInvalidHairColor}
+                errorMessage={
+                  isInvalidHairColor ? "Please enter your hair color" : ""
+                }
+                classNames={{
+                  inputWrapper:
+                    hairColor.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidHairColor
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    hairColor.trim() !== ""
+                      ? "text-success"
+                      : "text-default-500",
+                }}
+                color={isInvalidHairColor ? "danger" : "warning"}
+                onChange={(e) => {
+                  setHairColor(e.target.value);
+                  setIsInvalidHairColor(!e.target.value);
+                  checkFormValidity();
+                }}
+              />
 
-                  <Input
-                    type="text"
-                    id="hips"
-                    name="hips"
-                    placeholder="Hips"
-                    description="Your hips in cm"
-                    isInvalid={isInvalidHips}
-                    errorMessage={isInvalidHips ? "Please enter your hips" : ""}
-                    color={isInvalidHips ? "danger" : "warning"}
-                    variant="bordered"
-                    radius="none"
-                    value={hips}
-                    onChange={(e) => {
-                      setHips(e.target.value);
-                      setIsInvalidHips(!e.target.value);
-                      checkFormValidity();
-                    }}
-                    endContent={
-                      <div className="pointer-events-none flex items-center">
-                        <span className="text-default-400 font-bold text-base">
-                          cm
-                        </span>
-                      </div>
-                    }
-                  />
+              {/* // eyeColor */}
+              <Input
+                type="text"
+                id="eyeColor"
+                name="eyeColor"
+                label="Eye Color"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={eyeColor}
+                isInvalid={isInvalidEyeColor}
+                errorMessage={
+                  isInvalidEyeColor ? "Please enter your eye color" : ""
+                }
+                classNames={{
+                  inputWrapper:
+                    eyeColor.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidEyeColor
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    eyeColor.trim() !== "" ? "text-success" : "text-default-500",
+                }}
+                color={isInvalidEyeColor ? "danger" : "warning"}
+                onChange={(e) => {
+                  setEyeColor(e.target.value);
+                  setIsInvalidEyeColor(!e.target.value);
+                  checkFormValidity();
+                }}
+              />
 
-                  <Input
-                    type="text"
-                    id="bust"
-                    name="bust"
-                    placeholder="Bust"
-                    description="Your bust in cm"
-                    isInvalid={isInvalidBust}
-                    errorMessage={isInvalidBust ? "Please enter your bust" : ""}
-                    color={isInvalidBust ? "danger" : "warning"}
-                    variant="bordered"
-                    radius="none"
-                    value={bust}
-                    onChange={(e) => {
-                      setBust(e.target.value);
-                      setIsInvalidBust(!e.target.value);
-                      checkFormValidity();
-                    }}
-                    endContent={
-                      <div className="pointer-events-none flex items-center">
-                        <span className="text-default-400 font-bold text-base">
-                          cm
-                        </span>
-                      </div>
-                    }
-                  />
+              {/* // waist */}
+              <Input
+                type="text"
+                id="waist"
+                name="waist"
+                label="Waist"
+                isRequired
+                variant="bordered"
+                radius="none"
+                value={waist}
+                isInvalid={isInvalidWaist}
+                errorMessage={isInvalidWaist ? "Please enter your waist" : ""}
+                classNames={{
+                  inputWrapper:
+                    waist.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidWaist
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    waist.trim() !== "" ? "text-success" : "text-default-500",
+                }}
+                color={isInvalidWaist ? "danger" : "warning"}
+                onChange={(e) => {
+                  setWaist(e.target.value);
+                  setIsInvalidWaist(!e.target.value);
+                  checkFormValidity();
+                }}
+                endContent={
+                  <div className="pointer-events-none flex items-center mb-2">
+                    <span className="text-default-400 font-bold text-base">
+                      cm
+                    </span>
+                  </div>
+                }
+              />
 
-                  <Input
-                    type="text"
-                    id="shoeSize"
-                    name="shoeSize"
-                    placeholder="Shoe Size"
-                    description="Your shoe size in cm"
-                    isInvalid={isInvalidShoeSize}
-                    errorMessage={
-                      isInvalidShoeSize ? "Please enter your shoe size" : ""
-                    }
-                    color={isInvalidShoeSize ? "danger" : "warning"}
-                    variant="bordered"
-                    radius="none"
-                    value={shoeSize}
-                    onChange={(e) => {
-                      setShoeSize(e.target.value);
-                      setIsInvalidShoeSize(!e.target.value);
-                      checkFormValidity();
-                    }}
-                    endContent={
-                      <div className="pointer-events-none flex items-center">
-                        <span className="text-default-400 font-bold text-base">
-                          cm
-                        </span>
-                      </div>
-                    }
-                  />
-                </div>
-                <div className="flex flex-col  gap-4 md:gap-10 w-full">
-                  <Input
-                    type="text"
-                    id="dressSize"
-                    name="dressSize"
-                    placeholder="Dress Size"
-                    description="Your dress size in cm"
-                    isInvalid={isInvalidDressSize}
-                    errorMessage={
-                      isInvalidDressSize ? "Please enter your dress size" : ""
-                    }
-                    color={isInvalidDressSize ? "danger" : "warning"}
-                    variant="bordered"
-                    radius="none"
-                    value={dressSize}
-                    onChange={(e) => {
-                      setDressSize(e.target.value);
-                      setIsInvalidDressSize(!e.target.value);
-                      checkFormValidity();
-                    }}
-                    endContent={
-                      <div className="pointer-events-none flex items-center">
-                        <span className="text-default-400 font-bold text-base">
-                          cm
-                        </span>
-                      </div>
-                    }
-                  />
+              {/* // hips */}
+              <Input
+                type="text"
+                id="hips"
+                name="hips"
+                label="Hips"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={hips}
+                isInvalid={isInvalidHips}
+                errorMessage={isInvalidHips ? "Please enter your hips" : ""}
+                classNames={{
+                  inputWrapper:
+                    hips.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidHips
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    hips.trim() !== "" ? "text-success" : "text-default-500",
+                }}
+                color={isInvalidHips ? "danger" : "warning"}
+                onChange={(e) => {
+                  setHips(e.target.value);
+                  setIsInvalidHips(!e.target.value);
+                  checkFormValidity();
+                }}
+                endContent={
+                  <div className="pointer-events-none flex items-center mb-2">
+                    <span className="text-default-400 font-bold text-base">
+                      cm
+                    </span>
+                  </div>
+                }
+              />
 
-                  <Input
-                    type="text"
-                    id="pantsSize"
-                    name="pantsSize"
-                    placeholder="Pants Size"
-                    description="Your pants size in cm"
-                    isInvalid={isInvalidPantsSize}
-                    errorMessage={
-                      isInvalidPantsSize ? "Please enter your pants size" : ""
-                    }
-                    color={isInvalidPantsSize ? "danger" : "warning"}
-                    variant="bordered"
-                    radius="none"
-                    value={pantsSize}
-                    onChange={(e) => {
-                      setPantsSize(e.target.value);
-                      setIsInvalidPantsSize(!e.target.value);
-                      checkFormValidity();
-                    }}
-                    endContent={
-                      <div className="pointer-events-none flex items-center">
-                        <span className="text-default-400 font-bold text-base">
-                          cm
-                        </span>
-                      </div>
-                    }
-                  />
+              {/* // bust */}
+              <Input
+                type="text"
+                id="bust"
+                name="bust"
+                label="Bust"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={bust}
+                isInvalid={isInvalidBust}
+                errorMessage={isInvalidBust ? "Please enter your bust" : ""}
+                classNames={{
+                  inputWrapper: bust.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidBust ? "text-danger" : "text-success",
+                  label: bust.trim() !== "" ? "text-success" : "text-default-500",
+                }}
+                color={isInvalidBust ? "danger" : "warning"}
+                onChange={(e) => {
+                  setBust(e.target.value);
+                  setIsInvalidBust(!e.target.value);
+                  checkFormValidity();
+                }}
+                endContent={
+                  <div className="pointer-events-none flex items-center mb-2">
+                    <span className="text-default-400 font-bold text-base">
+                      cm
+                    </span>
+                  </div>
+                }
+              />
 
-                  <Input
-                    type="text"
-                    id="tattoos"
-                    name="tattoos"
-                    placeholder="Tattoos"
-                    description="Do you have tattoos?"
-                    isInvalid={isInvalidTattoos}
-                    errorMessage={
-                      isInvalidTattoos ? "Please enter your tattoos" : ""
-                    }
-                    color={isInvalidTattoos ? "danger" : "warning"}
-                    variant="bordered"
-                    radius="none"
-                    value={tattoos}
-                    onChange={(e) => {
-                      setTattoos(e.target.value);
-                      setIsInvalidTattoos(!e.target.value);
-                      checkFormValidity();
-                    }}
-                  />
+              {/* // shoeSize */}
+              <Input
+                type="text"
+                id="shoeSize"
+                name="shoeSize"
+                label="Shoe Size"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={shoeSize}
+                isInvalid={isInvalidShoeSize}
+                errorMessage={
+                  isInvalidShoeSize ? "Please enter your shoe size" : ""
+                }
+                classNames={{
+                  inputWrapper:
+                    shoeSize.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidShoeSize
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    shoeSize.trim() !== ""
+                      ? "text-success"
+                      : "text-default-500",
 
-                  <Input
-                    type="text"
-                    id="piercings"
-                    name="piercings"
-                    placeholder="Piercings"
-                    description="Do you have piercings?"
-                    isInvalid={isInvalidPiercings}
-                    errorMessage={
-                      isInvalidPiercings ? "Please enter your piercings" : ""
-                    }
-                    color={isInvalidPiercings ? "danger" : "warning"}
-                    variant="bordered"
-                    radius="none"
-                    value={piercings}
-                    onChange={(e) => {
-                      setPiercings(e.target.value);
-                      setIsInvalidPiercings(!e.target.value);
-                      checkFormValidity();
-                    }}
-                  />
-                </div>
-              </div>
+                }}
+                color={isInvalidShoeSize ? "danger" : "warning"}
+                onChange={(e) => {
+                  setShoeSize(e.target.value);
+                  setIsInvalidShoeSize(!e.target.value);
+                  checkFormValidity();
+                }}
+                endContent={
+                  <div className="pointer-events-none flex items-center mb-2">
+                    <span className="text-default-400 font-bold text-base">
+                      cm
+                    </span>
+                  </div>
+                }
+              />
+
+              {/* // dressSize */}
+              <Input
+                type="text"
+                id="dressSize"
+                name="dressSize"
+                label="Dress Size"
+                isRequired
+                variant="bordered"
+                radius="none"
+                value={dressSize}
+                size="lg"
+                isInvalid={isInvalidDressSize}
+                errorMessage={
+                  isInvalidDressSize ? "Please enter your dress size" : ""
+                }
+                classNames={{
+                  inputWrapper:
+                    dressSize.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidDressSize
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    dressSize.trim() !== ""
+                      ? "text-success"
+                      : "text-default-500",
+                }}
+                color={isInvalidDressSize ? "danger" : "warning"}
+                onChange={(e) => {
+                  setDressSize(e.target.value);
+                  setIsInvalidDressSize(!e.target.value);
+                  checkFormValidity();
+                }}
+                endContent={
+                  <div className="pointer-events-none flex items-center mb-2">
+                    <span className="text-default-400 font-bold text-base">
+                      cm
+                    </span>
+                  </div>
+                }
+              />
+
+              {/* // pantsSize */}
+              <Input
+                type="text"
+                id="pantsSize"
+                name="pantsSize"
+                label="Pants Size"
+                isRequired
+                variant="bordered"
+                radius="none"
+                value={pantsSize}
+                isInvalid={isInvalidPantsSize}
+                errorMessage={
+                  isInvalidPantsSize ? "Please enter your pants size" : ""
+                }
+                classNames={{
+                  inputWrapper:
+                    pantsSize.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidPantsSize
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    pantsSize.trim() !== ""
+                      ? "text-success"
+                      : "text-default-500",
+
+                }}
+                color={isInvalidPantsSize ? "danger" : "warning"}
+                onChange={(e) => {
+                  setPantsSize(e.target.value);
+                  setIsInvalidPantsSize(!e.target.value);
+                  checkFormValidity();
+                }}
+                endContent={
+                  <div className="pointer-events-none flex items-center mb-2">
+                    <span className="text-default-400 font-bold text-base">
+                      cm
+                    </span>
+                  </div>
+                }
+              />
+
+                {/* // tattoos */}
+              <Input
+                type="text"
+                id="tattoos"
+                name="tattoos"
+                label="Tattoos"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={tattoos}
+                isInvalid={isInvalidTattoos}
+                errorMessage={
+                  isInvalidTattoos ? "Please enter your tattoos" : ""
+                }
+                classNames={{
+                  inputWrapper:
+                    tattoos.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidTattoos
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    tattoos.trim() !== ""
+                      ? "text-success"
+                      : "text-default-500",
+
+                }}
+                color={isInvalidTattoos ? "danger" : "warning"}
+                onChange={(e) => {
+                  setTattoos(e.target.value);
+                  setIsInvalidTattoos(!e.target.value);
+                  checkFormValidity();
+                }}
+              />
+
+              {/* // piercings */}
+              <Input
+                type="text"
+                id="piercings"
+                name="piercings"
+                label="Piercings"
+                isRequired
+                variant="bordered"
+                radius="none"
+                size="lg"
+                value={piercings}
+                isInvalid={isInvalidPiercings}
+                errorMessage={
+                  isInvalidPiercings ? "Please enter your piercings" : ""
+                }
+                classNames={{
+                  inputWrapper:
+                    piercings.trim() !== "" ? "border-success " : "danger",
+                  errorMessage: isInvalidPiercings
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    piercings.trim() !== ""
+                      ? "text-success"
+                      : "text-default-500",
+                }}
+                color={isInvalidPiercings ? "danger" : "warning"}
+                onChange={(e) => {
+                  setPiercings(e.target.value);
+                  setIsInvalidPiercings(!e.target.value);
+                  checkFormValidity();
+                }}
+              />
             </div>
-
 
             {/* //Polaroid */}
-            <div className="flex flex-wrap gap-4 md:gap-10 w-full h-full">
-            <div className="flex flex-row gap-4 md:gap-10 w-full h-full">
+            <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
+                <Dropzone
+                  onDrop={(acceptedFiles) =>
+                    handleImageDrop(acceptedFiles, setFrontView)
+                  }
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <div
+                      className="w-full h-full border-2 border-default-300 p-4 bg-default-50/50 relative"
+                      {...getRootProps()}
+                    >
+                      <input
+                        id="frontView"
+                        name="frontView"
+                        {...getInputProps()}
+                      />
+                      <PlusIcon className="text-default-400  w-14 absolute z-30  " />
+                      {frontView && (
+                        <Image
+                          radius="none"
+                          className="object-cover aspect-square w-full h-full"
+                          width={800}
+                          height={800}
+                          src={frontView}
+                          alt="frontView"
+                        />
+                      )}
+                    </div>
+                  )}
+                </Dropzone>
+
+                <Dropzone
+                  onDrop={(acceptedFiles) =>
+                    handleImageDrop(acceptedFiles, setProfileView)
+                  }
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <div
+                      className="w-full h-full  border-2 border-default-300 p-4 bg-default-50/50 relative"
+                      {...getRootProps()}
+                    >
+                      <input
+                        id="profileView"
+                        name="profileView"
+                        {...getInputProps()}
+                      />
+
+                      <PlusIcon className="text-default-400 w-14 absolute z-30  " />
+                      {profileView && (
+                        <Image
+                          radius="none"
+                          className="object-cover aspect-square w-full h-full"
+                          width={800}
+                          height={800}
+                          src={profileView}
+                          alt="profileView"
+                        />
+                      )}
+                    </div>
+                  )}
+                </Dropzone>
+
               <Dropzone
                 onDrop={(acceptedFiles) =>
-                  handleImageDrop(acceptedFiles, setFrontView)
+                  handleImageDrop(acceptedFiles, setDegreeView)
                 }
               >
                 {({ getRootProps, getInputProps }) => (
-                  <div className="!w-full !h-full bg-red-200 border-2 border-default-300 p-4 bg-default-50/50 relative" {...getRootProps()}>
+                  <div
+                    className="w-full h-full border-2 border-default-300 p-4 bg-default-50/50 relative"
+                    {...getRootProps()}
+                  >
                     <input
-                      id="frontView"
-                      name="frontView"
+                      id="degreeView"
+                      name="degreeView"
                       {...getInputProps()}
                     />
-                    <PlusIcon className="text-default-400  w-14 absolute z-30  " />
-                    {frontView && <Image radius="none" className="object-cover aspect-square w-full h-full" width={800} height={800} src={frontView} alt="frontView" />}
+                    <PlusIcon className="text-default-400 w-14 absolute z-30" />
+                    {degreeView && (
+                      <Image
+                        radius="none"
+                        className="object-cover aspect-square w-full h-full"
+                        width={500}
+                        height={500}
+                        src={degreeView}
+                        alt="degreeView"
+                      />
+                    )}
                   </div>
                 )}
               </Dropzone>
 
               <Dropzone
                 onDrop={(acceptedFiles) =>
-                  handleImageDrop(acceptedFiles, setProfileView)
+                  handleImageDrop(acceptedFiles, setTopDownView)
                 }
               >
                 {({ getRootProps, getInputProps }) => (
-                  <div className="dropzone w-full h-full bg-red-200 border-2 border-default-300 p-4 bg-default-50/50 relative" {...getRootProps()}>
+                  <div
+                    className="w-full h-full border-2 border-default-300 p-4 bg-default-50/50 relative"
+                    {...getRootProps()}
+                  >
                     <input
-
-                      id="profileView"
-                      name="profileView"
-                    {...getInputProps()} />
-
-                    <PlusIcon className="text-default-400 w-14 absolute z-30  " />
-                    {profileView && <Image radius="none" className="object-cover aspect-square w-full h-full" width={500} height={500} src={profileView} alt="profileView" />}
+                      id="topDownView"
+                      name="topDownView"
+                      {...getInputProps()}
+                    />
+                    <PlusIcon className="text-default-400 w-14 absolute z-30" />
+                    {topDownView && (
+                      <Image
+                        radius="none"
+                        className="object-cover aspect-square w-full h-full"
+                        width={500}
+                        height={500}
+                        src={topDownView}
+                        alt="topDownView"
+                      />
+                    )}
                   </div>
                 )}
               </Dropzone>
-            </div>
-            <Dropzone
-              onDrop={(acceptedFiles) =>
-                handleImageDrop(acceptedFiles, setDegreeView)
-              }
-            >
-              {({ getRootProps, getInputProps }) => (
-                <div className="dropzone w-[24rem] h-96 max-h-[rem] max-w-xs bg-red-200 border-2 border-default-300 p-4 bg-default-50/50 relative" {...getRootProps()}>
-                  <input
-                    id="degreeView"
-                    name="degreeView"
-                   {...getInputProps()} />
-                  <PlusIcon className="text-default-400 w-14 absolute z-30 top-[50%] left-[50%]" />
-                  {degreeView && <Image width={500} height={500} src={degreeView} alt="degreeView" />}
-                </div>
-              )}
-            </Dropzone>
-
-            <Dropzone
-              onDrop={(acceptedFiles) =>
-                handleImageDrop(acceptedFiles, setTopDownView)
-              }
-            >
-              {({ getRootProps, getInputProps }) => (
-                <div className="dropzone max-w-xs bg-red-200 border-2 border-default-300 p-4 h-full bg-default-50/50 relative" {...getRootProps()}>
-                  <input
-                    id="topDownView"
-                    name="topDownView"
-                   {...getInputProps()} />
-                  <PlusIcon className="text-default-400 w-14 absolute z-30 top-[50%] left-[50%]" />
-                  {topDownView && <Image width={500} height={500} src={topDownView} alt="topDownView" />}
-                </div>
-              )}
-            </Dropzone>
-
             </div>
 
             <Button
