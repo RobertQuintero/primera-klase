@@ -49,7 +49,7 @@ const ContactForm = () => {
       return;
     }
     setIsFormValid(true); // Add this line
-      const response = await fetch("/api/send", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

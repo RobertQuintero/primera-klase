@@ -6,6 +6,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
 
+input[type="file"]::-webkit-file-upload-button {
+    display: none;
+}
+
 .swiper-slide {
   background-size: cover;
   background-position: center;

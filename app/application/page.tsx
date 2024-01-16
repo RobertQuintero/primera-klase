@@ -1,6 +1,6 @@
 import React from "react";
 import { ContactForm } from "./components/contactForm";
-import { TalentApplicationFormFemale } from "./components/talentApplicationFormFemale";
+import { TalentApplicationFormFemale } from "./components/applicationFormFemale";
 
 export default function Contact() {
 	return (

@@ -1,20 +1,73 @@
 import React from "react";
 
-type MessageResponseProps = {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
+type EmailFemaleResponseProps = {
+    firstName: string;
+    lastName: string;
+    instagramUrl: string;
+    email: string;
+    // dateOfBirth: string;
+    nationality: string;
+    phoneNumber: string;
+    address: string;
+    yourStory: string;
+
+    //Measurements
+    height: string;
+    weight: string;
+    hairColor: string;
+    eyeColor: string;
+    bust: string;
+    waist: string;
+    hips: string;
+    shoeSize: string;
+    dressSize: string;
+    pantsSize: string;
+    tattoos: string;
+    piercings: string;
+
+    // Polaroid
+    frontView: string;
+    profileView: string;
+    degreeView: string;
+    topDownView: string;
+
+
 };
 
 const previewText = `Thank you for reaching out and expressing interest in my portfolio. I appreciate the time you took to contact me through my website.`;
 
-const MessageResponse: React.FC<MessageResponseProps> = ({
-  name,
-  email,
-  message,
-  subject,
-}: MessageResponseProps) => {
+const EmailFemaleResponse: React.FC<EmailFemaleResponseProps> = ({
+        firstName,
+        lastName,
+        instagramUrl,
+        email,
+        // dateOfBirth,
+        nationality,
+        phoneNumber,
+        address,
+        yourStory,
+
+        //Measurements
+        height,
+        weight,
+        hairColor,
+        eyeColor,
+        bust,
+        waist,
+        hips,
+        shoeSize,
+        dressSize,
+        pantsSize,
+
+        tattoos,
+        piercings,
+
+        // Polaroid
+        frontView,
+        profileView,
+        degreeView,
+        topDownView,
+}: EmailFemaleResponseProps) => {
   return (
     <div style={styles.container}>
       <div style={styles.imageContainer}>
@@ -32,17 +85,38 @@ const MessageResponse: React.FC<MessageResponseProps> = ({
       </h1>
 
       <p style={styles.paragraph}>
-        Dear, <strong>{name}</strong>
+        Dear, <strong>{firstName} {lastName} </strong>
       </p>
       <p style={styles.paragraph}>
         I have received your message with the following details:
       </p>
 
       <div style={styles.detailsContainer}>
-        <p>Email: <span style={styles.detailValue}>{email}</span></p>
-        <p>Subject: <span style={styles.detailValue}>{subject}</span></p>
-        <p>Message:</p>
-        <p style={styles.messageText}>{message}</p>
+        <p>{firstName}</p>
+        <p>{lastName}</p>
+        <p>{instagramUrl}</p>
+        <p>{email}</p>
+        <p>{nationality}</p>
+        <p>{phoneNumber}</p>
+        <p>{address}</p>
+        <p>{yourStory}</p>
+        <p>{height}</p>
+        <p>{weight}</p>
+        <p>{hairColor}</p>
+        <p>{eyeColor}</p>
+        <p>{bust}</p>
+        <p>{waist}</p>
+        <p>{hips}</p>
+        <p>{shoeSize}</p>
+        <p>{dressSize}</p>
+        <p>{pantsSize}</p>
+        <p>{tattoos}</p>
+        <p>{piercings}</p>
+        <p>{frontView}</p>
+        <p>{profileView}</p>
+        <p>{degreeView}</p>
+        <p>{topDownView}</p>
+
       </div>
 
       <div style={styles.responseContainer}>
@@ -147,4 +221,4 @@ const styles = {
   },
 };
 
-export { MessageResponse };
+export { EmailFemaleResponse };
