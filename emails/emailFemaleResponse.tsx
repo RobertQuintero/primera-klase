@@ -34,6 +34,8 @@ type EmailFemaleResponseProps = {
 
 };
 
+
+
 const previewText = `Thank you for reaching out and expressing interest in my portfolio. I appreciate the time you took to contact me through my website.`;
 
 const EmailFemaleResponse: React.FC<EmailFemaleResponseProps> = ({
@@ -68,6 +70,29 @@ const EmailFemaleResponse: React.FC<EmailFemaleResponseProps> = ({
         degreeView,
         topDownView,
 }: EmailFemaleResponseProps) => {
+
+  const downloadImage = (base64Data: string, fileName: string) => {
+    const byteCharacters = atob(base64Data.split(',')[1]);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: 'image/png' });
+
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = fileName;
+
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  };
+
+  const handleDownloadClick = (base64Data: string, fileName: string) => {
+    downloadImage(base64Data, fileName);
+  };
+
   return (
     <div style={styles.container}>
       <div style={styles.imageContainer}>
@@ -112,10 +137,21 @@ const EmailFemaleResponse: React.FC<EmailFemaleResponseProps> = ({
         <p>{pantsSize}</p>
         <p>{tattoos}</p>
         <p>{piercings}</p>
-        <p>{frontView}</p>
-        <p>{profileView}</p>
-        <p>{degreeView}</p>
-        <p>{topDownView}</p>
+
+        {/* // Polaroid */}
+        {/* how can i get the as a File to be downloaded */}
+        <div>
+          <p>Front View:</p>
+          <img
+            alt="Front View"
+            src={`data:image/png;base64,${frontView}`}
+            onClick={() => handleDownloadClick(frontView, 'front_view.png')}
+            style={{ cursor: 'pointer' }}
+
+          />
+          <a href={`data:image/png;base64,${frontView}`} download="front_view.png">Download</a>
+        </div>
+
 
       </div>
 

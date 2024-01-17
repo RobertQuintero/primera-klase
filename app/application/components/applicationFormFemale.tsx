@@ -91,14 +91,16 @@ const ApplicationFormFemale = () => {
     setSelectedDate(startDate);
 
     // Extract the startDate from the selectedDate object
-    const formattedDate =
+    const dateOfBirth  =
       startDate instanceof Date ? startDate.toLocaleDateString() : startDate;
 
-    setFormattedDate(formattedDate);
+    setFormattedDate(dateOfBirth);
 
     // Set other states and perform validation
-    setDateOfBirth(formattedDate);
-    setIsInvalidDateOfBirth(!formattedDate);
+    setDateOfBirth(dateOfBirth);
+    setIsInvalidDateOfBirth(!dateOfBirth);
+
+    // Update the form validity
     checkFormValidity();
   };
 
@@ -109,9 +111,9 @@ const ApplicationFormFemale = () => {
       /^[a-zA-Z]+$/.test(firstName) &&
       /^[a-zA-Z]+$/.test(lastName) &&
       instagramUrl &&
-      !/^\d+$/.test(phoneNumber) &&
+      /^\d+$/.test(phoneNumber) &&
       address &&
-      // dateOfBirth &&
+      dateOfBirth &&
       nationality &&
       yourStory.length > 8 &&
       // Measurements
@@ -126,8 +128,9 @@ const ApplicationFormFemale = () => {
       hairColor &&
       eyeColor &&
       tattoos &&
-      piercings &&
+      piercings
       // Polaroid
+      &&
       frontView &&
       profileView &&
       degreeView &&
@@ -155,7 +158,7 @@ const ApplicationFormFemale = () => {
       //Phone should be number
       !/^\d+$/.test(phoneNumber) ||
       !address ||
-      // !dateOfBirth ||
+      !dateOfBirth ||
       !nationality ||
       yourStory.length < 8 ||
       // Measurements
@@ -170,8 +173,9 @@ const ApplicationFormFemale = () => {
       !hairColor ||
       !eyeColor ||
       !tattoos ||
-      !piercings ||
+      !piercings
       //Polaroid
+      ||
       !frontView ||
       !profileView ||
       !degreeView ||
@@ -184,7 +188,7 @@ const ApplicationFormFemale = () => {
       setIsInvalidInstagramUrl(!instagramUrl);
       setIsInvalidPhoneNumber(!phoneNumber);
       setIsInvalidAddress(!address);
-      // setIsInvalidDateOfBirth(!dateOfBirth);
+      setIsInvalidDateOfBirth(!dateOfBirth);
       setIsInvalidNationality(!nationality);
       setIsInvalidYourStory(yourStory.length < 8);
 
@@ -215,7 +219,7 @@ const ApplicationFormFemale = () => {
     }
     // If all fields are valid, proceed with submitting the form
     setIsFormValid(true); // Add this line
-    const response = await fetch("/api/send", {
+    const response = await fetch("/api/sendFormFemale", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -226,7 +230,7 @@ const ApplicationFormFemale = () => {
         lastName,
         instagramUrl,
         email,
-        // dateOfBirth,
+        dateOfBirth,
         nationality,
         phoneNumber,
         address,
@@ -275,10 +279,6 @@ const ApplicationFormFemale = () => {
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     // jpg, jpeg, png
-    accept: {
-      "image/png": [".png"],
-      "image/jpeg": [".jpg", ".jpeg"],
-    },
     maxFiles: 4,
     onDrop: (acceptedFiles: any) => {
       // Handle the dropped files here and set the state variables accordingly
@@ -300,6 +300,9 @@ const ApplicationFormFemale = () => {
       };
       reader.readAsDataURL(files[0]);
     }
+
+    // Update the form validity
+    checkFormValidity();
   };
 
   return (
@@ -310,8 +313,8 @@ const ApplicationFormFemale = () => {
         shadow="none"
         radius="none"
       >
-        {!isSubmitted ? (
-          <form className=" flex flex-col " onSubmit={handleSubmit}>
+
+          <form className=" flex flex-col h-full" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
               {/* //Personal Information */}
               {/* // firstName */}
@@ -974,6 +977,7 @@ const ApplicationFormFemale = () => {
                 isRequired
                 variant="bordered"
                 radius="none"
+                size="lg"
                 value={pantsSize}
                 isInvalid={isInvalidPantsSize}
                 errorMessage={
@@ -1077,27 +1081,28 @@ const ApplicationFormFemale = () => {
             </div>
 
             {/* //Polaroid */}
-            <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 mb-4 sm:mb-8 relative  !h-full">
                 <Dropzone
                   onDrop={(acceptedFiles) =>
                     handleImageDrop(acceptedFiles, setFrontView)
                   }
                 >
                   {({ getRootProps, getInputProps }) => (
-                    <div
-                      className="w-full h-full border-2 border-default-300 p-4 bg-default-50/50 relative"
+                    <div className="overflow-hidden h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 flex justify-center items-center border-2 border-default-300 hover:border-warning transition-colors group"
                       {...getRootProps()}
                     >
                       <input
+
                         id="frontView"
                         name="frontView"
                         {...getInputProps()}
                       />
-                      <PlusIcon className="text-default-400  w-14 absolute z-30  " />
+
+                      <PlusIcon className="text-default-500 w-14 absolute z-20 group-hover:text-warning transition-colors  " />
                       {frontView && (
                         <Image
                           radius="none"
-                          className="object-cover aspect-square w-full h-full"
+                          className="object-cover aspect-square w-full h-full relative"
                           width={800}
                           height={800}
                           src={frontView}
@@ -1114,8 +1119,7 @@ const ApplicationFormFemale = () => {
                   }
                 >
                   {({ getRootProps, getInputProps }) => (
-                    <div
-                      className="w-full h-full  border-2 border-default-300 p-4 bg-default-50/50 relative"
+                    <div className="overflow-hidden h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 flex justify-center items-center border-2 border-default-300 hover:border-warning transition-colors group"
                       {...getRootProps()}
                     >
                       <input
@@ -1124,7 +1128,7 @@ const ApplicationFormFemale = () => {
                         {...getInputProps()}
                       />
 
-                      <PlusIcon className="text-default-400 w-14 absolute z-30  " />
+                      <PlusIcon className="text-default-500 w-14 absolute z-20 group-hover:text-warning transition-colors  " />
                       {profileView && (
                         <Image
                           radius="none"
@@ -1145,8 +1149,7 @@ const ApplicationFormFemale = () => {
                 }
               >
                 {({ getRootProps, getInputProps }) => (
-                  <div
-                    className="w-full h-full border-2 border-default-300 p-4 bg-default-50/50 relative"
+                  <div className="overflow-hidden h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 flex justify-center items-center border-2 border-default-300 hover:border-warning transition-colors group"
                     {...getRootProps()}
                   >
                     <input
@@ -1154,7 +1157,7 @@ const ApplicationFormFemale = () => {
                       name="degreeView"
                       {...getInputProps()}
                     />
-                    <PlusIcon className="text-default-400 w-14 absolute z-30" />
+                    <PlusIcon className="text-default-500 w-14 absolute z-20 group-hover:text-warning transition-colors" />
                     {degreeView && (
                       <Image
                         radius="none"
@@ -1175,8 +1178,7 @@ const ApplicationFormFemale = () => {
                 }
               >
                 {({ getRootProps, getInputProps }) => (
-                  <div
-                    className="w-full h-full border-2 border-default-300 p-4 bg-default-50/50 relative"
+                  <div className="overflow-hidden h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 flex justify-center items-center border-2 border-default-300 hover:border-warning transition-colors group"
                     {...getRootProps()}
                   >
                     <input
@@ -1184,13 +1186,13 @@ const ApplicationFormFemale = () => {
                       name="topDownView"
                       {...getInputProps()}
                     />
-                    <PlusIcon className="text-default-400 w-14 absolute z-30" />
+                    <PlusIcon className="text-default-500 w-14 absolute z-20 group-hover:text-warning transition-colors " />
                     {topDownView && (
                       <Image
                         radius="none"
-                        className="object-cover aspect-square w-full h-full"
-                        width={500}
-                        height={500}
+                        className="object-cover aspect-square w-full h-full drop-shadow-lg"
+                        width={800}
+                        height={800}
                         src={topDownView}
                         alt="topDownView"
                       />
@@ -1206,7 +1208,7 @@ const ApplicationFormFemale = () => {
               type="submit"
               radius="none"
               size="lg"
-              isDisabled={!isFormValid}
+              // isDisabled={!isFormValid}
               startContent={
                 isLoading ? (
                   <CircularProgress
@@ -1222,31 +1224,7 @@ const ApplicationFormFemale = () => {
               {isLoading ? "Sending..." : "Send"}
             </Button>
           </form>
-        ) : (
-          <React.Fragment>
-            <p
-              className={`!text-default-500 mb-4 text-center ${title({
-                size: "md",
-              })}`}
-            >
-              Message sent successfully
-            </p>
-            <div className="p-4 flex flex-col items-center justify-center w-full h-full max-w-md relative animate-appearance-in  mx-auto">
-              <div className="w-24 h-24 rounded-full  bg-success/5 border border-success-50 animate-pulse relative z-20" />
-              <div className="w-16 h-16 rounded-full  animate-ping border border-success-50 absolute top-8 -z-10" />
-              <div className="w-12 h-12 rounded-full  animate-ping border border-success-50 delay-300 duration-300 absolute top-10 -z-10" />
-              <CheckBadgeIcon className="w-16 h-16 text-success  absolute top-8 animate-appearance-in drop-shadow-lg" />
-              <p
-                className={`!text-default-500 text-center mt-4 ${paragraph({
-                  size: "sm",
-                })}`}
-              >
-                I appreciate your message and will respond at my earliest
-                convenience. Thank you for your understanding.
-              </p>
-            </div>
-          </React.Fragment>
-        )}
+
       </Card>
     </React.Fragment>
   );

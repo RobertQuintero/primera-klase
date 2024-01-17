@@ -1,4 +1,4 @@
-// api/send/route.ts
+// api/sendFormFemale/route.ts
 
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
@@ -34,17 +34,21 @@ export async function POST(request: Request) {
     piercings,
 
     //Polaroids
+    // this are the file image that will be uploaded jpeg, png, jpg
     frontView,
     profileView,
     degreeView,
     topDownView,
   } = await request.json();
 
+
+
   await resend.emails.send({
-    from: "Robert Quintero <work@robertquintero.me>",
+    from: "Primera Klase <work@robertquintero.me>",
     to: [email, "work@robertquintero.me"],
     subject: "Talent Female Submission",
     reply_to: "work@robertquintero.me",
+
     react: EmailFemaleResponse({
       //personal info
       firstName,
@@ -77,10 +81,23 @@ export async function POST(request: Request) {
       topDownView,
     }),
     text: "This is a plain text version of the email content.", // Add this line
+    attachments: [
+        {
+          filename: 'invoice.png',
+          content: frontView,
+        },
+      ],
+      headers: {
+        'X-Entity-Ref-ID': '123456789',
+      },
+      tags: [
+        {
+          name: 'category',
+          value: 'confirm_email',
+        },
+      ],
   });
 
+  console.log("email sent");
   return NextResponse.json({ status: "ok" });
 }
-
-//why is this not working?? I'm getting a 504 Gateway Timeout error when I try to send a message
-//I'm not sure what I'm doing wrong here. I'm following the docs exactly.
