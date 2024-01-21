@@ -1,12 +1,12 @@
 import React from "react";
-import { ContactForm } from "./components/contactForm";
-import { TalentApplicationFormFemale } from "./components/applicationFormFemale";
+import { ApplicationFormMale } from "./components/applicationFormMale";
+
 
 export default function Contact() {
 	return (
 		<React.Fragment >
 			{/* <ContactForm /> */}
-			<TalentApplicationFormFemale />
+			<ApplicationFormMale />
 		</React.Fragment>
 	);
 }

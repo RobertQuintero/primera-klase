@@ -1,4 +1,5 @@
 import {nextui} from '@nextui-org/theme'
+import { withUt } from "uploadthing/tw";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

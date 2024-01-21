@@ -1,9 +1,11 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
+    "cloudinary",
     "datepicker",
     "Klase",
     "Primera",
-    "swiper"
+    "swiper",
+    "uploadthing"
   ]
 }

@@ -149,7 +149,6 @@ const EmailFemaleResponse: React.FC<EmailFemaleResponseProps> = ({
             style={{ cursor: 'pointer' }}
 
           />
-          <a href={`data:image/png;base64,${frontView}`} download="front_view.png">Download</a>
         </div>
 
 

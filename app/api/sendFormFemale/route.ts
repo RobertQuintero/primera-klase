@@ -1,13 +1,13 @@
 // api/sendFormFemale/route.ts
 
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { resendApi } from "../contact/env";
+import { resendApi } from "../env";
 import { EmailFemaleResponse } from "@/emails/emailFemaleResponse";
 
 const resend = new Resend(resendApi);
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const {
     //personal info
     firstName,
