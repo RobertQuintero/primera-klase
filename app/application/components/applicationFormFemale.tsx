@@ -2,19 +2,18 @@
 
 import { paragraph, title } from "@/components/primitives";
 import { CalendarDaysIcon, PlusIcon } from "@heroicons/react/24/outline";
-import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 import {
   Button,
-  Card,
   CircularProgress,
-  Divider,
   Image,
   Input,
+  Spinner,
   Textarea,
 } from "@nextui-org/react";
 import React, { useState } from "react";
-import Dropzone, { useDropzone } from "react-dropzone";
 import Datepicker from "react-tailwindcss-datepicker";
+import { UploadButton } from "@/config/uploadthings";
+import { allowedContentTextLabelGenerator } from "uploadthing/client";
 
 const ApplicationFormFemale = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,6 +30,18 @@ const ApplicationFormFemale = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [yourStory, setYourStory] = useState("");
+  //Invalid states Personal Information
+  const [isInvalidFirstName, setIsInvalidFirstName] = useState(false);
+  const [isInvalidLastName, setIsInvalidLastName] = useState(false);
+  const [isInvalidDateOfBirth, setIsInvalidDateOfBirth] = useState(false);
+  const [isInvalidNationality, setIsInvalidNationality] = useState(false);
+  const [isInvalidInstagramUrl, setIsInvalidInstagramUrl] = useState(false);
+  const [isInvalidEmail, setIsInvalidEmail] = useState(false);
+  const [isInvalidPhoneNumber, setIsInvalidPhoneNumber] = useState(false);
+  const [isInvalidAddress, setIsInvalidAddress] = useState(false);
+  const [isInvalidYourStory, setIsInvalidYourStory] = useState(false);
+  //Personal Information end
+
 
   //Measurements
   const [height, setHeight] = useState("");
@@ -45,24 +56,6 @@ const ApplicationFormFemale = () => {
   const [eyeColor, setEyeColor] = useState("");
   const [tattoos, setTattoos] = useState("");
   const [piercings, setPiercings] = useState("");
-
-  //Image Upload 4 images Front view, ,Profile view, 45 degree view, Top-down view
-  const [frontView, setFrontView] = useState("");
-  const [profileView, setProfileView] = useState("");
-  const [degreeView, setDegreeView] = useState("");
-  const [topDownView, setTopDownView] = useState("");
-
-  //Invalid states Personal Information
-  const [isInvalidFirstName, setIsInvalidFirstName] = useState(false);
-  const [isInvalidLastName, setIsInvalidLastName] = useState(false);
-  const [isInvalidDateOfBirth, setIsInvalidDateOfBirth] = useState(false);
-  const [isInvalidNationality, setIsInvalidNationality] = useState(false);
-  const [isInvalidInstagramUrl, setIsInvalidInstagramUrl] = useState(false);
-  const [isInvalidEmail, setIsInvalidEmail] = useState(false);
-  const [isInvalidPhoneNumber, setIsInvalidPhoneNumber] = useState(false);
-  const [isInvalidAddress, setIsInvalidAddress] = useState(false);
-  const [isInvalidYourStory, setIsInvalidYourStory] = useState(false);
-
   //Invalid states Measurements
   const [isInvalidHeight, setIsInvalidHeight] = useState(false);
   const [isInvalidWeight, setIsInvalidWeight] = useState(false);
@@ -76,17 +69,20 @@ const ApplicationFormFemale = () => {
   const [isInvalidEyeColor, setIsInvalidEyeColor] = useState(false);
   const [isInvalidTattoos, setIsInvalidTattoos] = useState(false);
   const [isInvalidPiercings, setIsInvalidPiercings] = useState(false);
+  //Measurements end
 
   //Polaroid
   //Image Upload 4 images Front view, ,Profile view, 45 degree view, Top-down view
-  const [isInvalidFrontView, setIsInvalidFrontView] = useState(false);
-  const [isInvalidProfileView, setIsInvalidProfileView] = useState(false);
-  const [isInvalid45DegreeView, setIsInvalid45DegreeView] = useState(false);
-  const [isInvalidTopDownView, setIsInvalidTopDownView] = useState(false);
+  const [imageFront, setImageFront] = useState<string>("");
+  const [imageProfile, setImageProfile] = useState<string>("");
+  const [imageDegree, setImageDegree] = useState<string>("");
+  const [imageTopDown, setImageTopDown] = useState<string>("");
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  //Polaroid end
 
+  //Datepicker
   const [selectedDate, setSelectedDate] = useState(null); // Initialize with null
   const [formattedDate, setFormattedDate] = useState("");
-
   const handleDateOfBirthChange = ({ startDate }: any) => {
     setSelectedDate(startDate);
 
@@ -103,6 +99,7 @@ const ApplicationFormFemale = () => {
     // Update the form validity
     checkFormValidity();
   };
+  //Datepicker end
 
   const checkFormValidity = () => {
     if (
@@ -130,11 +127,11 @@ const ApplicationFormFemale = () => {
       tattoos &&
       piercings
       // Polaroid
-      &&
-      frontView &&
-      profileView &&
-      degreeView &&
-      topDownView
+      // &&
+      // frontView &&
+      // profileView &&
+      // degreeView &&
+      // topDownView
     ) {
       setIsFormValid(true);
     } else {
@@ -175,11 +172,11 @@ const ApplicationFormFemale = () => {
       !tattoos ||
       !piercings
       //Polaroid
-      ||
-      !frontView ||
-      !profileView ||
-      !degreeView ||
-      !topDownView
+      // ||
+      // !frontView ||
+      // !profileView ||
+      // !degreeView ||
+      // !topDownView
     ) {
       // Set validation states to display error messages
       setIsInvalidEmail(!validateEmail(email));
@@ -207,10 +204,7 @@ const ApplicationFormFemale = () => {
       setIsInvalidPiercings(!piercings);
 
       // Polaroid
-      setIsInvalidFrontView(!frontView);
-      setIsInvalidProfileView(!profileView);
-      setIsInvalid45DegreeView(!degreeView);
-      setIsInvalidTopDownView(!topDownView);
+
 
       setIsLoading(false);
       setIsFormValid(false);
@@ -251,10 +245,10 @@ const ApplicationFormFemale = () => {
         piercings,
 
         // Polaroid
-        frontView,
-        profileView,
-        degreeView,
-        topDownView,
+        imageFront,
+        imageProfile,
+        imageDegree,
+        imageTopDown,
       }),
     });
     if (!response.ok) {
@@ -271,50 +265,12 @@ const ApplicationFormFemale = () => {
     return re.test(email);
   };
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    setIsInvalidEmail(!validateEmail(e.target.value));
-    checkFormValidity();
-  };
 
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
-    // jpg, jpeg, png
-    maxFiles: 4,
-    onDrop: (acceptedFiles: any) => {
-      // Handle the dropped files here and set the state variables accordingly
-      setFrontView(acceptedFiles[0]);
-      setProfileView(acceptedFiles[1]);
-      setDegreeView(acceptedFiles[2]);
-      setTopDownView(acceptedFiles[3]);
-    },
-  });
 
-  const handleImageDrop = (
-    files: File[],
-    setImageState: React.Dispatch<React.SetStateAction<string>>
-  ) => {
-    if (files.length > 0) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImageState(reader.result as string);
-      };
-      reader.readAsDataURL(files[0]);
-    }
-
-    // Update the form validity
-    checkFormValidity();
-  };
 
   return (
     <React.Fragment>
-      <Card
-        classNames={{ base: "max-w-7xl mx-auto" }}
-        isBlurred
-        shadow="none"
-        radius="none"
-      >
-
-          <form className=" flex flex-col h-full" onSubmit={handleSubmit}>
+          <form className="flex flex-col h-full max-w-7xl mx-auto" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
               {/* //Personal Information */}
               {/* // firstName */}
@@ -528,7 +484,11 @@ const ApplicationFormFemale = () => {
                 }}
                 color={isInvalidEmail ? "danger" : "warning"}
                 value={email}
-                onChange={handleEmailChange}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setIsInvalidEmail(!validateEmail(e.target.value));
+                  checkFormValidity();
+                } }
               />
               {/* // phoneNumber */}
               <Input
@@ -1081,126 +1041,257 @@ const ApplicationFormFemale = () => {
             </div>
 
             {/* //Polaroid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 mb-4 sm:mb-8 relative  !h-full">
-                <Dropzone
-                  onDrop={(acceptedFiles) =>
-                    handleImageDrop(acceptedFiles, setFrontView)
-                  }
-                >
-                  {({ getRootProps, getInputProps }) => (
-                    <div className="overflow-hidden h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 flex justify-center items-center border-2 border-default-300 hover:border-warning transition-colors group"
-                      {...getRootProps()}
-                    >
-                      <input
+        <div className="grid grid-cols-2  lg:grid-cols-4 gap-4 sm:gap-8 mb-4 sm:mb-8 relative  !h-full">
 
-                        id="frontView"
-                        name="frontView"
-                        {...getInputProps()}
-                      />
-
-                      <PlusIcon className="text-default-500 w-14 absolute z-20 group-hover:text-warning transition-colors  " />
-                      {frontView && (
-                        <Image
-                          radius="none"
-                          className="object-cover aspect-square w-full h-full relative"
-                          width={800}
-                          height={800}
-                          src={frontView}
-                          alt="frontView"
-                        />
+          {/* //Polaroid
+          //Image Upload 4 images Front view, ,Profile view, degree view, Top-down view
+          //Front view */}
+          <div className="relative  flex items-center justify-center w-full h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 overflow-hidden border-2 border-default-300 hover:border-warning transition-colors group">
+            <UploadButton
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                // Do something with the response
+                console.log("Files: ", res);
+                setImageFront(res[0].url);
+                setUploadError(null);
+              }}
+              onUploadError={(error: Error) => {
+                // Do something with the error.
+                console.error(error);
+                setUploadError(error.message);
+              }}
+              className=""
+              appearance={{
+                button({ ready, isUploading }) {
+                  return `bg-transparent w-full h-full ${ready ? "" : ""} ${
+                    isUploading ? "" : ""
+                  }`;
+                },
+                container: "z-30 w-full h-full",
+              }}
+              content={{
+                button({ ready, isUploading }) {
+                  return (
+                    <React.Fragment>
+                      {isUploading ? (
+                        <Spinner color="warning" />
+                      ) : (
+                        <PlusIcon className="absolute w-14 h-14 text-default-500 z-20 group-hover:text-warning" />
                       )}
-                    </div>
-                  )}
-                </Dropzone>
-
-                <Dropzone
-                  onDrop={(acceptedFiles) =>
-                    handleImageDrop(acceptedFiles, setProfileView)
-                  }
-                >
-                  {({ getRootProps, getInputProps }) => (
-                    <div className="overflow-hidden h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 flex justify-center items-center border-2 border-default-300 hover:border-warning transition-colors group"
-                      {...getRootProps()}
-                    >
-                      <input
-                        id="profileView"
-                        name="profileView"
-                        {...getInputProps()}
-                      />
-
-                      <PlusIcon className="text-default-500 w-14 absolute z-20 group-hover:text-warning transition-colors  " />
-                      {profileView && (
-                        <Image
-                          radius="none"
-                          className="object-cover aspect-square w-full h-full"
-                          width={800}
-                          height={800}
-                          src={profileView}
-                          alt="profileView"
-                        />
+                    </React.Fragment>
+                  );
+                },
+                allowedContent(arg) {
+                  return (
+                    // Display the file name and size and if uploadError display the error
+                    <React.Fragment>
+                      {uploadError ? (
+                        <p
+                          className={`text-danger !font-normal ${title({
+                            size: "sm",
+                          })}`}
+                        >
+                          Selected image exceeds | | 1MB limit. Choose a
+                          smaller| | image and try again.
+                        </p>
+                      ) : (
+                        <div className="text-default-500 absolute bottom-0 -ml-10">
+                          {allowedContentTextLabelGenerator()}
+                          <p
+                            className={`group-hover:text-warning transition-colors !font-normal ${title(
+                              { size: "md" }
+                            )}`}
+                          >
+                            Front view{" "}
+                          </p>
+                        </div>
                       )}
-                    </div>
-                  )}
-                </Dropzone>
+                    </React.Fragment>
+                  );
+                },
+              }}
+            />
+            {imageFront && (
+              <div className="absolute w-full h-full top-0 flex items-center justify-center z-10">
+                <Image
+                  src="https://utfs.io/f/ee143e92-c3db-4787-9f2e-695d0529464f-c33bs0.png"
+                  // src={imageFront}
+                  alt="front"
+                  width={300}
+                  height={300}
+                  radius="none"
+                  className="object-contain w-full h-full aspect-square"
+                />
+              </div>
+            )}
+          </div>
 
-              <Dropzone
-                onDrop={(acceptedFiles) =>
-                  handleImageDrop(acceptedFiles, setDegreeView)
-                }
-              >
-                {({ getRootProps, getInputProps }) => (
-                  <div className="overflow-hidden h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 flex justify-center items-center border-2 border-default-300 hover:border-warning transition-colors group"
-                    {...getRootProps()}
-                  >
-                    <input
-                      id="degreeView"
-                      name="degreeView"
-                      {...getInputProps()}
-                    />
-                    <PlusIcon className="text-default-500 w-14 absolute z-20 group-hover:text-warning transition-colors" />
-                    {degreeView && (
-                      <Image
-                        radius="none"
-                        className="object-cover aspect-square w-full h-full"
-                        width={500}
-                        height={500}
-                        src={degreeView}
-                        alt="degreeView"
-                      />
-                    )}
-                  </div>
-                )}
-              </Dropzone>
+          {/* //Profile view */}
+          <div className="relative  flex items-center justify-center w-full h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 overflow-hidden border-2 border-default-300 hover:border-warning transition-colors group">
+            <UploadButton
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                // Do something with the response
+                console.log("Files: ", res);
+                setImageProfile(res[0].url);
+                setUploadError(null);
+              }}
+              onUploadError={(error: Error) => {
+                // Do something with the error.
+                console.error(error);
+                setUploadError(error.message);
+              }}
+              className=""
+              appearance={{
+                button({ ready, isUploading }) {
+                  return `bg-transparent w-full h-full ${ready ? "" : ""} ${
+                    isUploading ? "" : ""
+                  }`;
+                },
+                container: "z-30 w-full h-full",
+              }}
+              content={{
+                button({ ready, isUploading }) {
+                  return (
+                    <React.Fragment>
+                      {isUploading ? (
+                        <Spinner color="warning" />
+                      ) : (
+                        <PlusIcon className="absolute w-14 h-14 text-default-500 z-20 group-hover:text-warning" />
+                      )}
+                    </React.Fragment>
+                  );
+                },
+                allowedContent(arg) {
+                  return (
+                    // Display the file name and size and if uploadError display the error
+                    <React.Fragment>
+                      {uploadError ? (
+                        <p
+                          className={`text-danger !font-normal ${title({
+                            size: "sm",
+                          })}`}
+                        >
+                          Selected image exceeds | | 1MB limit. Choose a
+                          smaller| | image and try again.
+                        </p>
+                      ) : (
+                        <div className="text-default-500 absolute bottom-0 -ml-10">
+                          {allowedContentTextLabelGenerator()}
+                          <p
+                            className={`group-hover:text-warning transition-colors !font-normal ${title(
+                              { size: "md" }
+                            )}`}
+                          >
+                            Profile view{" "}
+                          </p>
+                        </div>
+                      )}
+                    </React.Fragment>
+                  );
+                },
+              }}
+            />
+            {imageProfile && (
+              <div className="absolute w-full h-full top-0 flex items-center justify-center z-10">
+                <Image
+                  src={imageProfile}
+                  alt="front"
+                  width={300}
+                  height={300}
+                  radius="none"
+                  className="object-contain
+                  w-full h-full aspect-square"
+                />
+              </div>
+            )}
+          </div>
 
-              <Dropzone
-                onDrop={(acceptedFiles) =>
-                  handleImageDrop(acceptedFiles, setTopDownView)
-                }
-              >
-                {({ getRootProps, getInputProps }) => (
-                  <div className="overflow-hidden h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 flex justify-center items-center border-2 border-default-300 hover:border-warning transition-colors group"
-                    {...getRootProps()}
-                  >
-                    <input
-                      id="topDownView"
-                      name="topDownView"
-                      {...getInputProps()}
-                    />
-                    <PlusIcon className="text-default-500 w-14 absolute z-20 group-hover:text-warning transition-colors " />
-                    {topDownView && (
-                      <Image
-                        radius="none"
-                        className="object-cover aspect-square w-full h-full drop-shadow-lg"
-                        width={800}
-                        height={800}
-                        src={topDownView}
-                        alt="topDownView"
-                      />
-                    )}
-                  </div>
-                )}
-              </Dropzone>
-            </div>
+          {/* //degree view */}
+          <div className="relative  flex items-center justify-center w-full h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 overflow-hidden border-2 border-default-300 hover:border-warning transition-colors group">
+            <UploadButton
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                // Do something with the response
+                console.log("Files: ", res);
+                setImageDegree(res[0].url);
+                setUploadError(null);
+              }}
+              onUploadError={(error: Error) => {
+                // Do something with the error.
+                console.error(error);
+                setUploadError(error.message);
+              }}
+              className=""
+              appearance={{
+                button({ ready, isUploading }) {
+                  return `bg-transparent w-full h-full ${ready ? "" : ""} ${
+                    isUploading ? "" : ""
+                  }`;
+                },
+                container: "z-30 w-full h-full",
+              }}
+              content={{
+                button({ ready, isUploading }) {
+                  return (
+                    <React.Fragment>
+                      {isUploading ? (
+                        <Spinner color="warning" />
+                      ) : (
+                        <PlusIcon className="absolute w-14 h-14 text-default-500 z-20 group-hover:text-warning" />
+                      )}
+                    </React.Fragment>
+                  );
+                },
+                allowedContent(arg) {
+                  return (
+                    // Display the file name and size and if uploadError display the error
+                    <React.Fragment>
+                      {uploadError ? (
+                        <p
+                          className={`text-danger !font-normal ${title({
+                            size: "sm",
+                          })}`}
+                        >
+                          Selected image exceeds | | 1MB limit. Choose a
+                          smaller| | image and try again.
+                        </p>
+                      ) : (
+                        <div className="text-default-500 absolute bottom-0 -ml-12">
+                          {allowedContentTextLabelGenerator()}
+                          <p
+                            className={`group-hover:text-warning transition-colors !font-normal ${title(
+                              { size: "md" }
+                            )}`}
+                          >
+                            Degree view{" "}
+                          </p>
+                        </div>
+                      )}
+                    </React.Fragment>
+                  );
+                },
+              }}
+            />
+            {imageDegree && (
+              <div className="absolute w-full h-full top-0 flex items-center justify-center z-10">
+                <Image
+                  src={imageDegree}
+                  alt="front"
+                  width={300}
+                  height={300}
+                  radius="none"
+                  className="object-contain
+                  w-full h-full aspect-square"
+                />
+              </div>
+            )}
+          </div>
+
+          {/* //Top-down view */}
+
+
+        </div>
 
             <Button
               color="warning"
@@ -1224,8 +1315,6 @@ const ApplicationFormFemale = () => {
               {isLoading ? "Sending..." : "Send"}
             </Button>
           </form>
-
-      </Card>
     </React.Fragment>
   );
 };

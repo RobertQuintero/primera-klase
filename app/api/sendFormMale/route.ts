@@ -1,4 +1,4 @@
-// api/sendFormFemale/route.ts
+// api/sendFormMale/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
@@ -12,24 +12,25 @@ export async function POST(request: NextRequest) {
   const {
     //personal info
     firstName,
-    // lastName,
-    // nationality,
+    lastName,
+    dateOfBirth,
+    nationality,
     email,
-    // instagramUrl,
-    // phoneNumber,
-    // address,
-    // yourStory,
+    instagramUrl,
+    phoneNumber,
+    address,
+    yourStory,
 
     //measurements
-    // height,
-    // weight,
-    // hips,
-    // shoeSize,
-    // pantsSize,
-    // hairColor,
-    // eyeColor,
-    // tattoos,
-    // piercings,
+    height,
+    weight,
+    hips,
+    shoeSize,
+    pantsSize,
+    hairColor,
+    eyeColor,
+    tattoos,
+    piercings,
 
     //Polaroids
     // this are the file image that will be uploaded jpeg, png, jpg
@@ -52,24 +53,25 @@ export async function POST(request: NextRequest) {
     react: EmailMaleResponse({
       //personal info
       firstName,
-      // lastName,
-      // nationality,
+      lastName,
+      dateOfBirth,
+      nationality,
       email,
-      // instagramUrl,
-      // phoneNumber,
-      // address,
-      // yourStory,
+      instagramUrl,
+      phoneNumber,
+      address,
+      yourStory,
 
       //measurements
-      // height,
-      // weight,
-      // hips,
-      // shoeSize,
-      // pantsSize,
-      // hairColor,
-      // eyeColor,
-      // tattoos,
-      // piercings,
+        height,
+        weight,
+        hairColor,
+        eyeColor,
+        hips,
+        shoeSize,
+        pantsSize,
+        tattoos,
+        piercings,
 
       //Polaroids
       imageProfile,

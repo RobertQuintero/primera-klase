@@ -1,8 +1,6 @@
 "use client";
 
-import { title } from "@/components/primitives";
-import { UploadButton, UploadDropzone } from "@/config/uploadthings";
-import { PlusIcon, UserPlusIcon } from "@heroicons/react/24/outline";
+import { paragraph, title } from "@/components/primitives";
 import {
   Button,
   Card,
@@ -10,9 +8,12 @@ import {
   Input,
   Image,
   Spinner,
+  Textarea,
 } from "@nextui-org/react";
 import React, { useState } from "react";
-import { allowedContentTextLabelGenerator } from "uploadthing/client";
+import PolaroidImageUpload from "./polaroidImage";
+import InputField from "./InputField";
+import Datepicker from "react-tailwindcss-datepicker";
 
 const ApplicationFormMale = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,11 +22,47 @@ const ApplicationFormMale = () => {
 
   //Personal Information
   const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [instagramUrl, setInstagramUrl] = useState("");
   const [email, setEmail] = useState("");
-
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const [yourStory, setYourStory] = useState("");
   //Invalid states Personal Information
   const [isInvalidFirstName, setIsInvalidFirstName] = useState(false);
+  const [isInvalidLastName, setIsInvalidLastName] = useState(false);
+  const [isInvalidDateOfBirth, setIsInvalidDateOfBirth] = useState(false);
+  const [isInvalidNationality, setIsInvalidNationality] = useState(false);
+  const [isInvalidInstagramUrl, setIsInvalidInstagramUrl] = useState(false);
   const [isInvalidEmail, setIsInvalidEmail] = useState(false);
+  const [isInvalidPhoneNumber, setIsInvalidPhoneNumber] = useState(false);
+  const [isInvalidAddress, setIsInvalidAddress] = useState(false);
+  const [isInvalidYourStory, setIsInvalidYourStory] = useState(false);
+  //Personal Information end
+
+  //Measurements
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [hips, setHips] = useState("");
+  const [shoeSize, setShoeSize] = useState("");
+  const [pantsSize, setPantsSize] = useState("");
+  const [hairColor, setHairColor] = useState("");
+  const [eyeColor, setEyeColor] = useState("");
+  const [tattoos, setTattoos] = useState("");
+  const [piercings, setPiercings] = useState("");
+  //Invalid states Measurements
+  const [isInvalidHeight, setIsInvalidHeight] = useState(false);
+  const [isInvalidWeight, setIsInvalidWeight] = useState(false);
+  const [isInvalidHips, setIsInvalidHips] = useState(false);
+  const [isInvalidShoeSize, setIsInvalidShoeSize] = useState(false);
+  const [isInvalidPantsSize, setIsInvalidPantsSize] = useState(false);
+  const [isInvalidHairColor, setIsInvalidHairColor] = useState(false);
+  const [isInvalidEyeColor, setIsInvalidEyeColor] = useState(false);
+  const [isInvalidTattoos, setIsInvalidTattoos] = useState(false);
+  const [isInvalidPiercings, setIsInvalidPiercings] = useState(false);
+  //Measurements end
 
   //Polaroid
   //Image Upload 4 images Front view, ,Profile view, degree view, Top-down view
@@ -33,22 +70,54 @@ const ApplicationFormMale = () => {
   const [imageProfile, setImageProfile] = useState<string>("");
   const [imageDegree, setImageDegree] = useState<string>("");
   const [imageTopDown, setImageTopDown] = useState<string>("");
-
   const [uploadError, setUploadError] = useState<string | null>(null);
   //Polaroid end
 
+  //Datepicker
   const [selectedDate, setSelectedDate] = useState(null); // Initialize with null
   const [formattedDate, setFormattedDate] = useState("");
+  const handleDateOfBirthChange = ({ startDate }: any) => {
+    setSelectedDate(startDate);
 
-  //Cloudinary
+    // Extract the startDate from the selectedDate object
+    const dateOfBirth =
+      startDate instanceof Date ? startDate.toLocaleDateString() : startDate;
+
+    setFormattedDate(dateOfBirth);
+
+    // Set other states and perform validation
+    setDateOfBirth(dateOfBirth);
+    setIsInvalidDateOfBirth(!dateOfBirth);
+
+    // Update the form validity
+    checkFormValidity();
+  };
+  //Datepicker end
 
   const checkFormValidity = () => {
     if (
       // Personal Information
       validateEmail(email) &&
       /^[a-zA-Z]+$/.test(firstName) &&
-      email
-      // Polaroid
+      /^[a-zA-Z]+$/.test(lastName) &&
+      instagramUrl &&
+      /^\d+$/.test(phoneNumber) &&
+      address &&
+      dateOfBirth &&
+      nationality &&
+      yourStory.length > 8 &&
+      // Measurements
+      /^\d+$/.test(height) &&
+      /^\d+$/.test(weight) &&
+      /^\d+$/.test(hips) &&
+      /^\d+$/.test(shoeSize) &&
+      /^\d+$/.test(pantsSize) &&
+
+
+      hairColor &&
+      eyeColor &&
+      tattoos &&
+      piercings
     ) {
       setIsFormValid(true);
     } else {
@@ -65,15 +134,49 @@ const ApplicationFormMale = () => {
       // Check if all fields are valid
       // Personal Information
       !validateEmail(email) ||
-      !/^[a-zA-Z]+$/.test(firstName)
-
-      //Polaroid
+      !/^[a-zA-Z]+$/.test(firstName) ||
+      !/^[a-zA-Z]+$/.test(lastName) ||
+      !instagramUrl ||
+      //Phone should be number
+      !/^\d+$/.test(phoneNumber) ||
+      !address ||
+      !dateOfBirth ||
+      !nationality ||
+      yourStory.length < 8 ||
+      // Measurements
+      !/^\d+$/.test(height) ||
+      !/^\d+$/.test(weight) ||
+      !/^\d+$/.test(hips) ||
+      !/^\d+$/.test(shoeSize) ||
+      !/^\d+$/.test(pantsSize) ||
+      !hairColor ||
+      !eyeColor ||
+      !tattoos ||
+      !piercings
     ) {
       // Set validation states to display error messages
       setIsInvalidEmail(!validateEmail(email));
-      setIsInvalidFirstName(!/^[a-zA-Z]+$/.test(firstName));
+      setIsInvalidFirstName(!firstName);
+      setIsInvalidLastName(!lastName);
+      setIsInvalidInstagramUrl(!instagramUrl);
+      setIsInvalidPhoneNumber(!phoneNumber);
+      setIsInvalidAddress(!address);
+      setIsInvalidDateOfBirth(!dateOfBirth);
+      setIsInvalidNationality(!nationality);
+      setIsInvalidYourStory(yourStory.length < 8);
 
-      // Polaroid
+      // Measurements
+      setIsInvalidHeight(!height);
+      setIsInvalidWeight(!weight);
+      setIsInvalidHips(!hips);
+      setIsInvalidShoeSize(!shoeSize);
+      setIsInvalidPantsSize(!pantsSize);
+
+
+      setIsInvalidHairColor(!hairColor);
+      setIsInvalidEyeColor(!eyeColor);
+      setIsInvalidTattoos(!tattoos);
+      setIsInvalidPiercings(!piercings);
 
       setIsLoading(false);
       setIsFormValid(false);
@@ -90,10 +193,31 @@ const ApplicationFormMale = () => {
       body: JSON.stringify({
         //Personal Information
         firstName,
+        lastName,
+        instagramUrl,
         email,
-        // Polaroid
+        dateOfBirth,
+        nationality,
+        phoneNumber,
+        address,
+        yourStory,
+
+        //Measurements
+        height,
+        weight,
+        hairColor,
+        eyeColor,
+        hips,
+        shoeSize,
+        pantsSize,
+        tattoos,
+        piercings,
+
+        //Polaroid
         imageFront,
         imageProfile,
+        imageDegree,
+        imageTopDown,
       }),
     });
     if (!response.ok) {
@@ -113,62 +237,99 @@ const ApplicationFormMale = () => {
   return (
     <React.Fragment>
       <form
-        className=" flex flex-col h-full max-w-7xl mx-auto"
+        className="flex flex-col h-full max-w-7xl mx-auto"
         onSubmit={handleSubmit}
       >
         <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
           {/* //Personal Information */}
           {/* // firstName */}
-          <Input
+          <InputField
             type="text"
             id="firstName"
             name="firstName"
             label="First Name"
-            isRequired
-            variant="bordered"
-            radius="none"
-            size="lg"
-            value={firstName}
             isInvalid={isInvalidFirstName}
             errorMessage={
-              isInvalidFirstName
-                ? firstName.trim() === ""
-                  ? "Please enter your first name"
-                  : "Please enter a valid character"
-                : ""
+              isInvalidFirstName ? "Please enter a valid first name" : ""
             }
-            classNames={{
-              inputWrapper:
-                firstName.trim() !== "" ? "border-success " : "danger",
-              errorMessage: isInvalidFirstName ? "text-danger" : "text-success",
-              label:
-                firstName.trim() !== "" ? "text-success" : "text-default-500",
-            }}
-            color={isInvalidFirstName ? "danger" : "warning"}
+            value={firstName}
             onChange={(e) => {
               setFirstName(e.target.value);
               setIsInvalidFirstName(!/^[a-zA-Z]+$/.test(e.target.value));
               checkFormValidity();
             }}
           />
+          {/* // lastName */}
+          <InputField
+            type="text"
+            id="lastName"
+            name="lastName"
+            label="Last Name"
+            isInvalid={isInvalidLastName}
+            errorMessage={
+              isInvalidLastName ? "Please enter a valid last name" : ""
+            }
+            value={lastName}
+            onChange={(e) => {
+              setLastName(e.target.value);
+              setIsInvalidLastName(!/^[a-zA-Z]+$/.test(e.target.value));
+              checkFormValidity();
+            }}
+          />
+
+          {/* // dateOfBirth */}
+          <div className="relative w-full">
+            <Input
+              type="text"
+              id="dateOfBirth"
+              name="dateOfBirth"
+              label="Date of Birth"
+              isRequired
+              variant="bordered"
+              radius="none"
+              value={formattedDate}
+              size="lg"
+              isInvalid={isInvalidDateOfBirth}
+              errorMessage={
+                isInvalidDateOfBirth ? "Please enter your date of birth" : ""
+              }
+              classNames={{
+                inputWrapper:
+                  dateOfBirth.trim() !== "" ? "border-success " : "danger",
+                errorMessage: isInvalidDateOfBirth
+                  ? "text-danger"
+                  : "text-success",
+                label:
+                  dateOfBirth.trim() !== ""
+                    ? "text-success"
+                    : "text-default-500",
+              }}
+              color={isInvalidDateOfBirth ? "danger" : "warning"}
+              onChange={(e) => {
+                setFormattedDate(e.target.value);
+                setIsInvalidDateOfBirth(!e.target.value);
+                checkFormValidity();
+              }}
+            />
+            <Datepicker
+              asSingle={true}
+              useRange={false}
+              value={selectedDate}
+              onChange={handleDateOfBirthChange}
+              containerClassName={`z-30 absolute right-1 text-default-100  w-[3.3rem] bottom-[7%]  border-default-200 h-14 }`}
+              inputClassName={`w-0 h-0 text-default-100  `}
+              toggleClassName={`w-full text-default-300 hover:text-default-500  mt-1  pl-4 h-[3.3rem]`}
+              primaryColor="amber"
+            />
+          </div>
           {/* // email */}
-          <Input
+          <InputField
             type="email"
             id="email"
             name="email"
             label="Email"
-            isRequired
-            variant="bordered"
-            radius="none"
-            size="lg"
             isInvalid={isInvalidEmail}
             errorMessage={isInvalidEmail ? "Please enter a valid email" : ""}
-            classNames={{
-              inputWrapper: email.trim() !== "" ? "border-success " : "danger",
-              errorMessage: isInvalidEmail ? "text-danger" : "text-success",
-              label: email.trim() !== "" ? "text-success" : "text-default-500",
-            }}
-            color={isInvalidEmail ? "danger" : "warning"}
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
@@ -176,336 +337,193 @@ const ApplicationFormMale = () => {
               checkFormValidity();
             }}
           />
+          {/* Nationality */}
+          <InputField
+            type="text"
+            id="nationality"
+            name="nationality"
+            label="Nationality"
+            isInvalid={isInvalidNationality}
+            errorMessage={
+              isInvalidNationality ? "Please enter a valid nationality" : ""
+            }
+            value={nationality}
+            onChange={(e) => {
+              setNationality(e.target.value);
+              setIsInvalidNationality(!e.target.value);
+              checkFormValidity();
+            }}
+          />
+
+          {/* Instagram URL */}
+          <InputField
+            type="text"
+            id="instagramUrl"
+            name="instagramUrl"
+            label="Instagram URL"
+            isInvalid={isInvalidInstagramUrl}
+            errorMessage={
+              isInvalidInstagramUrl ? "Please enter a valid Instagram URL" : ""
+            }
+            value={instagramUrl}
+            onChange={(e) => {
+              setInstagramUrl(e.target.value);
+              setIsInvalidInstagramUrl(!e.target.value);
+              checkFormValidity();
+            }}
+          />
+
+          {/* Phone Number */}
+          <InputField
+            type="text"
+            id="phoneNumber"
+            name="phoneNumber"
+            label="Phone Number"
+            isInvalid={isInvalidPhoneNumber}
+            errorMessage={
+              isInvalidPhoneNumber ? "Please enter a valid phone number" : ""
+            }
+            value={phoneNumber}
+            onChange={(e) => {
+              setPhoneNumber(e.target.value);
+              setIsInvalidPhoneNumber(!/^\d+$/.test(e.target.value));
+              checkFormValidity();
+            }}
+          />
+          {/* Address */}
+          <InputField
+            type="text"
+            id="address"
+            name="address"
+            label="Address"
+            isInvalid={isInvalidAddress}
+            errorMessage={
+              isInvalidAddress ? "Please enter a valid address" : ""
+            }
+            value={address}
+            onChange={(e) => {
+              setAddress(e.target.value);
+              setIsInvalidAddress(!e.target.value);
+              checkFormValidity();
+            }}
+          />
+          {/* // yourStory */}
+          <Textarea
+            id="yourStory"
+            name="yourStory"
+            variant="bordered"
+            radius="none"
+            size="lg"
+            value={yourStory}
+            isInvalid={isInvalidYourStory}
+            label="Your Story"
+            isRequired
+            errorMessage={
+              isInvalidYourStory
+                ? "Your story should have at least 8 characters "
+                : ""
+            }
+            className="col-span-2"
+            classNames={{
+              inputWrapper:
+                yourStory.trim() !== "" ? "border-success " : "danger",
+              errorMessage: isInvalidYourStory ? "text-danger" : "text-success",
+              label:
+                yourStory.trim() !== "" ? "text-success" : "text-default-500",
+            }}
+            color={isInvalidYourStory ? "danger" : "warning"}
+            onChange={(e) => {
+              setYourStory(e.target.value);
+              setIsInvalidYourStory(e.target.value.length < 8);
+              checkFormValidity();
+            }}
+          />
         </div>
 
-        <div className="grid grid-cols-2  lg:grid-cols-4 gap-4 sm:gap-8 mb-4 sm:mb-8 relative  !h-full">
 
+        {/* //Measurements */}
+        <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
+            {/* // height */}
+            <InputField
+              type="text"
+              id="height"
+              name="height"
+              label="Height"
+              isInvalid={isInvalidHeight}
+              errorMessage={
+                isInvalidHeight ? "Please enter a valid height" : ""
+              }
+              value={height}
+              onChange={(e) => {
+                setHeight(e.target.value);
+                setIsInvalidHeight(!/^\d+$/.test(e.target.value));
+                checkFormValidity();
+              }}
+            />
+            {/* // weight */}
+            <InputField
+              type="text"
+              id="weight"
+              name="weight"
+              label="Weight"
+              isInvalid={isInvalidWeight}
+              errorMessage={
+                isInvalidWeight ? "Please enter a valid weight" : ""
+              }
+              value={weight}
+              onChange={(e) => {
+                setWeight(e.target.value);
+                setIsInvalidWeight(!/^\d+$/.test(e.target.value));
+                checkFormValidity();
+              }}
+            />
+
+              {/* // hips */}
+
+
+        </div>
+
+
+        {/* //Polaroid */}
+        <div className="grid grid-cols-2  lg:grid-cols-4 gap-4 sm:gap-8 mb-4 sm:mb-8 relative  !h-full">
           {/* //Polaroid
           //Image Upload 4 images Front view, ,Profile view, degree view, Top-down view
           //Front view */}
-          <div className="relative  flex items-center justify-center w-full h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 overflow-hidden border-2 border-default-300 hover:border-warning transition-colors group">
-            <UploadButton
-              endpoint="imageUploader"
-              onClientUploadComplete={(res) => {
-                // Do something with the response
-                console.log("Files: ", res);
-                setImageFront(res[0].url);
-                setUploadError(null);
-              }}
-              onUploadError={(error: Error) => {
-                // Do something with the error.
-                console.error(error);
-                setUploadError(error.message);
-              }}
-              className=""
-              appearance={{
-                button({ ready, isUploading }) {
-                  return `bg-transparent w-full h-full ${ready ? "" : ""} ${
-                    isUploading ? "" : ""
-                  }`;
-                },
-                container: "z-30 w-full h-full",
-              }}
-              content={{
-                button({ ready, isUploading }) {
-                  return (
-                    <React.Fragment>
-                      {isUploading ? (
-                        <Spinner color="warning" />
-                      ) : (
-                        <PlusIcon className="absolute w-14 h-14 text-default-500 z-20 group-hover:text-warning" />
-                      )}
-                    </React.Fragment>
-                  );
-                },
-                allowedContent(arg) {
-                  return (
-                    // Display the file name and size and if uploadError display the error
-                    <React.Fragment>
-                      {uploadError ? (
-                        <p
-                          className={`text-danger !font-normal ${title({
-                            size: "sm",
-                          })}`}
-                        >
-                          Selected image exceeds | | 1MB limit. Choose a
-                          smaller| | image and try again.
-                        </p>
-                      ) : (
-                        <div className="text-default-500 absolute bottom-0 -ml-10">
-                          {allowedContentTextLabelGenerator()}
-                          <p
-                            className={`group-hover:text-warning transition-colors !font-normal ${title(
-                              { size: "md" }
-                            )}`}
-                          >
-                            Front view{" "}
-                          </p>
-                        </div>
-                      )}
-                    </React.Fragment>
-                  );
-                },
-              }}
-            />
-            {imageFront && (
-              <div className="absolute w-full h-full top-0 flex items-center justify-center z-10">
-                <Image
-                  src="https://utfs.io/f/ee143e92-c3db-4787-9f2e-695d0529464f-c33bs0.png"
-                  // src={imageFront}
-                  alt="front"
-                  width={300}
-                  height={300}
-                  radius="none"
-                  className="object-contain w-full h-full aspect-square"
-                />
-              </div>
-            )}
-          </div>
-
+          <PolaroidImageUpload
+            onClientUploadComplete={(res) => setImageFront(res[0].url)}
+            onUploadError={(error) => setUploadError(error.message)}
+            imageUrl={imageFront}
+            setUploadError={setUploadError}
+            uploadError={uploadError}
+            label="Front view"
+          />
           {/* //Profile view */}
-          <div className="relative  flex items-center justify-center w-full h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 overflow-hidden border-2 border-default-300 hover:border-warning transition-colors group">
-            <UploadButton
-              endpoint="imageUploader"
-              onClientUploadComplete={(res) => {
-                // Do something with the response
-                console.log("Files: ", res);
-                setImageProfile(res[0].url);
-                setUploadError(null);
-              }}
-              onUploadError={(error: Error) => {
-                // Do something with the error.
-                console.error(error);
-                setUploadError(error.message);
-              }}
-              className=""
-              appearance={{
-                button({ ready, isUploading }) {
-                  return `bg-transparent w-full h-full ${ready ? "" : ""} ${
-                    isUploading ? "" : ""
-                  }`;
-                },
-                container: "z-30 w-full h-full",
-              }}
-              content={{
-                button({ ready, isUploading }) {
-                  return (
-                    <React.Fragment>
-                      {isUploading ? (
-                        <Spinner color="warning" />
-                      ) : (
-                        <PlusIcon className="absolute w-14 h-14 text-default-500 z-20 group-hover:text-warning" />
-                      )}
-                    </React.Fragment>
-                  );
-                },
-                allowedContent(arg) {
-                  return (
-                    // Display the file name and size and if uploadError display the error
-                    <React.Fragment>
-                      {uploadError ? (
-                        <p
-                          className={`text-danger !font-normal ${title({
-                            size: "sm",
-                          })}`}
-                        >
-                          Selected image exceeds | | 1MB limit. Choose a
-                          smaller| | image and try again.
-                        </p>
-                      ) : (
-                        <div className="text-default-500 absolute bottom-0 -ml-10">
-                          {allowedContentTextLabelGenerator()}
-                          <p
-                            className={`group-hover:text-warning transition-colors !font-normal ${title(
-                              { size: "md" }
-                            )}`}
-                          >
-                            Profile view{" "}
-                          </p>
-                        </div>
-                      )}
-                    </React.Fragment>
-                  );
-                },
-              }}
-            />
-            {imageProfile && (
-              <div className="absolute w-full h-full top-0 flex items-center justify-center z-10">
-                <Image
-                  src={imageProfile}
-                  alt="front"
-                  width={300}
-                  height={300}
-                  radius="none"
-                  className="object-contain
-                  w-full h-full aspect-square"
-                />
-              </div>
-            )}
-          </div>
-
+          <PolaroidImageUpload
+            onClientUploadComplete={(res) => setImageProfile(res[0].url)}
+            onUploadError={(error) => setUploadError(error.message)}
+            imageUrl={imageProfile}
+            setUploadError={setUploadError}
+            uploadError={uploadError}
+            label="Profile view"
+          />
           {/* //degree view */}
-          <div className="relative  flex items-center justify-center w-full h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 overflow-hidden border-2 border-default-300 hover:border-warning transition-colors group">
-            <UploadButton
-              endpoint="imageUploader"
-              onClientUploadComplete={(res) => {
-                // Do something with the response
-                console.log("Files: ", res);
-                setImageDegree(res[0].url);
-                setUploadError(null);
-              }}
-              onUploadError={(error: Error) => {
-                // Do something with the error.
-                console.error(error);
-                setUploadError(error.message);
-              }}
-              className=""
-              appearance={{
-                button({ ready, isUploading }) {
-                  return `bg-transparent w-full h-full ${ready ? "" : ""} ${
-                    isUploading ? "" : ""
-                  }`;
-                },
-                container: "z-30 w-full h-full",
-              }}
-              content={{
-                button({ ready, isUploading }) {
-                  return (
-                    <React.Fragment>
-                      {isUploading ? (
-                        <Spinner color="warning" />
-                      ) : (
-                        <PlusIcon className="absolute w-14 h-14 text-default-500 z-20 group-hover:text-warning" />
-                      )}
-                    </React.Fragment>
-                  );
-                },
-                allowedContent(arg) {
-                  return (
-                    // Display the file name and size and if uploadError display the error
-                    <React.Fragment>
-                      {uploadError ? (
-                        <p
-                          className={`text-danger !font-normal ${title({
-                            size: "sm",
-                          })}`}
-                        >
-                          Selected image exceeds | | 1MB limit. Choose a
-                          smaller| | image and try again.
-                        </p>
-                      ) : (
-                        <div className="text-default-500 absolute bottom-0 -ml-12">
-                          {allowedContentTextLabelGenerator()}
-                          <p
-                            className={`group-hover:text-warning transition-colors !font-normal ${title(
-                              { size: "md" }
-                            )}`}
-                          >
-                            Degree view{" "}
-                          </p>
-                        </div>
-                      )}
-                    </React.Fragment>
-                  );
-                },
-              }}
-            />
-            {imageDegree && (
-              <div className="absolute w-full h-full top-0 flex items-center justify-center z-10">
-                <Image
-                  src={imageDegree}
-                  alt="front"
-                  width={300}
-                  height={300}
-                  radius="none"
-                  className="object-contain
-                  w-full h-full aspect-square"
-                />
-              </div>
-            )}
-          </div>
-
+          <PolaroidImageUpload
+            onClientUploadComplete={(res) => setImageDegree(res[0].url)}
+            onUploadError={(error) => setUploadError(error.message)}
+            imageUrl={imageDegree}
+            setUploadError={setUploadError}
+            uploadError={uploadError}
+            label="Degree view"
+          />
           {/* //Top-down view */}
-          <div className="relative  flex items-center justify-center w-full h-[100vh] max-h-44 sm:max-h-60 md:max-h-72 overflow-hidden border-2 border-default-300 hover:border-warning transition-colors group">
-            <UploadButton
-              endpoint="imageUploader"
-              onClientUploadComplete={(res) => {
-                // Do something with the response
-                console.log("Files: ", res);
-                setImageTopDown(res[0].url);
-                setUploadError(null);
-              }}
-              onUploadError={(error: Error) => {
-                // Do something with the error.
-                console.error(error);
-                setUploadError(error.message);
-              }}
-              className=""
-              appearance={{
-                button({ ready, isUploading }) {
-                  return `bg-transparent w-full h-full ${ready ? "" : ""} ${
-                    isUploading ? "" : ""
-                  }`;
-                },
-                container: "z-30 w-full h-full",
-              }}
-              content={{
-                button({ ready, isUploading }) {
-                  return (
-                    <React.Fragment>
-                      {isUploading ? (
-                        <Spinner color="warning" />
-                      ) : (
-                        <PlusIcon className="absolute w-14 h-14 text-default-500 z-20 group-hover:text-warning" />
-                      )}
-                    </React.Fragment>
-                  );
-                },
-                allowedContent(arg) {
-                  return (
-                    // Display the file name and size and if uploadError display the error
-                    <React.Fragment>
-                      {uploadError ? (
-                        <p
-                          className={`text-danger !font-normal ${title({
-                            size: "sm",
-                          })}`}
-                        >
-                          Selected image exceeds | | 1MB limit. Choose a
-                          smaller| | image and try again.
-                        </p>
-                      ) : (
-                        <div className="text-default-500 absolute bottom-0 -ml-14">
-                          {allowedContentTextLabelGenerator()}
-                          <p
-                            className={`group-hover:text-warning transition-colors !font-normal ${title(
-                              { size: "md" }
-                            )}`}
-                          >
-                            Top-down view{" "}
-                          </p>
-                        </div>
-                      )}
-                    </React.Fragment>
-                  );
-                },
-              }}
-            />
-            {imageTopDown && (
-              <div className="absolute w-full h-full top-0 flex items-center justify-center z-10">
-                <Image
-                  src={imageTopDown}
-                  alt="front"
-                  width={300}
-                  height={300}
-                  radius="none"
-                  className="object-contain
-                  w-full h-full aspect-square"
-                />
-              </div>
-            )}
-            </div>
-
+          <PolaroidImageUpload
+            onClientUploadComplete={(res) => setImageTopDown(res[0].url)}
+            onUploadError={(error) => setUploadError(error.message)}
+            imageUrl={imageTopDown}
+            setUploadError={setUploadError}
+            uploadError={uploadError}
+            label="Top-down view"
+          />
         </div>
 
         <Button

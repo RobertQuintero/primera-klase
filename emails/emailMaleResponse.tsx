@@ -1,26 +1,26 @@
 import React from "react";
 
 type EmailMaleResponseProps = {
-    firstName: string;
-    // lastName: string;
-    // instagramUrl: string;
-    email: string;
-    // dateOfBirth: string;
-    // nationality: string;
-    // phoneNumber: string;
-    // address: string;
-    // yourStory: string;
+    firstName : string;
+    lastName : string;
+    dateOfBirth : string;
+    nationality : string;
+    email : string;
+    instagramUrl : string;
+    phoneNumber : string;
+    address : string;
+    yourStory : string;
 
     //Measurements
-    // height: string;
-    // weight: string;
-    // hairColor: string;
-    // eyeColor: string;
-    // hips: string;
-    // shoeSize: string;
-    // pantsSize: string;
-    // tattoos: string;
-    // piercings: string;
+    height: string;
+    weight: string;
+    hairColor: string;
+    eyeColor: string;
+    hips: string;
+    shoeSize: string;
+    pantsSize: string;
+    tattoos: string;
+    piercings: string;
 
     // Polaroid
     imageFront: string;
@@ -37,25 +37,25 @@ const previewText = `Thank you for reaching out and expressing interest in my po
 
 const EmailMaleResponse: React.FC<EmailMaleResponseProps> = ({
         firstName,
-        // lastName,
-        // instagramUrl,
+        lastName,
+        instagramUrl,
         email,
-        // dateOfBirth,
-        // nationality,
-        // phoneNumber,
-        // address,
-        // yourStory,
+        dateOfBirth,
+        nationality,
+        phoneNumber,
+        address,
+        yourStory,
 
         //Measurements
-        // height,
-        // weight,
-        // hairColor,
-        // eyeColor,
-        // hips,
-        // shoeSize,
-        // pantsSize,
-        // tattoos,
-        // piercings,
+        height,
+        weight,
+        hairColor,
+        eyeColor,
+        hips,
+        shoeSize,
+        pantsSize,
+        tattoos,
+        piercings,
 
         // Polaroid
         imageFront,
