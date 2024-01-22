@@ -81,7 +81,5 @@ export async function POST(request: NextRequest) {
     }),
     text: "This is a plain text version of the email content.", // Add this line
   });
-
-  console.log(request.body);
   return NextResponse.json({ status: "ok" });
 }

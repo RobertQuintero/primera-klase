@@ -68,10 +68,14 @@ const ApplicationFormMale = () => {
 
   //Polaroid
   //Image Upload 4 images Front view, ,Profile view, degree view, Top-down view
-  const [imageFront, setImageFront] = useState<string>("");
-  const [imageProfile, setImageProfile] = useState<string>("");
-  const [imageDegree, setImageDegree] = useState<string>("");
-  const [imageTopDown, setImageTopDown] = useState<string>("");
+  const [imageFront, setImageFront] = useState("");
+  const [imageProfile, setImageProfile] = useState("");
+  const [imageDegree, setImageDegree] = useState("");
+  const [imageTopDown, setImageTopDown] = useState("");
+  const [isInvalidImageFront, setIsInvalidImageFront] = useState(false);
+  const [isInvalidImageProfile, setIsInvalidImageProfile] = useState(false);
+  const [isInvalidImageDegree, setIsInvalidImageDegree] = useState(false);
+  const [isInvalidImageTopDown, setIsInvalidImageTopDown] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   //Polaroid end
 
@@ -114,12 +118,17 @@ const ApplicationFormMale = () => {
       /^\d+$/.test(hips) &&
       /^\d+$/.test(shoeSize) &&
       // /^\d+$/.test(pantsSize) &&
-
-
       hairColor &&
       eyeColor &&
       tattoos &&
       piercings
+      // Polaroid
+      // &&
+      // imageFront &&
+      // imageProfile &&
+      // imageDegree &&
+      // imageTopDown
+
     ) {
       setIsFormValid(true);
     } else {
@@ -155,6 +164,14 @@ const ApplicationFormMale = () => {
       !eyeColor ||
       !tattoos ||
       !piercings
+      // Polaroid
+      // ||
+      // !imageFront ||
+      // !imageProfile ||
+      // !imageDegree ||
+      // !imageTopDown
+
+
     ) {
       // Set validation states to display error messages
       setIsInvalidEmail(!validateEmail(email));
@@ -173,12 +190,18 @@ const ApplicationFormMale = () => {
       setIsInvalidHips(!hips);
       setIsInvalidShoeSize(!shoeSize);
       // setIsInvalidPantsSize(!pantsSize);
-
-
       setIsInvalidHairColor(!hairColor);
       setIsInvalidEyeColor(!eyeColor);
       setIsInvalidTattoos(!tattoos);
       setIsInvalidPiercings(!piercings);
+
+
+      // Polaroid
+      // setIsInvalidImageFront(!imageFront);
+      // setIsInvalidImageProfile(!imageProfile);
+      // setIsInvalidImageDegree(!imageDegree);
+      // setIsInvalidImageTopDown(!imageTopDown);
+
 
       setIsLoading(false);
       setIsFormValid(false);
@@ -236,11 +259,14 @@ const ApplicationFormMale = () => {
     return re.test(email);
   };
 
+
+
+
   return (
     <React.Fragment>
       {!isSubmitted ? (
       <form
-        className="flex flex-col h-full max-w-7xl mx-auto"
+        className="flex flex-col w-full h-full "
         onSubmit={handleSubmit}
       >
         {/* //Personal Information */}
@@ -681,10 +707,16 @@ const ApplicationFormMale = () => {
         </Button>
       </form>
       ) : (
-      <React.Fragment>
-      </React.Fragment>
-
+        <div className="flex flex-col items-center justify-center w-full h-full">
+          <h2 className="text-2xl font-bold text-default-900 mt-4">
+            Thank you for your application!
+          </h2>
+          <p className="text-default-500 mt-2">
+            We will get back to you as soon as possible.
+          </p>
+        </div>
       )}
+
     </React.Fragment>
   );
 };

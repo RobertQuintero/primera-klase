@@ -1,19 +1,14 @@
 "use client";
 
 import { paragraph, title } from "@/components/primitives";
-import { CalendarDaysIcon, PlusIcon } from "@heroicons/react/24/outline";
 import {
   Button,
   CircularProgress,
-  Image,
   Input,
-  Spinner,
   Textarea,
 } from "@nextui-org/react";
 import React, { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
-import { UploadButton } from "@/config/uploadthings";
-import { allowedContentTextLabelGenerator } from "uploadthing/client";
 import InputField from "./InputField";
 import PolaroidImageUpload from "./polaroidImage";
 
@@ -264,7 +259,7 @@ const ApplicationFormFemale = () => {
 
   return (
     <React.Fragment>
-      {isSubmitted ? (
+      {!isSubmitted ? (
       <form
         className="flex flex-col h-full max-w-7xl mx-auto"
         onSubmit={handleSubmit}
@@ -763,6 +758,7 @@ const ApplicationFormFemale = () => {
       </form>
       ):(
         <React.Fragment>
+
         </React.Fragment>
       )}
     </React.Fragment>
