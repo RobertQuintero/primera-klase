@@ -47,7 +47,7 @@ const ApplicationFormMale = () => {
   const [weight, setWeight] = useState("");
   const [hips, setHips] = useState("");
   const [shoeSize, setShoeSize] = useState("");
-  const [pantsSize, setPantsSize] = useState("");
+  // const [pantsSize, setPantsSize] = useState("");
   const [hairColor, setHairColor] = useState("");
   const [eyeColor, setEyeColor] = useState("");
   const [tattoos, setTattoos] = useState("");
@@ -57,11 +57,13 @@ const ApplicationFormMale = () => {
   const [isInvalidWeight, setIsInvalidWeight] = useState(false);
   const [isInvalidHips, setIsInvalidHips] = useState(false);
   const [isInvalidShoeSize, setIsInvalidShoeSize] = useState(false);
-  const [isInvalidPantsSize, setIsInvalidPantsSize] = useState(false);
+  // const [isInvalidPantsSize, setIsInvalidPantsSize] = useState(false);
   const [isInvalidHairColor, setIsInvalidHairColor] = useState(false);
   const [isInvalidEyeColor, setIsInvalidEyeColor] = useState(false);
   const [isInvalidTattoos, setIsInvalidTattoos] = useState(false);
   const [isInvalidPiercings, setIsInvalidPiercings] = useState(false);
+  //what else can i add to the form this is for male model
+
   //Measurements end
 
   //Polaroid
@@ -103,7 +105,7 @@ const ApplicationFormMale = () => {
       instagramUrl &&
       /^\d+$/.test(phoneNumber) &&
       address &&
-      dateOfBirth &&
+      formattedDate &&
       nationality &&
       yourStory.length > 8 &&
       // Measurements
@@ -111,7 +113,7 @@ const ApplicationFormMale = () => {
       /^\d+$/.test(weight) &&
       /^\d+$/.test(hips) &&
       /^\d+$/.test(shoeSize) &&
-      /^\d+$/.test(pantsSize) &&
+      // /^\d+$/.test(pantsSize) &&
 
 
       hairColor &&
@@ -137,18 +139,18 @@ const ApplicationFormMale = () => {
       !/^[a-zA-Z]+$/.test(firstName) ||
       !/^[a-zA-Z]+$/.test(lastName) ||
       !instagramUrl ||
-      //Phone should be number
       !/^\d+$/.test(phoneNumber) ||
       !address ||
-      !dateOfBirth ||
+      !formattedDate  ||
       !nationality ||
       yourStory.length < 8 ||
+
       // Measurements
       !/^\d+$/.test(height) ||
       !/^\d+$/.test(weight) ||
       !/^\d+$/.test(hips) ||
       !/^\d+$/.test(shoeSize) ||
-      !/^\d+$/.test(pantsSize) ||
+      // !/^\d+$/.test(pantsSize) ||
       !hairColor ||
       !eyeColor ||
       !tattoos ||
@@ -161,7 +163,7 @@ const ApplicationFormMale = () => {
       setIsInvalidInstagramUrl(!instagramUrl);
       setIsInvalidPhoneNumber(!phoneNumber);
       setIsInvalidAddress(!address);
-      setIsInvalidDateOfBirth(!dateOfBirth);
+      setIsInvalidDateOfBirth(!formattedDate);
       setIsInvalidNationality(!nationality);
       setIsInvalidYourStory(yourStory.length < 8);
 
@@ -170,7 +172,7 @@ const ApplicationFormMale = () => {
       setIsInvalidWeight(!weight);
       setIsInvalidHips(!hips);
       setIsInvalidShoeSize(!shoeSize);
-      setIsInvalidPantsSize(!pantsSize);
+      // setIsInvalidPantsSize(!pantsSize);
 
 
       setIsInvalidHairColor(!hairColor);
@@ -196,7 +198,7 @@ const ApplicationFormMale = () => {
         lastName,
         instagramUrl,
         email,
-        dateOfBirth,
+        dateOfBirth: formattedDate,
         nationality,
         phoneNumber,
         address,
@@ -209,7 +211,7 @@ const ApplicationFormMale = () => {
         eyeColor,
         hips,
         shoeSize,
-        pantsSize,
+        // pantsSize,
         tattoos,
         piercings,
 
@@ -236,10 +238,12 @@ const ApplicationFormMale = () => {
 
   return (
     <React.Fragment>
+      {!isSubmitted ? (
       <form
         className="flex flex-col h-full max-w-7xl mx-auto"
         onSubmit={handleSubmit}
       >
+        {/* //Personal Information */}
         <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
           {/* //Personal Information */}
           {/* // firstName */}
@@ -278,7 +282,7 @@ const ApplicationFormMale = () => {
           />
 
           {/* // dateOfBirth */}
-          <div className="relative w-full">
+          <div className="relative w-full group  ">
             <Input
               type="text"
               id="dateOfBirth"
@@ -295,7 +299,7 @@ const ApplicationFormMale = () => {
               }
               classNames={{
                 inputWrapper:
-                  dateOfBirth.trim() !== "" ? "border-success " : "danger",
+                  `group-hover:border-default-400 transition-all  ${dateOfBirth.trim() !== "" ? "border-success " : "danger"}`,
                 errorMessage: isInvalidDateOfBirth
                   ? "text-danger"
                   : "text-success",
@@ -316,9 +320,9 @@ const ApplicationFormMale = () => {
               useRange={false}
               value={selectedDate}
               onChange={handleDateOfBirthChange}
-              containerClassName={`z-30 absolute right-1 text-default-100  w-[3.3rem] bottom-[7%]  border-default-200 h-14 }`}
-              inputClassName={`w-0 h-0 text-default-100  `}
-              toggleClassName={`w-full text-default-300 hover:text-default-500  mt-1  pl-4 h-[3.3rem]`}
+              containerClassName={`z-30 w-full -mt-14 relative right-1 text-default-100  w-[3.3rem] bottom-[7%]  border-default-200 h-14 }`}
+              inputClassName={`w-0 h-0 text-default-100 `}
+              toggleClassName={`w-full group-hover:text-default-500 transition-all  ml-1 group -mt-[1.6rem] pr-4 h-[3.8rem] flex items-center justify-end cursor-pointer ${dateOfBirth.trim() !== "" ? "text-success " : "text-default-300"}`}
               primaryColor="amber"
             />
           </div>
@@ -451,7 +455,7 @@ const ApplicationFormMale = () => {
               label="Height"
               isInvalid={isInvalidHeight}
               errorMessage={
-                isInvalidHeight ? "Please enter a valid height" : ""
+                isInvalidHeight ? height.trim() === "" ? "Please enter a valid height" : "Please enter a valid height number" : ""
               }
               value={height}
               onChange={(e) => {
@@ -459,6 +463,7 @@ const ApplicationFormMale = () => {
                 setIsInvalidHeight(!/^\d+$/.test(e.target.value));
                 checkFormValidity();
               }}
+              endContent="cm"
             />
             {/* // weight */}
             <InputField
@@ -468,7 +473,7 @@ const ApplicationFormMale = () => {
               label="Weight"
               isInvalid={isInvalidWeight}
               errorMessage={
-                isInvalidWeight ? "Please enter a valid weight" : ""
+                isInvalidWeight ? weight.trim() === "" ? "Please enter a valid weight" : "Please enter a valid weight number" : ""
               }
               value={weight}
               onChange={(e) => {
@@ -476,9 +481,136 @@ const ApplicationFormMale = () => {
                 setIsInvalidWeight(!/^\d+$/.test(e.target.value));
                 checkFormValidity();
               }}
+              endContent="kg"
+            />
+            {/* // hips */}
+            <InputField
+              type="text"
+              id="hips"
+              name="hips"
+              label="Hips"
+              isInvalid={isInvalidHips}
+              errorMessage={
+                isInvalidHips ? hips.trim() === "" ? "Please enter a valid hips" : "Please enter a valid hips number" : ""
+              }
+              value={hips}
+              onChange={(e) => {
+                setHips(e.target.value);
+                setIsInvalidHips(!/^\d+$/.test(e.target.value));
+                checkFormValidity();
+              }}
+              endContent="cm"
+            />
+            {/* // shoeSize */}
+            <InputField
+              type="text"
+              id="shoeSize"
+              name="shoeSize"
+              label="Shoe Size"
+              isInvalid={isInvalidShoeSize}
+              errorMessage={
+                isInvalidShoeSize ? shoeSize.trim() === "" ? "Please enter a valid shoe size" : "Please enter a valid shoe size number" : ""
+              }
+              value={shoeSize}
+              onChange={(e) => {
+                setShoeSize(e.target.value);
+                setIsInvalidShoeSize(!/^\d+$/.test(e.target.value));
+                checkFormValidity();
+              }}
+              endContent="cm"
+            />
+            {/* // pantsSize */}
+            {/* <InputField
+              type="text"
+              id="pantsSize"
+              name="pantsSize"
+              label="Pants Size"
+              isInvalid={isInvalidPantsSize}
+              errorMessage={
+                isInvalidPantsSize ? pantsSize.trim() === "" ? "Please enter a valid pants size" : "Please enter a valid pants size number" : ""
+              }
+              value={pantsSize}
+              onChange={(e) => {
+                setPantsSize(e.target.value);
+                setIsInvalidPantsSize(!/^\d+$/.test(e.target.value));
+                checkFormValidity();
+              }}
+              endContent="cm"
+            /> */}
+            {/* // hairColor */}
+            <InputField
+              type="text"
+              id="hairColor"
+              name="hairColor"
+              label="Hair Color"
+              isInvalid={isInvalidHairColor}
+              errorMessage={
+                isInvalidHairColor ? "Please enter a valid hair color" : ""
+              }
+              value={hairColor}
+              onChange={(e) => {
+                setHairColor(e.target.value);
+                setIsInvalidHairColor(!e.target.value);
+                checkFormValidity();
+              }}
+            />
+            {/* // eyeColor */}
+            <InputField
+              type="text"
+              id="eyeColor"
+              name="eyeColor"
+              label="Eye Color"
+              isInvalid={isInvalidEyeColor}
+              errorMessage={
+                isInvalidEyeColor ? "Please enter a valid eye color" : ""
+              }
+              value={eyeColor}
+              onChange={(e) => {
+                setEyeColor(e.target.value);
+                setIsInvalidEyeColor(!e.target.value);
+                checkFormValidity();
+              }}
+            />
+            {/* // tattoos */}
+            <InputField
+              type="text"
+              id="tattoos"
+              name="tattoos"
+              label="Tattoos"
+              description="None or if many separate by comma"
+              isInvalid={isInvalidTattoos}
+              errorMessage={
+                isInvalidTattoos ? "Please enter a valid tattoos (none or if many separate by comma)" : ""
+              }
+              value={tattoos}
+              onChange={(e) => {
+                setTattoos(e.target.value);
+                setIsInvalidTattoos(!e.target.value);
+                checkFormValidity();
+              }}
+            />
+            {/* // piercings */}
+            <InputField
+              type="text"
+              id="piercings"
+              name="piercings"
+              label="Piercings "
+              description="None or if many separate by comma"
+              isInvalid={isInvalidPiercings}
+              errorMessage={
+                // None or if many separate by comma
+                isInvalidPiercings ? "Please enter a valid piercings (none or if many separate by comma)" : ""
+              }
+              value={piercings}
+              onChange={(e) => {
+                setPiercings(e.target.value);
+                setIsInvalidPiercings(!e.target.value);
+                checkFormValidity();
+              }}
             />
 
-              {/* // hips */}
+
+
 
 
         </div>
@@ -548,6 +680,11 @@ const ApplicationFormMale = () => {
           {isLoading ? "Sending..." : "Send"}
         </Button>
       </form>
+      ) : (
+      <React.Fragment>
+      </React.Fragment>
+
+      )}
     </React.Fragment>
   );
 };

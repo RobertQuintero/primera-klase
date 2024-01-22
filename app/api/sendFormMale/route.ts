@@ -63,15 +63,15 @@ export async function POST(request: NextRequest) {
       yourStory,
 
       //measurements
-        height,
-        weight,
-        hairColor,
-        eyeColor,
-        hips,
-        shoeSize,
-        pantsSize,
-        tattoos,
-        piercings,
+      height,
+      weight,
+      hairColor,
+      eyeColor,
+      hips,
+      shoeSize,
+      pantsSize,
+      tattoos,
+      piercings,
 
       //Polaroids
       imageProfile,
