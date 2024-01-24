@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
     //personal info
     firstName,
     lastName,
+    dateOfBirth,
     nationality,
     email,
     instagramUrl,
@@ -35,10 +36,10 @@ export async function POST(request: NextRequest) {
 
     //Polaroids
     // this are the file image that will be uploaded jpeg, png, jpg
-    frontView,
-    profileView,
-    degreeView,
-    topDownView,
+    imageFront,
+    imageProfile,
+    imageDegree,
+    imageTopDown,
   } = await request.json();
 
 
@@ -50,52 +51,38 @@ export async function POST(request: NextRequest) {
     reply_to: "work@robertquintero.me",
 
     react: EmailFemaleResponse({
-      //personal info
-      firstName,
-      lastName,
-      nationality,
-      email,
-      instagramUrl,
-      phoneNumber,
-      address,
-      yourStory,
+        // Personal Info
+        firstName,
+        lastName,
+        dateOfBirth,
+        nationality,
+        instagramUrl,
+        email,
+        phoneNumber,
+        address,
+        yourStory,
 
-      //measurements
-      height,
-      weight,
-      bust,
-      waist,
-      hips,
-      shoeSize,
-      dressSize,
-      pantsSize,
-      hairColor,
-      eyeColor,
-      tattoos,
-      piercings,
+        //Measurements
+        height,
+        weight,
+        bust,
+        waist,
+        hips,
+        shoeSize,
+        dressSize,
+        pantsSize,
+        hairColor,
+        eyeColor,
+        tattoos,
+        piercings,
 
-      //Polaroids
-      frontView,
-      profileView,
-      degreeView,
-      topDownView,
+        // Polaroid
+        imageFront,
+        imageProfile,
+        imageDegree,
+        imageTopDown,
     }),
     text: "This is a plain text version of the email content.", // Add this line
-    attachments: [
-        {
-          filename: 'invoice.png',
-          content: frontView,
-        },
-      ],
-      headers: {
-        'X-Entity-Ref-ID': '123456789',
-      },
-      tags: [
-        {
-          name: 'category',
-          value: 'confirm_email',
-        },
-      ],
   });
 
   console.log("email sent");

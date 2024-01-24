@@ -6,14 +6,15 @@ export const siteConfig = {
 	url: "https://robertquintero.me",
 	image:"/siteLogo.png",
 	siteName: "Robert Quintero",
-	keywords: ["Portfolio", "Robert Quintero", "Robert", "Quintero"],
+	keywords: ["Modeling Agency", "Filipino Model", "Philippines Modeling Agency", "Modeling Training Agency"],
 	lang: "en-US",
 	locale: "en_us",
-	email: "work@robertquintero.me",
+	email: "info@primeklase.com",
 	google: "UA-XXXXXXXX-X",
 	bing: "UA-XXXXXXXX-X",
 	yandex: "UA-XXXXXXXX-X",
 	yahoo: "UA-XXXXXXXX-X",
+	createdBy: "https://robertquintero.me",
 	navItems: [
 	{
 		label: "Work",

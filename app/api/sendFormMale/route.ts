@@ -3,7 +3,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { resendApi } from "../env";
-import { EmailMaleResponse } from "@/emails/emailMaleResponse";
+import EmailMaleResponse from "@/emails/emailMaleResponse";
 import { json } from "stream/consumers";
 
 const resend = new Resend(resendApi);

@@ -47,11 +47,8 @@ const WorkSlug = ({ work, params }: workSlugProps) => {
     <article className="w-full h-full ">
       <div className="flex flex-col  gap-4 sm:gap-6 md:gap-8 w-full  max-w-4xl mx-auto">
           <Breadcrumbs >
-          <BreadcrumbItem >
-            <Link  href="/">Home</Link>
-          </BreadcrumbItem>
           <BreadcrumbItem>
-            <Link  href="/">Works</Link>
+            <Link  href="/">Work</Link>
           </BreadcrumbItem>
           <BreadcrumbItem>
             {work.title}

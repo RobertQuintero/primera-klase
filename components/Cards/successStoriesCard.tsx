@@ -27,7 +27,7 @@ const SuccessStoriesCard = ({successStories}:successStoriesProps ) => {
             <p className={paragraph({size:"sm"})}>{successStories.successStory}</p>
             <ul className='list-inside mt-4'>
                 {successStories.achievements.map((achievement) => (
-                    <li className='flex flex-col'>
+                    <li key={achievement.title} className='flex flex-col'>
                         <div className='flex flex-row'>
                             <p className={paragraph({size:"xs"})}>{achievement.title}</p>
                             <p className={paragraph({size:"xs"})}>{achievement.date}</p>
