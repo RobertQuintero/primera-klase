@@ -12,7 +12,11 @@ module.exports = {
 
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'emailBackground': "url('/bg/emailBg.jpg')",
+      },
+    },
   },
   darkMode: "class",
   plugins: [nextui()],

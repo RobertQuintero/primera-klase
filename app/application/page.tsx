@@ -16,7 +16,7 @@ export default function Contact() {
         variant="bordered"
       >
         <Tab key="Female" title="Female">
-          <ApplicationFormFemale  />
+          <ApplicationFormMale />
         </Tab>
         <Tab key="Male" title="Male">
           <ApplicationFormMale />

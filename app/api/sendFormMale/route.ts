@@ -3,8 +3,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { resendApi } from "../env";
-import EmailMaleResponse from "@/emails/emailMaleResponse";
-import { json } from "stream/consumers";
+import  { EmailMaleResponse } from "@/emails/emailMaleResponse"
 
 const resend = new Resend(resendApi);
 
@@ -44,13 +43,14 @@ export async function POST(request: NextRequest) {
 
 
 
-  await resend.emails.send({
+  await resend.batch.send([
+    {
     from: "Primera Klase <work@robertquintero.me>",
-    to: [email, "work@robertquintero.me"],
-    subject: "Talent Male Submission",
+    to: ["robert.t.quintero.06@gmail.com"],
+    subject: "Talent Application Male",
     reply_to: "work@robertquintero.me",
 
-    react: EmailMaleResponse({
+    react: EmailMaleResponse ({
       //personal info
       firstName,
       lastName,
@@ -79,7 +79,9 @@ export async function POST(request: NextRequest) {
       imageDegree,
       imageTopDown,
     }),
-    text: "This is a plain text version of the email content.", // Add this line
-  });
+    text: "",
+    },
+
+  ]);
   return NextResponse.json({ status: "ok" });
 }

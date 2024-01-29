@@ -1,12 +1,12 @@
 "use client";
-import EmailMaleResponse from "@/emails/emailMaleResponse";
+import {EmailMaleResponse} from "@/emails/emailMaleResponse";
 import React from "react";
 
 export default function Test() {
   return (
     <React.Fragment>
       <div>
-        {/* <EmailMaleResponse
+        <EmailMaleResponse
           address="Bladksads ad sad as"
           dateOfBirth="2000-01-01"
           email="firstName@gmail.com"
@@ -29,7 +29,7 @@ export default function Test() {
           pantsSize="24"
           tattoos="many tattoo"
           piercings="None"
-        /> */}
+        />
 
       </div>
     </React.Fragment>

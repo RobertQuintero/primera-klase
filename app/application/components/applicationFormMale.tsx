@@ -264,7 +264,7 @@ const ApplicationFormMale = () => {
 
   return (
     <React.Fragment>
-      {!isSubmitted ? (
+      {/* {!isSubmitted ? ( */}
       <form
         className="flex flex-col w-full h-full "
         onSubmit={handleSubmit}
@@ -690,7 +690,7 @@ const ApplicationFormMale = () => {
           type="submit"
           radius="none"
           size="lg"
-          isDisabled={!isFormValid}
+          // isDisabled={!isFormValid}
           startContent={
             isLoading ? (
               <CircularProgress
@@ -706,7 +706,7 @@ const ApplicationFormMale = () => {
           {isLoading ? "Sending..." : "Send"}
         </Button>
       </form>
-      ) : (
+      {/* ) : (
         <div className="flex flex-col items-center justify-center w-full h-full">
           <h2 className="text-2xl font-bold text-default-900 mt-4">
             Thank you for your application!
@@ -715,7 +715,7 @@ const ApplicationFormMale = () => {
             We will get back to you as soon as possible.
           </p>
         </div>
-      )}
+      )} */}
 
     </React.Fragment>
   );
