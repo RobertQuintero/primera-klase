@@ -93,17 +93,7 @@ const EmailToPrimeraMaleApplication: React.FC<EmailToPrimeraMaleApplicationProps
       <Html  className="bg-white">
         <Head />
         <Preview>{previewText}</Preview>
-        <Tailwind
-                config={{
-                  theme: {
-                    extend: {
-                      colors: {
-                        brand: "#007291",
-                      },
-                    },
-                  },
-                }}
-              >
+        <Tailwind>
           <Body className="font-sans">
             <Container className="rounded-md border-[#f3f3f5] my-[40px] mx-auto max-w-[44rem]">
               <div className="h-60 w-full">
@@ -268,7 +258,7 @@ const EmailToPrimeraMaleApplication: React.FC<EmailToPrimeraMaleApplicationProps
                 </Row>
 
                 {/* Polaroids */}
-                <Row className="px-4">
+                <Row className="px-4 pb-10">
                   <Hr className="" />
                   <Text className="text-base m-0 mb-0.5 pl-4 font-bold ">
                     Polaroids

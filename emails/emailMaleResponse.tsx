@@ -37,7 +37,6 @@ type EmailMaleResponseProps = {
   eyeColor: string;
   hips: string;
   shoeSize: string;
-  pantsSize: string;
   tattoos: string;
   piercings: string;
 
@@ -70,7 +69,6 @@ const EmailMaleResponse: React.FC<EmailMaleResponseProps> = ({
   eyeColor,
   hips,
   shoeSize,
-  pantsSize,
   tattoos,
   piercings,
 
@@ -152,7 +150,6 @@ const EmailMaleResponse: React.FC<EmailMaleResponseProps> = ({
                   in touch soon.
                 </Text>
               </Section>
-
               <Section className="px-2">
                 <Text className="text-2xl text-center mt-4  font-bold text-black">
                   Application Details
@@ -183,6 +180,25 @@ const EmailMaleResponse: React.FC<EmailMaleResponseProps> = ({
                   </div>
                   <div className="flex mb-0.5 p-[1px] w-full">
                     <div className=" m-0 pl-4 w-full">
+                      <p className="text-gray-500 text-xs mt-1 mb-0">
+                        Nationality
+                      </p>
+                      <p className="text-black text-sm my-1 font-bold ">
+                        {nationality}
+                      </p>
+                    </div>
+                    <div className=" m-0 pl-4 w-full">
+                      <p className="text-gray-500 text-xs mt-1 mb-0">
+                        Birth of Date
+                      </p>
+                      <p className="text-black text-sm my-1 font-bold ">
+                        {formattedDateOfBirth}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex mb-0.5 p-[1px] w-full">
+                    <div className=" m-0 pl-4 w-full">
                       <p className="text-gray-500 text-xs mt-1 mb-0">Email</p>
                       <Link href={`mailto:${email}`}>
                         <p className="text-black text-sm my-1 font-bold ">
@@ -203,17 +219,19 @@ const EmailMaleResponse: React.FC<EmailMaleResponseProps> = ({
                   </div>
                   <div className="flex mb-0.5 p-[1px] w-full">
                     <div className=" m-0 pl-4 w-full">
+                      <p className="text-gray-500 text-xs mt-1 mb-0">
+                        Instagram
+                      </p>
+                      <Link href={instagramUrl}>
+                        <p className="text-black text-sm my-1 font-bold ">
+                          {instagramUrl}
+                        </p>
+                      </Link>
+                    </div>
+                    <div className=" m-0 pl-4 w-full">
                       <p className="text-gray-500 text-xs mt-1 mb-0">Address</p>
                       <p className="text-black text-sm my-1 font-bold ">
                         {address}
-                      </p>
-                    </div>
-                    <div className=" m-0 pl-4 w-full">
-                      <p className="text-gray-500 text-xs mt-1 mb-0">
-                        Date of Birth
-                      </p>
-                      <p className="text-black text-sm my-1 font-bold ">
-                        {formattedDateOfBirth}
                       </p>
                     </div>
                   </div>
@@ -369,11 +387,87 @@ const EmailMaleResponse: React.FC<EmailMaleResponseProps> = ({
                 </Row>
               </Section>
 
-              {/*  */}
-              <Section className="px-2">
-              <Text className="text-center mt-4 text-gray-500">
-                If you didn't request this email, there's nothing to worry about, you can safely ignore it.
-              </Text>
+              {/* Site  */}
+              <Section className="px-2 mt-8">
+                <Text className="text-center mt-4 text-gray-500">
+                  If you didn't request this email, there's nothing to worry
+                  about, you can safely ignore it.
+                </Text>
+                <Text className="text-center mt-4 text-gray-500">
+                  If you have any questions, please contact us at{" "}
+                  <Link href={`mailto:${siteConfig.email}`}>
+                    {siteConfig.email}
+                  </Link>
+                </Text>
+
+                <Link href={siteConfig.url} className="m-auto" target="_blank">
+                  <Img
+                    src={`${baseUrl}/bg/primeraWhite.png`}
+                    width="170"
+                    height="70"
+                    alt="Primera"
+                    className="m-auto"
+                  />
+                </Link>
+                <br />
+                <div className="flex justify-center items-center mx-auto w-full gap-6">
+                  <Link
+                    href={`${baseUrl}/`}
+                    className="text-black font-bold underline"
+                    target="_blank"
+                  >
+                    Work
+                  </Link>
+                  <Link
+                    href={`${baseUrl}/talents`}
+                    className="text-black font-bold underline"
+                    target="_blank"
+                  >
+                    Talents
+                  </Link>
+                  <Link
+                    href={`${baseUrl}/about`}
+                    className="text-black font-bold underline"
+                    target="_blank"
+                  >
+                    About
+                  </Link>
+                  <Link
+                    href={`${baseUrl}/contact`}
+                    className="text-black font-bold underline"
+                    target="_blank"
+                  >
+                    Contact
+                  </Link>
+                </div>
+
+
+                <Row>
+                    <Text >Nike.com</Text>
+                  </Row>
+                  <Row >
+                    <Column align="center">
+                      <Link href="/" >
+                        Men
+                      </Link>
+                    </Column>
+                    <Column align="center">
+                      <Link href="/" >
+                        Women
+                      </Link>
+                    </Column>
+                    <Column align="center">
+                      <Link href="/" >
+                        Kids
+                      </Link>
+                    </Column>
+                    <Column align="center">
+                      <Link href="/" >
+                        Customize
+                      </Link>
+                    </Column>
+                  </Row>
+
               </Section>
 
               {/* Stay Connected */}
@@ -385,7 +479,7 @@ const EmailMaleResponse: React.FC<EmailMaleResponseProps> = ({
                   Follow us our social media to stay up to date with our latest
                   news
                 </Text>
-                <div className="flex justify-center gap-6 mt-4">
+                <div className="flex justify-center items-center mx-auto gap-6 mt-4">
                   <Link href={siteConfig.links.instagram}>
                     <Img
                       src={`${baseUrl}/icon/instagram-30.png`}
@@ -423,13 +517,14 @@ const EmailMaleResponse: React.FC<EmailMaleResponseProps> = ({
 
               {/* Footer */}
               <Section className="px-2">
-                <Text className="text-center text-gray-500 mt-4">
+                <Text className="text-center text-gray-500 mt-8">
                   © {currentYear} {siteConfig.name}. All rights reserved.
                 </Text>
                 <Text className="text-center text-gray-500">
                   {siteConfig.address}
                 </Text>
               </Section>
+
             </Container>
           </Body>
         </Tailwind>
