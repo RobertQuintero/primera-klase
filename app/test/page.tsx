@@ -1,5 +1,5 @@
 "use client";
-import {EmailMaleResponse} from "@/emails/emailMaleResponse";
+import {EmailMaleResponse} from "@/emails/toTalent/emailMaleResponse";
 import React from "react";
 
 export default function Test() {

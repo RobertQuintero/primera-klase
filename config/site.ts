@@ -1,11 +1,11 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-	name: "Robert Quintero",
+	name: "primera-klase",
 	description: "Robert Portfolio",
-	url: "https://robertquintero.me",
+	url: "",
 	image:"/siteLogo.png",
-	siteName: "Robert Quintero",
+	address: "Primera Klase, 1234, Manila, Philippines",
 	keywords: ["Modeling Agency", "Filipino Model", "Philippines Modeling Agency", "Modeling Training Agency"],
 	lang: "en-US",
 	locale: "en_us",
