@@ -3,10 +3,8 @@
 import { paragraph, title } from "@/components/primitives";
 import {
   Button,
-  Card,
   CircularProgress,
   Input,
-  Image,
   Spinner,
   Textarea,
 } from "@nextui-org/react";
@@ -14,6 +12,13 @@ import React, { useState } from "react";
 import PolaroidImageUpload from "./polaroidImage";
 import InputField from "./InputField";
 import Datepicker from "react-tailwindcss-datepicker";
+import {
+  CheckBadgeIcon,
+  CheckCircleIcon,
+  IdentificationIcon,
+  PhotoIcon,
+  UserIcon,
+} from "@heroicons/react/24/solid";
 
 const ApplicationFormMale = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -128,7 +133,6 @@ const ApplicationFormMale = () => {
       // imageProfile &&
       // imageDegree &&
       // imageTopDown
-
     ) {
       setIsFormValid(true);
     } else {
@@ -150,10 +154,9 @@ const ApplicationFormMale = () => {
       !instagramUrl ||
       !/^\d+$/.test(phoneNumber) ||
       !address ||
-      !formattedDate  ||
+      !formattedDate ||
       !nationality ||
       yourStory.length < 8 ||
-
       // Measurements
       !/^\d+$/.test(height) ||
       !/^\d+$/.test(weight) ||
@@ -170,8 +173,6 @@ const ApplicationFormMale = () => {
       // !imageProfile ||
       // !imageDegree ||
       // !imageTopDown
-
-
     ) {
       // Set validation states to display error messages
       setIsInvalidEmail(!validateEmail(email));
@@ -195,13 +196,11 @@ const ApplicationFormMale = () => {
       setIsInvalidTattoos(!tattoos);
       setIsInvalidPiercings(!piercings);
 
-
       // Polaroid
       // setIsInvalidImageFront(!imageFront);
       // setIsInvalidImageProfile(!imageProfile);
       // setIsInvalidImageDegree(!imageDegree);
       // setIsInvalidImageTopDown(!imageTopDown);
-
 
       setIsLoading(false);
       setIsFormValid(false);
@@ -259,220 +258,267 @@ const ApplicationFormMale = () => {
     return re.test(email);
   };
 
-
-
-
   return (
     <React.Fragment>
-      {/* {!isSubmitted ? ( */}
-      <form
-        className="flex flex-col w-full h-full "
-        onSubmit={handleSubmit}
-      >
-        {/* //Personal Information */}
-        <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
+      {!isSubmitted ? (
+        <form
+          className="flex flex-col w-full h-full mt-4 md:mt-6 "
+          onSubmit={handleSubmit}
+        >
           {/* //Personal Information */}
-          {/* // firstName */}
-          <InputField
-            type="text"
-            id="firstName"
-            name="firstName"
-            label="First Name"
-            isInvalid={isInvalidFirstName}
-            errorMessage={
-              isInvalidFirstName ? "Please enter a valid first name" : ""
-            }
-            value={firstName}
-            onChange={(e) => {
-              setFirstName(e.target.value);
-              setIsInvalidFirstName(!/^[a-zA-Z]+$/.test(e.target.value));
-              checkFormValidity();
-            }}
-          />
-          {/* // lastName */}
-          <InputField
-            type="text"
-            id="lastName"
-            name="lastName"
-            label="Last Name"
-            isInvalid={isInvalidLastName}
-            errorMessage={
-              isInvalidLastName ? "Please enter a valid last name" : ""
-            }
-            value={lastName}
-            onChange={(e) => {
-              setLastName(e.target.value);
-              setIsInvalidLastName(!/^[a-zA-Z]+$/.test(e.target.value));
-              checkFormValidity();
-            }}
-          />
-
-          {/* // dateOfBirth */}
-          <div className="relative w-full group  ">
-            <Input
+          <div>
+            <div className="xl:-ml-12 flex flex-wrap items-center gap-2">
+              <div className="rounded-full p-2 bg-warning">
+                <IdentificationIcon className="w-6 h-6 text-background" />
+              </div>
+              <h2 className={`!font-bold ${title({ size: "v2xl" })}`}>
+                Personal Information
+              </h2>
+            </div>
+            {/* what else can i add to make it more informative   */}
+            <p
+              className={`!text-default-500 mb-4 md:mb-8 mt-4 md:mt-6 ${paragraph(
+                { size: "lg" }
+              )}`}
+            >
+              Your personal information is valuable to us. If you're under 18,
+              kindly obtain parental/guardian consent before providing your
+              details. This step ensures a secure and trustworthy experience for
+              everyone.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
+            {/* //Personal Information */}
+            {/* // firstName */}
+            <InputField
               type="text"
-              id="dateOfBirth"
-              name="dateOfBirth"
-              label="Date of Birth"
-              isRequired
-              variant="bordered"
-              radius="none"
-              value={formattedDate}
-              size="lg"
-              isInvalid={isInvalidDateOfBirth}
+              id="firstName"
+              name="firstName"
+              label="First Name"
+              isInvalid={isInvalidFirstName}
               errorMessage={
-                isInvalidDateOfBirth ? "Please enter your date of birth" : ""
+                isInvalidFirstName ? "Please enter a valid first name" : ""
               }
-              classNames={{
-                inputWrapper:
-                  `group-hover:border-default-400 transition-all  ${dateOfBirth.trim() !== "" ? "border-success " : "danger"}`,
-                errorMessage: isInvalidDateOfBirth
-                  ? "text-danger"
-                  : "text-success",
-                label:
-                  dateOfBirth.trim() !== ""
-                    ? "text-success"
-                    : "text-default-500",
-              }}
-              color={isInvalidDateOfBirth ? "danger" : "warning"}
+              value={firstName}
               onChange={(e) => {
-                setFormattedDate(e.target.value);
-                setIsInvalidDateOfBirth(!e.target.value);
+                setFirstName(e.target.value);
+                setIsInvalidFirstName(!/^[a-zA-Z]+$/.test(e.target.value));
                 checkFormValidity();
               }}
             />
-            <Datepicker
-              asSingle={true}
-              useRange={false}
-              value={selectedDate}
-              onChange={handleDateOfBirthChange}
-              containerClassName={`z-30 w-full -mt-14 relative right-1 text-default-100  w-[3.3rem] bottom-[7%]  border-default-200 h-14 }`}
-              inputClassName={`w-0 h-0 text-default-100 `}
-              toggleClassName={`w-full group-hover:text-default-500 transition-all  ml-1 group -mt-[1.6rem] pr-4 h-[3.8rem] flex items-center justify-end cursor-pointer ${dateOfBirth.trim() !== "" ? "text-success " : "text-default-300"}`}
-              primaryColor="amber"
+            {/* // lastName */}
+            <InputField
+              type="text"
+              id="lastName"
+              name="lastName"
+              label="Last Name"
+              isInvalid={isInvalidLastName}
+              errorMessage={
+                isInvalidLastName ? "Please enter a valid last name" : ""
+              }
+              value={lastName}
+              onChange={(e) => {
+                setLastName(e.target.value);
+                setIsInvalidLastName(!/^[a-zA-Z]+$/.test(e.target.value));
+                checkFormValidity();
+              }}
+            />
+
+            {/* // dateOfBirth */}
+            <div className="relative w-full group  ">
+              <Input
+                type="text"
+                id="dateOfBirth"
+                name="dateOfBirth"
+                label="Date of Birth"
+                isRequired
+                variant="bordered"
+                radius="none"
+                value={formattedDate}
+                size="lg"
+                isInvalid={isInvalidDateOfBirth}
+                errorMessage={
+                  isInvalidDateOfBirth ? "Please enter your date of birth" : ""
+                }
+                classNames={{
+                  inputWrapper: `group-hover:border-default-400 transition-all  ${
+                    dateOfBirth.trim() !== "" ? "border-success " : "danger"
+                  }`,
+                  errorMessage: isInvalidDateOfBirth
+                    ? "text-danger"
+                    : "text-success",
+                  label:
+                    dateOfBirth.trim() !== ""
+                      ? "text-success"
+                      : "text-default-500",
+                }}
+                color={isInvalidDateOfBirth ? "danger" : "warning"}
+                onChange={(e) => {
+                  setFormattedDate(e.target.value);
+                  setIsInvalidDateOfBirth(!e.target.value);
+                  checkFormValidity();
+                }}
+              />
+              <Datepicker
+                asSingle={true}
+                useRange={false}
+                value={selectedDate}
+                onChange={handleDateOfBirthChange}
+                containerClassName={`z-30 w-full -mt-14 relative right-1 text-default-100  w-[3.3rem] bottom-[7%]  border-default-200 h-14 }`}
+                inputClassName={`w-0 h-0 text-default-100 `}
+                toggleClassName={`w-full group-hover:text-default-500 transition-all  ml-1 group -mt-[1.6rem] pr-4 h-[3.8rem] flex items-center justify-end cursor-pointer ${
+                  dateOfBirth.trim() !== ""
+                    ? "text-success "
+                    : "text-default-300"
+                }`}
+                primaryColor="amber"
+              />
+            </div>
+            {/* // email */}
+            <InputField
+              type="email"
+              id="email"
+              name="email"
+              label="Email"
+              isInvalid={isInvalidEmail}
+              errorMessage={isInvalidEmail ? "Please enter a valid email" : ""}
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setIsInvalidEmail(!validateEmail(e.target.value));
+                checkFormValidity();
+              }}
+            />
+            {/* Nationality */}
+            <InputField
+              type="text"
+              id="nationality"
+              name="nationality"
+              label="Nationality"
+              isInvalid={isInvalidNationality}
+              errorMessage={
+                isInvalidNationality ? "Please enter a valid nationality" : ""
+              }
+              value={nationality}
+              onChange={(e) => {
+                setNationality(e.target.value);
+                setIsInvalidNationality(!e.target.value);
+                checkFormValidity();
+              }}
+            />
+
+            {/* Instagram URL */}
+            <InputField
+              type="text"
+              id="instagramUrl"
+              name="instagramUrl"
+              label="Instagram URL"
+              isInvalid={isInvalidInstagramUrl}
+              errorMessage={
+                isInvalidInstagramUrl
+                  ? "Please enter a valid Instagram URL"
+                  : ""
+              }
+              value={instagramUrl}
+              onChange={(e) => {
+                setInstagramUrl(e.target.value);
+                setIsInvalidInstagramUrl(!e.target.value);
+                checkFormValidity();
+              }}
+            />
+
+            {/* Phone Number */}
+            <InputField
+              type="text"
+              id="phoneNumber"
+              name="phoneNumber"
+              label="Phone Number"
+              isInvalid={isInvalidPhoneNumber}
+              errorMessage={
+                isInvalidPhoneNumber ? "Please enter a valid phone number" : ""
+              }
+              value={phoneNumber}
+              onChange={(e) => {
+                setPhoneNumber(e.target.value);
+                setIsInvalidPhoneNumber(!/^\d+$/.test(e.target.value));
+                checkFormValidity();
+              }}
+            />
+            {/* Address */}
+            <InputField
+              type="text"
+              id="address"
+              name="address"
+              label="Address"
+              isInvalid={isInvalidAddress}
+              errorMessage={
+                isInvalidAddress ? "Please enter a valid address" : ""
+              }
+              value={address}
+              onChange={(e) => {
+                setAddress(e.target.value);
+                setIsInvalidAddress(!e.target.value);
+                checkFormValidity();
+              }}
+            />
+            {/* // yourStory */}
+            <Textarea
+              id="yourStory"
+              name="yourStory"
+              variant="bordered"
+              radius="none"
+              size="lg"
+              value={yourStory}
+              isInvalid={isInvalidYourStory}
+              label="Your Story"
+              isRequired
+              errorMessage={
+                isInvalidYourStory
+                  ? "Your story should have at least 8 characters "
+                  : ""
+              }
+              className="col-span-2"
+              classNames={{
+                inputWrapper:
+                  yourStory.trim() !== "" ? "border-success " : "danger",
+                errorMessage: isInvalidYourStory
+                  ? "text-danger"
+                  : "text-success",
+                label:
+                  yourStory.trim() !== "" ? "text-success" : "text-default-500",
+              }}
+              color={isInvalidYourStory ? "danger" : "warning"}
+              onChange={(e) => {
+                setYourStory(e.target.value);
+                setIsInvalidYourStory(e.target.value.length < 8);
+                checkFormValidity();
+              }}
             />
           </div>
-          {/* // email */}
-          <InputField
-            type="email"
-            id="email"
-            name="email"
-            label="Email"
-            isInvalid={isInvalidEmail}
-            errorMessage={isInvalidEmail ? "Please enter a valid email" : ""}
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setIsInvalidEmail(!validateEmail(e.target.value));
-              checkFormValidity();
-            }}
-          />
-          {/* Nationality */}
-          <InputField
-            type="text"
-            id="nationality"
-            name="nationality"
-            label="Nationality"
-            isInvalid={isInvalidNationality}
-            errorMessage={
-              isInvalidNationality ? "Please enter a valid nationality" : ""
-            }
-            value={nationality}
-            onChange={(e) => {
-              setNationality(e.target.value);
-              setIsInvalidNationality(!e.target.value);
-              checkFormValidity();
-            }}
-          />
 
-          {/* Instagram URL */}
-          <InputField
-            type="text"
-            id="instagramUrl"
-            name="instagramUrl"
-            label="Instagram URL"
-            isInvalid={isInvalidInstagramUrl}
-            errorMessage={
-              isInvalidInstagramUrl ? "Please enter a valid Instagram URL" : ""
-            }
-            value={instagramUrl}
-            onChange={(e) => {
-              setInstagramUrl(e.target.value);
-              setIsInvalidInstagramUrl(!e.target.value);
-              checkFormValidity();
-            }}
-          />
-
-          {/* Phone Number */}
-          <InputField
-            type="text"
-            id="phoneNumber"
-            name="phoneNumber"
-            label="Phone Number"
-            isInvalid={isInvalidPhoneNumber}
-            errorMessage={
-              isInvalidPhoneNumber ? "Please enter a valid phone number" : ""
-            }
-            value={phoneNumber}
-            onChange={(e) => {
-              setPhoneNumber(e.target.value);
-              setIsInvalidPhoneNumber(!/^\d+$/.test(e.target.value));
-              checkFormValidity();
-            }}
-          />
-          {/* Address */}
-          <InputField
-            type="text"
-            id="address"
-            name="address"
-            label="Address"
-            isInvalid={isInvalidAddress}
-            errorMessage={
-              isInvalidAddress ? "Please enter a valid address" : ""
-            }
-            value={address}
-            onChange={(e) => {
-              setAddress(e.target.value);
-              setIsInvalidAddress(!e.target.value);
-              checkFormValidity();
-            }}
-          />
-          {/* // yourStory */}
-          <Textarea
-            id="yourStory"
-            name="yourStory"
-            variant="bordered"
-            radius="none"
-            size="lg"
-            value={yourStory}
-            isInvalid={isInvalidYourStory}
-            label="Your Story"
-            isRequired
-            errorMessage={
-              isInvalidYourStory
-                ? "Your story should have at least 8 characters "
-                : ""
-            }
-            className="col-span-2"
-            classNames={{
-              inputWrapper:
-                yourStory.trim() !== "" ? "border-success " : "danger",
-              errorMessage: isInvalidYourStory ? "text-danger" : "text-success",
-              label:
-                yourStory.trim() !== "" ? "text-success" : "text-default-500",
-            }}
-            color={isInvalidYourStory ? "danger" : "warning"}
-            onChange={(e) => {
-              setYourStory(e.target.value);
-              setIsInvalidYourStory(e.target.value.length < 8);
-              checkFormValidity();
-            }}
-          />
-        </div>
-
-
-        {/* //Measurements */}
-        <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
+          {/* //Measurements */}
+          <div>
+            <div className="xl:-ml-12 flex flex-wrap items-center gap-2">
+              <div className="rounded-full p-2 bg-warning">
+                <UserIcon className="w-6 h-6 text-background" />
+              </div>
+              <h2 className={`!font-bold ${title({ size: "v2xl" })}`}>
+                Measurements
+              </h2>
+            </div>
+            <p
+              className={`!text-default-500 mb-4 md:mb-8 mt-4 md:mt-6 ${paragraph(
+                {
+                  size: "lg",
+                }
+              )}`}
+            >
+              For precise measurements, wear a Boxer and have a trusted person
+              measure you. Use a measuring tape and make sure it is not too
+              tight
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
             {/* // height */}
             <InputField
               type="text"
@@ -481,7 +527,11 @@ const ApplicationFormMale = () => {
               label="Height"
               isInvalid={isInvalidHeight}
               errorMessage={
-                isInvalidHeight ? height.trim() === "" ? "Please enter a valid height" : "Please enter a valid height number" : ""
+                isInvalidHeight
+                  ? height.trim() === ""
+                    ? "Please enter a valid height"
+                    : "Please enter a valid height number"
+                  : ""
               }
               value={height}
               onChange={(e) => {
@@ -499,7 +549,11 @@ const ApplicationFormMale = () => {
               label="Weight"
               isInvalid={isInvalidWeight}
               errorMessage={
-                isInvalidWeight ? weight.trim() === "" ? "Please enter a valid weight" : "Please enter a valid weight number" : ""
+                isInvalidWeight
+                  ? weight.trim() === ""
+                    ? "Please enter a valid weight"
+                    : "Please enter a valid weight number"
+                  : ""
               }
               value={weight}
               onChange={(e) => {
@@ -517,7 +571,11 @@ const ApplicationFormMale = () => {
               label="Hips"
               isInvalid={isInvalidHips}
               errorMessage={
-                isInvalidHips ? hips.trim() === "" ? "Please enter a valid hips" : "Please enter a valid hips number" : ""
+                isInvalidHips
+                  ? hips.trim() === ""
+                    ? "Please enter a valid hips"
+                    : "Please enter a valid hips number"
+                  : ""
               }
               value={hips}
               onChange={(e) => {
@@ -535,7 +593,11 @@ const ApplicationFormMale = () => {
               label="Shoe Size"
               isInvalid={isInvalidShoeSize}
               errorMessage={
-                isInvalidShoeSize ? shoeSize.trim() === "" ? "Please enter a valid shoe size" : "Please enter a valid shoe size number" : ""
+                isInvalidShoeSize
+                  ? shoeSize.trim() === ""
+                    ? "Please enter a valid shoe size"
+                    : "Please enter a valid shoe size number"
+                  : ""
               }
               value={shoeSize}
               onChange={(e) => {
@@ -606,7 +668,9 @@ const ApplicationFormMale = () => {
               description="None or if many separate by comma"
               isInvalid={isInvalidTattoos}
               errorMessage={
-                isInvalidTattoos ? "Please enter a valid tattoos (none or if many separate by comma)" : ""
+                isInvalidTattoos
+                  ? "Please enter a valid tattoos (none or if many separate by comma)"
+                  : ""
               }
               value={tattoos}
               onChange={(e) => {
@@ -625,7 +689,9 @@ const ApplicationFormMale = () => {
               isInvalid={isInvalidPiercings}
               errorMessage={
                 // None or if many separate by comma
-                isInvalidPiercings ? "Please enter a valid piercings (none or if many separate by comma)" : ""
+                isInvalidPiercings
+                  ? "Please enter a valid piercings (none or if many separate by comma)"
+                  : ""
               }
               value={piercings}
               onChange={(e) => {
@@ -634,89 +700,125 @@ const ApplicationFormMale = () => {
                 checkFormValidity();
               }}
             />
+          </div>
 
+          {/* //Polaroid */}
+          <div>
+            <div className="xl:-ml-12 flex flex-wrap items-center gap-2">
+              <div className="rounded-full p-2 bg-warning">
+                <PhotoIcon className="w-6 h-6 text-background" />
+              </div>
+              <h2 className={`!font-bold ${title({ size: "v2xl" })}`}>Photo</h2>
+            </div>
 
-
-
-
-        </div>
-
-
-        {/* //Polaroid */}
-        <div className="grid grid-cols-2  lg:grid-cols-4 gap-4 sm:gap-8 mb-4 sm:mb-8 relative  !h-full">
-          {/* //Polaroid
+            <p
+              className={`!text-default-500 mb-4 md:mb-8 mt-4 md:mt-6 ${paragraph(
+                { size: "lg" }
+              )}`}
+            >
+              Please wear clothes that fit well in the photos, so we can see
+              your body shape clearly. Avoid using makeup or large accessories
+              like hoop earrings or bracelets, as they might be distracting.
+              Please don't smile, just be your natural and confident self and
+              relax!
+            </p>
+          </div>
+          <div className="grid grid-cols-2  lg:grid-cols-4 gap-4 sm:gap-8 mb-4 sm:mb-8 relative  !h-full">
+            {/* //Polaroid
           //Image Upload 4 images Front view, ,Profile view, degree view, Top-down view
           //Front view */}
-          <PolaroidImageUpload
-            onClientUploadComplete={(res) => setImageFront(res[0].url)}
-            onUploadError={(error) => setUploadError(error.message)}
-            imageUrl={imageFront}
-            setUploadError={setUploadError}
-            uploadError={uploadError}
-            label="Front view"
-          />
-          {/* //Profile view */}
-          <PolaroidImageUpload
-            onClientUploadComplete={(res) => setImageProfile(res[0].url)}
-            onUploadError={(error) => setUploadError(error.message)}
-            imageUrl={imageProfile}
-            setUploadError={setUploadError}
-            uploadError={uploadError}
-            label="Profile view"
-          />
-          {/* //degree view */}
-          <PolaroidImageUpload
-            onClientUploadComplete={(res) => setImageDegree(res[0].url)}
-            onUploadError={(error) => setUploadError(error.message)}
-            imageUrl={imageDegree}
-            setUploadError={setUploadError}
-            uploadError={uploadError}
-            label="Degree view"
-          />
-          {/* //Top-down view */}
-          <PolaroidImageUpload
-            onClientUploadComplete={(res) => setImageTopDown(res[0].url)}
-            onUploadError={(error) => setUploadError(error.message)}
-            imageUrl={imageTopDown}
-            setUploadError={setUploadError}
-            uploadError={uploadError}
-            label="Top-down view"
-          />
-        </div>
+            <PolaroidImageUpload
+              onClientUploadComplete={(res) => setImageFront(res[0].url)}
+              onUploadError={(error) => setUploadError(error.message)}
+              imageUrl={imageFront}
+              setUploadError={setUploadError}
+              uploadError={uploadError}
+              label="Front view"
+            />
+            {/* //Profile view */}
+            <PolaroidImageUpload
+              onClientUploadComplete={(res) => setImageProfile(res[0].url)}
+              onUploadError={(error) => setUploadError(error.message)}
+              imageUrl={imageProfile}
+              setUploadError={setUploadError}
+              uploadError={uploadError}
+              label="Profile view"
+            />
+            {/* //degree view */}
+            <PolaroidImageUpload
+              onClientUploadComplete={(res) => setImageDegree(res[0].url)}
+              onUploadError={(error) => setUploadError(error.message)}
+              imageUrl={imageDegree}
+              setUploadError={setUploadError}
+              uploadError={uploadError}
+              label="Degree view"
+            />
+            {/* //Top-down view */}
+            <PolaroidImageUpload
+              onClientUploadComplete={(res) => setImageTopDown(res[0].url)}
+              onUploadError={(error) => setUploadError(error.message)}
+              imageUrl={imageTopDown}
+              setUploadError={setUploadError}
+              uploadError={uploadError}
+              label="Top-down view"
+            />
+          </div>
 
-        <Button
-          color="warning"
-          variant={isFormValid ? "solid" : "flat"} // Update this line
-          type="submit"
-          radius="none"
-          size="lg"
-          // isDisabled={!isFormValid}
-          startContent={
-            isLoading ? (
-              <CircularProgress
-                color="primary"
-                aria-label="Loading..."
-                classNames={{ svg: "w-4 h-4" }}
-              />
-            ) : (
-              ""
-            )
-          }
-        >
-          {isLoading ? "Sending..." : "Send"}
-        </Button>
-      </form>
-      {/* ) : (
-        <div className="flex flex-col items-center justify-center w-full h-full">
-          <h2 className="text-2xl font-bold text-default-900 mt-4">
-            Thank you for your application!
-          </h2>
-          <p className="text-default-500 mt-2">
-            We will get back to you as soon as possible.
+          <Button
+            color="warning"
+            variant={isFormValid ? "solid" : "flat"} // Update this line
+            type="submit"
+            radius="none"
+            size="lg"
+            isDisabled={!isFormValid}
+            startContent={
+              isLoading ? (
+                <CircularProgress
+                  color="primary"
+                  aria-label="Loading..."
+                  classNames={{ svg: "w-4 h-4" }}
+                />
+              ) : (
+                ""
+              )
+            }
+          >
+            {isLoading ? "Application Sending..... " : "Submit Application"}
+          </Button>
+          <p className={`!text-default-500  ${paragraph({ size: "sm" })}`}>
+            By submitting, I affirm that the images and information presented
+            are either my own or that I have the proper authorization to submit
+            them on behalf of the applicant
           </p>
-        </div>
-      )} */}
-
+        </form>
+      ) : (
+        <React.Fragment>
+          <p
+            className={`!text-default-500 mb-4 text-center ${title({
+              size: "md",
+            })}`}
+          >
+            Thank you for your application
+          </p>
+          <div className="p-4 flex flex-col items-center justify-center w-full h-full max-w-lg relative animate-appearance-in  mx-auto">
+            <div className="w-24 h-24 rounded-full  bg-success/5 border border-success-50 animate-pulse relative z-20" />
+            <div className="w-16 h-16 rounded-full  animate-ping border border-success-50 absolute top-8 -z-10" />
+            <div className="w-12 h-12 rounded-full  animate-ping border border-success-50 delay-300 duration-300 absolute top-10 -z-10" />
+            <CheckBadgeIcon className="w-16 h-16 text-success  absolute top-8 animate-appearance-in drop-shadow-lg" />
+            <p
+              className={`!text-default-500 text-center mt-4 ${paragraph({
+                size: "sm",
+              })}`}
+            >
+              Our team will now carefully assess your application, and we aim to
+              provide you with a response within the next{" "}
+              <strong className="text-warning">14 days</strong>. Please be
+              patient during this process, as we strive to give each application
+              the attention it deserves.
+            </p>
+          </div>
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 };

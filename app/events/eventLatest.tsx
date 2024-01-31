@@ -27,6 +27,7 @@ import { DocumentArrowDownIcon } from "@heroicons/react/24/solid";
 
 import { EventType } from "@/types/eventType";
 import { DateComponent } from "@/components/time/date";
+import { AnimatedDivLeftRightUpDown } from "@/components/animation/animatedDiv";
 
 type eventLatestProps = {
   eventLatest: EventType;
@@ -38,6 +39,7 @@ const EventLatest = ({ placement, eventLatest }: eventLatestProps) => {
 
   return (
     <div className="w-full h-full">
+    <AnimatedDivLeftRightUpDown direction="up" className="w-full h-full">
       <Card
         onPress={onOpen}
         isPressable
@@ -71,6 +73,7 @@ const EventLatest = ({ placement, eventLatest }: eventLatestProps) => {
           </Chip>
         </CardFooter>
       </Card>
+    </AnimatedDivLeftRightUpDown>
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}

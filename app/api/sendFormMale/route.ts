@@ -3,8 +3,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { resendApi } from "../env";
-import  { EmailMaleResponse } from "@/emails/emailMaleResponse";
+import { EmailMaleResponse } from "@/emails/emailMaleResponse";
 import { siteConfig } from "@/config/site";
+import { EmailToPrimeraMaleApplication } from "@/emails/emailToPrimeraMaleApplication";
 
 const resend = new Resend(resendApi);
 
@@ -26,7 +27,6 @@ export async function POST(request: NextRequest) {
     weight,
     hips,
     shoeSize,
-    pantsSize,
     hairColor,
     eyeColor,
     tattoos,
@@ -38,51 +38,87 @@ export async function POST(request: NextRequest) {
     imageProfile,
     imageDegree,
     imageTopDown,
-
-
   } = await request.json();
 
-
-
-  await resend.emails.send(
+  await resend.batch.send([
     {
-    from: "Primera Klase <work@robertquintero.me>",
-    // to: email,
-    to: [email, "work@robertquintero.me"],
-    subject: "Talent Application Male",
-    reply_to: "work@robertquintero.me",
+      from: "Primera Klase <work@robertquintero.me>",
+      // to: email,
+      to: [email],
+      subject: "Talent Application Male Received",
+      reply_to: "work@robertquintero.me",
 
-    react: EmailMaleResponse ({
-      //personal info
-      firstName,
-      lastName,
-      dateOfBirth,
-      nationality,
-      email,
-      instagramUrl,
-      phoneNumber,
-      address,
-      yourStory,
+      react: EmailMaleResponse({
+        //personal info
+        firstName,
+        lastName,
+        dateOfBirth,
+        nationality,
+        email,
+        instagramUrl,
+        phoneNumber,
+        address,
+        yourStory,
 
-      //measurements
-      height,
-      weight,
-      hairColor,
-      eyeColor,
-      hips,
-      shoeSize,
-      tattoos,
-      piercings,
+        //measurements
+        height,
+        weight,
+        hairColor,
+        eyeColor,
+        hips,
+        shoeSize,
+        tattoos,
+        piercings,
 
-      //Polaroids
-      imageProfile,
-      imageFront,
-      imageDegree,
-      imageTopDown,
-    }),
-    text: "",
+        //Polaroids
+        imageProfile,
+        imageFront,
+        imageDegree,
+        imageTopDown,
+      }),
+      text: "",
     },
+    {
+      from: "Primera Klase <work@robertquintero.me>",
+      // to: email,
+      to: [
+        siteConfig.recruiter.person1,
+        siteConfig.recruiter.person2,
+        siteConfig.recruiter.person3,
+      ],
+      subject: "Talent Application Male",
+      reply_to: "work@robertquintero.me",
 
-  );
+      react: EmailToPrimeraMaleApplication({
+        //personal info
+        firstName,
+        lastName,
+        dateOfBirth,
+        nationality,
+        email,
+        instagramUrl,
+        phoneNumber,
+        address,
+        yourStory,
+
+        //measurements
+        height,
+        weight,
+        hairColor,
+        eyeColor,
+        hips,
+        shoeSize,
+        tattoos,
+        piercings,
+
+        //Polaroids
+        imageProfile,
+        imageFront,
+        imageDegree,
+        imageTopDown,
+      }),
+      text: "",
+    },
+  ]);
   return NextResponse.json({ status: "ok" });
 }

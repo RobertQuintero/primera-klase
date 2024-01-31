@@ -2,7 +2,6 @@
 import * as React from "react";
 import {
   Body,
-  Button,
   Container,
   Column,
   Head,
@@ -79,8 +78,7 @@ const EmailMaleResponse: React.FC<EmailMaleResponseProps> = ({
   imageTopDown,
 }: EmailMaleResponseProps) => {
   const baseUrl = siteConfig.url ? `${siteConfig.url}` : "";
-
-  const previewText = `Welcome ${firstName} ${lastName} has applied to your agency`;
+  const previewText = `Thank you, ${firstName}! Your Modeling Application is in Good Hands.`;
   const currentYear = new Date().getFullYear();
   const birthDate = new Date(dateOfBirth);
   const formattedDateOfBirth = birthDate.toLocaleDateString("en-US", {
@@ -150,6 +148,7 @@ const EmailMaleResponse: React.FC<EmailMaleResponseProps> = ({
                   in touch soon.
                 </Text>
               </Section>
+
               <Section className="px-2">
                 <Text className="text-2xl text-center mt-4  font-bold text-black">
                   Application Details
@@ -319,12 +318,12 @@ const EmailMaleResponse: React.FC<EmailMaleResponseProps> = ({
                 </Row>
 
                 {/* Polaroids */}
-                <Row className="px-4">
+                <Row >
                   <Hr className="" />
                   <Text className="text-base m-0 mb-0.5 pl-4 font-bold ">
                     Polaroids
                   </Text>
-                  <div className="flex mb-0.5 w-full">
+                  <div className="flex mb-0.5 w-full px-4 pb-8">
                     {imageFront ? (
                       <figure className=" m-0 w-full">
                         <Img
@@ -410,64 +409,44 @@ const EmailMaleResponse: React.FC<EmailMaleResponseProps> = ({
                   />
                 </Link>
                 <br />
-                <div className="flex justify-center items-center mx-auto w-full gap-6">
-                  <Link
-                    href={`${baseUrl}/`}
-                    className="text-black font-bold underline"
-                    target="_blank"
-                  >
-                    Work
-                  </Link>
-                  <Link
-                    href={`${baseUrl}/talents`}
-                    className="text-black font-bold underline"
-                    target="_blank"
-                  >
-                    Talents
-                  </Link>
-                  <Link
-                    href={`${baseUrl}/about`}
-                    className="text-black font-bold underline"
-                    target="_blank"
-                  >
-                    About
-                  </Link>
-                  <Link
-                    href={`${baseUrl}/contact`}
-                    className="text-black font-bold underline"
-                    target="_blank"
-                  >
-                    Contact
-                  </Link>
-                </div>
-
-
-                <Row>
-                    <Text >Nike.com</Text>
-                  </Row>
-                  <Row >
-                    <Column align="center">
-                      <Link href="/" >
-                        Men
-                      </Link>
-                    </Column>
-                    <Column align="center">
-                      <Link href="/" >
-                        Women
-                      </Link>
-                    </Column>
-                    <Column align="center">
-                      <Link href="/" >
-                        Kids
-                      </Link>
-                    </Column>
-                    <Column align="center">
-                      <Link href="/" >
-                        Customize
-                      </Link>
-                    </Column>
-                  </Row>
-
+                <Row align="center" className="w-72">
+                  <Column align="center">
+                    <Link
+                      href={`${baseUrl}/`}
+                      className="text-black font-bold underline"
+                      target="_blank"
+                    >
+                      Work
+                    </Link>
+                  </Column>
+                  <Column align="center">
+                    <Link
+                      href={`${baseUrl}/talents`}
+                      className="text-black font-bold underline"
+                      target="_blank"
+                    >
+                      Talents
+                    </Link>
+                  </Column>
+                  <Column align="center">
+                    <Link
+                      href={`${baseUrl}/about`}
+                      className="text-black font-bold underline"
+                      target="_blank"
+                    >
+                      About
+                    </Link>
+                  </Column>
+                  <Column align="center">
+                    <Link
+                      href={`${baseUrl}/contact`}
+                      className="text-black font-bold underline"
+                      target="_blank"
+                    >
+                      Contact
+                    </Link>
+                  </Column>
+                </Row>
               </Section>
 
               {/* Stay Connected */}
@@ -523,8 +502,10 @@ const EmailMaleResponse: React.FC<EmailMaleResponseProps> = ({
                 <Text className="text-center text-gray-500">
                   {siteConfig.address}
                 </Text>
+                <Text className="text-center text-gray-500 mt-2">
+                    Created by <Link href={siteConfig.createdBy}>Robert Quintero</Link>
+                </Text>
               </Section>
-
             </Container>
           </Body>
         </Tailwind>

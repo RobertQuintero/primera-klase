@@ -75,8 +75,8 @@ const PolaroidImageUpload: React.FC<PolaroidImageUploadProps> = ({
                 ) : (
                   <div className="text-default-500 absolute bottom-0 -ml-10">
                     <p
-                      className={`group-hover:text-warning transition-colors !font-normal ${title(
-                        { size: "md" }
+                      className={`group-hover:text-warning transition-colors !font-normal text-default-400 ${title(
+                        { size: "sm" }
                       )}`}
                     >
                       {label}

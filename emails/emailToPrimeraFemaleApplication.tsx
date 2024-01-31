@@ -18,7 +18,7 @@ import {
 } from "@react-email/components";
 import { siteConfig } from "@/config/site";
 
-type EmailToPrimeraMaleApplicationProps = {
+type EmailToPrimeraFemaleApplicationProps = {
   firstName: string;
   lastName: string;
   dateOfBirth: string;
@@ -32,10 +32,19 @@ type EmailToPrimeraMaleApplicationProps = {
   //Measurements
   height: string;
   weight: string;
-  hairColor: string;
-  eyeColor: string;
+
+  bust: string;
+  waist: string;
+
+  pantsSize: string;
+  dressSize: string;
+
   hips: string;
   shoeSize: string;
+
+  hairColor: string;
+  eyeColor: string;
+
   tattoos: string;
   piercings: string;
 
@@ -46,7 +55,9 @@ type EmailToPrimeraMaleApplicationProps = {
   imageTopDown: string;
 };
 
-const EmailToPrimeraMaleApplication: React.FC<EmailToPrimeraMaleApplicationProps> = ({
+const EmailToPrimeraFemaleApplication: React.FC<
+  EmailToPrimeraFemaleApplicationProps
+> = ({
   firstName,
   lastName,
 
@@ -64,10 +75,19 @@ const EmailToPrimeraMaleApplication: React.FC<EmailToPrimeraMaleApplicationProps
   //Measurements
   height,
   weight,
-  hairColor,
-  eyeColor,
+
+  bust,
+  waist,
+
+  dressSize,
+  pantsSize,
+
   hips,
   shoeSize,
+
+  hairColor,
+  eyeColor,
+
   tattoos,
   piercings,
 
@@ -76,9 +96,9 @@ const EmailToPrimeraMaleApplication: React.FC<EmailToPrimeraMaleApplicationProps
   imageProfile,
   imageDegree,
   imageTopDown,
-}: EmailToPrimeraMaleApplicationProps) => {
+}: EmailToPrimeraFemaleApplicationProps) => {
   const baseUrl = siteConfig.url ? `${siteConfig.url}` : "";
-  const previewText = `New Modeling Application Male: ${firstName} ${lastName}`;
+  const previewText = `New Modeling Application Female: ${firstName} ${lastName}`;
   const currentYear = new Date().getFullYear();
   const birthDate = new Date(dateOfBirth);
   const formattedDateOfBirth = birthDate.toLocaleDateString("en-US", {
@@ -88,25 +108,25 @@ const EmailToPrimeraMaleApplication: React.FC<EmailToPrimeraMaleApplicationProps
   });
   return (
     <React.Fragment>
-      <Html  className="bg-white">
+      <Html className="bg-white">
         <Head />
         <Preview>{previewText}</Preview>
         <Tailwind>
           <Body className="font-sans">
             <Container className="rounded-md border-[#f3f3f5] my-[40px] mx-auto max-w-[44rem]">
               <div className="h-60 w-full">
-                  <Img
-                    className="object-cover  rounded-t-md h-full w-full -z-10"
-                    alt="Logo"
-                    src="https://utfs.io/f/cef924ce-0707-4ff2-9e47-27819b922d87-5pkz02.jpg"
-                    width={200}
-                    height={200}
-                  />
+                <Img
+                  className="object-cover  rounded-t-md h-full w-full -z-10"
+                  alt="Logo"
+                  src="https://utfs.io/f/cef924ce-0707-4ff2-9e47-27819b922d87-5pkz02.jpg"
+                  width={200}
+                  height={200}
+                />
               </div>
-                  <Heading className="text-3xl text-center font-bold text-black ">
-                    <br/>
-                    Male Application {firstName} {lastName}
-                  </Heading>
+              <Heading className="text-3xl text-center font-bold text-black ">
+                <br />
+                Female Application {firstName} {lastName}
+              </Heading>
 
               <Section className="px-2">
                 <Text className="text-2xl text-center mt-4  font-bold text-black">
@@ -226,6 +246,55 @@ const EmailToPrimeraMaleApplication: React.FC<EmailToPrimeraMaleApplicationProps
                   </div>
                   <div className="flex mb-0.5 p-[1px] w-full">
                     <div className=" m-0 pl-4 w-full">
+                      <p className="text-gray-500 text-xs mt-1 mb-0">Bust</p>
+                      <p className="text-black text-sm my-1 font-bold ">
+                        {bust}
+                      </p>
+                    </div>
+                    <div className=" m-0 pl-4 w-full">
+                      <p className="text-gray-500 text-xs mt-1 mb-0">Waist</p>
+                      <p className="text-black text-sm my-1 font-bold ">
+                        {waist}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex mb-0.5 p-[1px] w-full">
+                    <div className=" m-0 pl-4 w-full">
+                      <p className="text-gray-500 text-xs mt-1 mb-0">Hips</p>
+                      <p className="text-black text-sm my-1 font-bold ">
+                        {hips}
+                      </p>
+                    </div>
+                    <div className=" m-0 pl-4 w-full">
+                      <p className="text-gray-500 text-xs mt-1 mb-0">
+                        Pants Size
+                      </p>
+                      <p className="text-black text-sm my-1 font-bold ">
+                        {pantsSize}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex mb-0.5 p-[1px] w-full">
+                    <div className=" m-0 pl-4 w-full">
+                      <p className="text-gray-500 text-xs mt-1 mb-0">
+                        Dress Size
+                      </p>
+                      <p className="text-black text-sm my-1 font-bold ">
+                        {dressSize}
+                      </p>
+                    </div>
+                    <div className=" m-0 pl-4 w-full">
+                      <p className="text-gray-500 text-xs mt-1 mb-0">
+                        Shoe Size
+                      </p>
+                      <p className="text-black text-sm my-1 font-bold ">
+                        {shoeSize}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex mb-0.5 p-[1px] w-full">
+                    <div className=" m-0 pl-4 w-full">
                       <p className="text-gray-500 text-xs mt-1 mb-0">
                         Hair Color
                       </p>
@@ -239,22 +308,6 @@ const EmailToPrimeraMaleApplication: React.FC<EmailToPrimeraMaleApplicationProps
                       </p>
                       <p className="text-black text-sm my-1 font-bold ">
                         {eyeColor}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex mb-0.5 p-[1px] w-full">
-                    <div className=" m-0 pl-4 w-full">
-                      <p className="text-gray-500 text-xs mt-1 mb-0">Hips</p>
-                      <p className="text-black text-sm my-1 font-bold ">
-                        {hips}
-                      </p>
-                    </div>
-                    <div className=" m-0 pl-4 w-full">
-                      <p className="text-gray-500 text-xs mt-1 mb-0">
-                        Shoe Size
-                      </p>
-                      <p className="text-black text-sm my-1 font-bold ">
-                        {shoeSize}
                       </p>
                     </div>
                   </div>
@@ -277,7 +330,7 @@ const EmailToPrimeraMaleApplication: React.FC<EmailToPrimeraMaleApplicationProps
                 </Row>
 
                 {/* Polaroids */}
-                <Row >
+                <Row>
                   <Hr className="" />
                   <Text className="text-base m-0 mb-0.5 pl-4 font-bold ">
                     Polaroids
@@ -473,4 +526,4 @@ const EmailToPrimeraMaleApplication: React.FC<EmailToPrimeraMaleApplicationProps
   );
 };
 
-export { EmailToPrimeraMaleApplication };
+export { EmailToPrimeraFemaleApplication };

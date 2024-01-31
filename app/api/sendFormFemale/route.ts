@@ -4,6 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { resendApi } from "../env";
 import { EmailFemaleResponse } from "@/emails/emailFemaleResponse";
+import { EmailToPrimeraFemaleApplication } from "@/emails/emailToPrimeraFemaleApplication";
+import { siteConfig } from "@/config/site";
 
 const resend = new Resend(resendApi);
 
@@ -42,15 +44,14 @@ export async function POST(request: NextRequest) {
     imageTopDown,
   } = await request.json();
 
+  await resend.batch.send([
+    {
+      from: "Primera Klase <work@robertquintero.me>",
+      to: [email],
+      subject: "Talent Application Female Received",
+      reply_to: "work@robertquintero.me",
 
-
-  await resend.emails.send({
-    from: "Primera Klase <work@robertquintero.me>",
-    to: [email, "work@robertquintero.me"],
-    subject: "Talent Female Submission",
-    reply_to: "work@robertquintero.me",
-
-    react: EmailFemaleResponse({
+      react: EmailFemaleResponse({
         // Personal Info
         firstName,
         lastName,
@@ -81,10 +82,54 @@ export async function POST(request: NextRequest) {
         imageProfile,
         imageDegree,
         imageTopDown,
-    }),
-    text: "This is a plain text version of the email content.", // Add this line
-  });
+      }),
+      text: "", // Add this line
+    },
+    {
+      from: "Primera Klase <work@robertquintero.me>",
+      // to: email,
+      to: [
+        siteConfig.recruiter.person1,
+        siteConfig.recruiter.person2,
+        siteConfig.recruiter.person3,
+      ],
+      subject: "Talent Application Female",
+      reply_to: "work@robertquintero.me",
 
-  console.log("email sent");
+      react: EmailToPrimeraFemaleApplication({
+        // Personal Info
+        firstName,
+        lastName,
+        dateOfBirth,
+        nationality,
+        instagramUrl,
+        email,
+        phoneNumber,
+        address,
+        yourStory,
+
+        //Measurements
+        height,
+        weight,
+        bust,
+        waist,
+        hips,
+        shoeSize,
+        dressSize,
+        pantsSize,
+        hairColor,
+        eyeColor,
+        tattoos,
+        piercings,
+
+        // Polaroid
+        imageFront,
+        imageProfile,
+        imageDegree,
+        imageTopDown,
+      }),
+      text: "", // Add this line
+    },
+  ]);
   return NextResponse.json({ status: "ok" });
 }

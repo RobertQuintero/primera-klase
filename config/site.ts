@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-	name: "primera-klase",
+	name: "sample site name",
 	description: "Robert Portfolio",
 	url: "",
 	image:"/siteLogo.png",
@@ -10,6 +10,7 @@ export const siteConfig = {
 	lang: "en-US",
 	locale: "en_us",
 	email: "info@primeklase.com",
+	becomePrimeKlase: "becomeprimera@primeklase.com",
 	google: "UA-XXXXXXXX-X",
 	bing: "UA-XXXXXXXX-X",
 	yandex: "UA-XXXXXXXX-X",
@@ -106,4 +107,10 @@ export const siteConfig = {
 		linkedin: "https://www.linkedin.com/company/getnextui",
 		pinterest: "https://www.pinterest.com/getnextui",
 	},
+	recruiter: {
+		person1: "robert.t.quintero.06@gmail.com",
+		person2: "robert.t.quintero.06@gmail.com",
+		person3: "robert.t.quintero.06@gmail.com",
+	},
+
 };
