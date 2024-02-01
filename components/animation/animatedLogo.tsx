@@ -58,8 +58,8 @@ const AnimatedLogo = ({ url, delay=1,hidden,hidden2, className, ...props }: Logo
             y2="2668.72"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#FFB100" />
-            <stop offset="1" stop-color="#EEEEEE" stop-opacity="0" />
+            <stop stopColor="#FFB100" />
+            <stop offset="1" stopColor="#EEEEEE" stopOpacity="0" />
           </linearGradient>
         </defs>
       </motion.svg>

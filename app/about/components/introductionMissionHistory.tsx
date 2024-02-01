@@ -14,7 +14,7 @@ const IntroductionMissionHistory = ({
   introductionMissionHistory,
 }: introductionMissionHistoryProps) => {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full mb-14 sm:mb-16 md:mb-24 lg:mb-28 xl:mb-32">
       <div className="py-14 sm:py-16 md:py-24 lg:py-28 xl:py-32 bg-about-background bg-no-repeat bg-center bg-contain  ">
         <AnimatedDivLeftRightUpDown direction="down">
           {/* <h2 className="font-extrabold text-center text text-default-900/5 text-[6rem] sm:text-[10rem] lg:text-[12rem] xl:text-[14rem]"  >

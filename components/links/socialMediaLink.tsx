@@ -18,7 +18,7 @@ import { FacebookIcon, InstagramIcon, PinterestIcon, TwitterIcon,LinkedInIcon, T
 type SocialMediaLinkProps = {
   socialMediaLinks: socialMediaType[];
   className?: string;
-  classNames?: any;
+  classNameIcon?: any;
   props?: any;
   size?: "sm" | "md" | "lg";
   iconSize?: string;
@@ -42,7 +42,7 @@ const SocialMediaLink = ({
   size,
   props,
   iconSize,
-  classNames,
+  classNameIcon,
   className,
 }: SocialMediaLinkProps) => {
 
@@ -62,7 +62,7 @@ const SocialMediaLink = ({
         return (
 
               <Button key={socialMediaLink.linkType} as={Link} href={socialMediaLink.url} target={socialMediaLink.url} isIconOnly radius="none" variant="light" size={size} aria-label={socialMediaLink.linkType}>
-                {Icon && <Icon className="text-default-600 w-6 h-6  md:w-8 md:h-8 " />}
+                {Icon && <Icon className={`text-default-600 w-6 h-6  md:w-8 md:h-8 ${classNameIcon}`} />}
               </Button>
 
         );

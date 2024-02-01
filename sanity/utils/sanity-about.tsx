@@ -24,11 +24,6 @@ export async function getAboutData(): Promise<aboutType> {
         //     title,
         //     description,
         // },
-        "services": services[]->{
-            "image": image.asset->url,
-            title,
-            description,
-        },
         "testimonials": testimonials[]->{
             "image": image.asset->url,
             name,
@@ -37,7 +32,7 @@ export async function getAboutData(): Promise<aboutType> {
             testimonial,
             date,
         },
-        "successStories": successStories[]->{
+        "successStories": successStories[0]->{
             "image": image.asset->url,
             name,
             companyOrAffiliation,
@@ -54,7 +49,7 @@ export async function getAboutData(): Promise<aboutType> {
   return data;
 }
 
-export async function getServicesData(): Promise<servicesType> {
+export async function getServicesData(): Promise<servicesType[]> {
   const data = await client.fetch(groq`*[_type=="services"]{...,
         _createdAt,
         _updatedAt,

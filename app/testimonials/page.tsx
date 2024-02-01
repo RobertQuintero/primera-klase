@@ -2,7 +2,6 @@
 import { getSuccessStoriesData, getTestimonialsData } from "@/sanity/utils/sanity-testimonial-successStory";
 import React from "react";
 import { TestimonialsList } from "./components/testimonialsList";
-import SuccessStories from "@/sanity/schemas/successStories";
 import { SuccessStoriesList } from "./components/successStoriesList";
 
 export default async function Testimonials() {

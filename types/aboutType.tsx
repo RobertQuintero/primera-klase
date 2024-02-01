@@ -11,16 +11,10 @@ export type aboutType={
     vision: string,
     history: string,
     values: Values[],
-    services: Services[],
     testimonials: Testimonials[],
-    successStories: SuccessStories[],
+    successStories: SuccessStories,
 }
 export type Values={
-    image: string,
-    title: string,
-    description: string,
-}
-export type Services={
     image: string,
     title: string,
     description: string,
