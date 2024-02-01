@@ -68,7 +68,7 @@ export const Footer = () => {
                 link="/testimonials"
                 titleLink="Testimonials"
               />
-              <AnimatedButtonNavLink link="/gallery" titleLink="Gallery" />
+              <AnimatedButtonNavLink link="/application" titleLink="Be Primera" />
               <AnimatedButtonNavLink link="/contact" titleLink="contacts" />
             </div>
           </div>

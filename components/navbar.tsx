@@ -28,6 +28,7 @@ import {
   ChevronDownIcon,
   EnvelopeIcon,
   InformationCircleIcon,
+  PaperAirplaneIcon,
   SwatchIcon,
 } from "@heroicons/react/24/outline";
 import React from "react";
@@ -61,6 +62,15 @@ export const Navbar = () => {
       <ChatBubbleBottomCenterTextIcon
         className={
           pathname === "/testimonials"
+            ? "text-warning w-8 h-8 "
+            : "text-default-500 w-8 h-8  group-hover:text-warning"
+        }
+      />
+    ),
+    application: (
+      <PaperAirplaneIcon
+        className={
+          pathname === "/application"
             ? "text-warning w-8 h-8 "
             : "text-default-500 w-8 h-8  group-hover:text-warning"
         }
@@ -110,6 +120,7 @@ export const Navbar = () => {
                       pathname === "/events" ||
                       pathname === "/schedules" ||
                       pathname === "/testimonials" ||
+                      pathname === "/application" ||
                       pathname === "/contact"
                       ? "h-fit p-0 bg-transparent data-[hover=true]:bg-transparent text-base text-warning font-semibold"
                       : " h-fit p-0 bg-transparent data-[hover=true]:bg-transparent text-base text-default-500 "

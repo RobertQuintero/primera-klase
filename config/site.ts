@@ -56,6 +56,11 @@ export const siteConfig = {
 		description: "Testimonials page",
 	},
 	{
+		label: "Be PrimeKlase",
+		href: "/application",
+		description: "Testimonials ",
+	},
+	{
 		label: "Contact Us",
 		href: "/contact",
 		description: "Contact Us page",
