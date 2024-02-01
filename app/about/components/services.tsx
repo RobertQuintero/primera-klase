@@ -18,8 +18,8 @@ const AboutServices = ({aboutServices}: aboutServicesProps) => {
           <AnimatedDivLeftRightUpDown key={services.title} direction="right" delay={index} className="w-full h-full">
             <Card shadow="none" isBlurred>
               <CardHeader className="gap-2 md:gap-4">
-                <Image src={services.image} alt={services.title} width={100} height={100} className="rounded-full w-20 h-20"/>
-                <p className={title({size:"xl"})}>{services.title}</p>
+                <Image src={services.image} alt={services.title} width={100} height={100} radius='none' className=" w-20 h-20"/>
+                <p className={title({size:"xl",color:'yellow2' })}>{services.title}</p>
               </CardHeader>
               <CardFooter>
                 <p className={paragraph({size:"lg"})}>{services.description}</p>

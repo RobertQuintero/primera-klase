@@ -1,3 +1,5 @@
+import { create } from "domain";
+
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
@@ -15,7 +17,8 @@ export const siteConfig = {
 	bing: "UA-XXXXXXXX-X",
 	yandex: "UA-XXXXXXXX-X",
 	yahoo: "UA-XXXXXXXX-X",
-	createdBy: "https://robertquintero.me",
+	createdByUrl: "https://robertquintero.me",
+	createByName: " Robert Quintero",
 	navItems: [
 	{
 		label: "Work",

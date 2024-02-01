@@ -21,10 +21,11 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
     return (
         <Switch
             className={className}
-            classNames={classNames}
+            classNames={{wrapper:"rounded-none",thumb:"rounded-none" }}
             defaultSelected={theme === "light" || isSSR}
             onChange={onChange}
             size="sm"
+
             color="default"
 			aria-label={`Switch to ${theme === "light" || isSSR ? "dark" : "light"} mode`}
         >

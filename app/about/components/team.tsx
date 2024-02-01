@@ -13,11 +13,8 @@ const Teams = ({teams}:teamsProps) => {
     <div className='max-w-7xl mx-auto  grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 py-14 sm:py-16 md:py-24 lg:py-28 xl:py-32'>
       {teams.map((team) => (
           <div key={team.name} className='relative max-w-sm group'>
-                <Image src={team.image} alt={team.name} classNames={{
-
-                img: "rounded-b-none rounded-t-xl ",
-              }}/>
-                <div className='flex flex-col  bg-default/10 rounded-b-xl px-4 py-1'>
+                <Image src={team.image} alt={team.name} radius='none'/>
+                <div className='flex flex-col  bg-default/10  px-4 py-1'>
                   <p className={`!font-semibold ${paragraph({size:"lg"})}`}>{team.name}</p>
                   <p className={paragraph({size:"md"})}>{team.position}</p>
                 </div>

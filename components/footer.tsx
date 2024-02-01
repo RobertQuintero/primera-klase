@@ -7,51 +7,50 @@ import NextLink from "next/link";
 import { FaceFrownIcon } from "@heroicons/react/24/outline";
 import { paragraph, title } from "./primitives";
 import { AnimatedButtonNavLink } from "./animation/animatedButtonLink";
-import { FacebookIcon, LinkedInIcon, Logo, TwitterIcon } from "./icons";
+import {
+  FacebookIcon,
+  InstagramIcon,
+  LinkedInIcon,
+  TwitterIcon,
+} from "./icons";
+import { AnimatedLogo } from "./animation/animatedLogo";
 export const Footer = () => {
+  const currentYear = new Date().getFullYear();
   return (
     <React.Fragment>
       <Divider />
       <footer className="container mx-auto max-w-7xl px-4 sm:px-8 py-12 ">
         <div className="max-w-7xl mx-auto grid grid-cols-8 w-full my-8 sm:my-12 gap-8">
+          <div className="flex flex-col justify-center items-center gap-4  col-span-8  md:col-span-4 w-full  order-3 md:order-2">
+            <AnimatedLogo className="w-72 h-72" />
 
-          <div className="flex flex-col justify-center items-center gap-4  col-span-8  md:col-span-4 w-full  order-1 md:order-2">
-            <h3
-              className={` ${title({
-                size: "xl",
+            <p
+              className={`!font-normal !text-default-500 !text-center ${title({
+                size: "sm",
               })}`}
             >
-              Get in Touch
-            </h3>
+              © {currentYear} {siteConfig.name}. All rights reserved.
+            </p>
             <p
-              className={`!text-default-500 !font-normal !text-center ${paragraph(
-                {
-                  size: "md",
-                }
-              )}`}
-            ></p>
+              className={`!font-normal !text-default-500 !text-center ${title({
+                size: "sm",
+              })}`}
+            >
+              {siteConfig.address}
+            </p>
             <p
               className={`!font-normal !text-default-500 !text-center ${title({
                 size: "sm",
               })}`}
             >
               Created by{" "}
-              <Link as={NextLink} href="/about">
-                smaple name
+              <Link href={siteConfig.createdByUrl}>
+                {siteConfig.createByName}
               </Link>
             </p>
-            <Button
-              variant="bordered"
-              size="md"
-              radius="full"
-              as={NextLink}
-              href={siteConfig.navItems[4].href}
-            >
-              Say Hello🤚
-            </Button>
           </div>
 
-          <div className="flex flex-row justify-center gap-4 col-span-8 md:col-span-2 w-full order-3  md:order-1">
+          <div className="flex flex-row justify-center gap-4 col-span-8 md:col-span-2 w-full order-2  md:order-1">
             <div className="flex flex-col gap-2 ">
               <AnimatedButtonNavLink link="/" titleLink="Work" />
               <AnimatedButtonNavLink link="/women" titleLink="Women" />
@@ -74,52 +73,58 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div className="flex flex-row  gap-4 col-span-8 md:col-span-2 w-full order-2 md:order-3">
-
-          <div className="flex flex-col gap-4 sm:gap-8 w-full mx-auto max-w-lg">
+          <div className="flex flex-row  gap-4 col-span-8 md:col-span-2 w-full order-1 md:order-3">
+            <div className="flex flex-col gap-4 sm:gap-8 w-full mx-auto max-w-lg">
               <div className="flex flex-row w-full items-baseline">
-              <Input
-                radius="none"
-                type="email"
-                label="Subscribe to our newsletter"
-                variant="underlined"
-                color="warning"
-                className=""
-              />
-              <Button
-                radius="none"
-                variant="flat"
-                className="font-semibold "
-                color="warning"
-              >
-
-                Subscribe
-              </Button>
+                <Input
+                  radius="none"
+                  type="email"
+                  label="Subscribe to our newsletter"
+                  variant="underlined"
+                  color="warning"
+                  className=""
+                />
+                <Button
+                  radius="none"
+                  variant="flat"
+                  className="font-semibold "
+                  color="warning"
+                >
+                  Subscribe
+                </Button>
               </div>
-              <div className="flex flex-row gap-2 w-full">
-                  <Link
-                    isExternal
-                    href={siteConfig.links.facebook}
-                    aria-label="facebook"
-                  >
-                    <FacebookIcon className="text-default-500" />
-                  </Link>
-                  <Link
-                    isExternal
-                    href={siteConfig.links.twitter}
-                    aria-label="twitter"
-                  >
-                    <TwitterIcon className="text-default-500" />
-                  </Link>
-                  <Link
-                    isExternal
-                    href={siteConfig.links.linkedin}
-                    aria-label="LinkedIn"
-                  >
-                    <LinkedInIcon className="text-default-500 w-7" />
-                  </Link>
+              <div className="flex flex-row justify-center md:justify-start  gap-2 w-full">
+                <Link
+                  isExternal
+                  href={siteConfig.links.instagram}
+                  aria-label="instagram"
+                >
+                  <InstagramIcon className="text-default-500 hover:text-warning transition-all" />
+                </Link>
+                <Link
+                  isExternal
+                  href={siteConfig.links.facebook}
+                  aria-label="facebook"
+                >
+                  <FacebookIcon className="text-default-500 hover:text-warning transition-all" />
+                </Link>
+                <Link
+                  isExternal
+                  href={siteConfig.links.twitter}
+                  aria-label="twitter"
+                >
+                  <TwitterIcon className="text-default-500 hover:text-warning transition-all" />
+                </Link>
+                <Link
+                  isExternal
+                  href={siteConfig.links.linkedin}
+                  aria-label="LinkedIn"
+                  className=""
+                >
+                  <LinkedInIcon className="text-default-500 w-7 hover:text-warning transition-all" />
+                </Link>
               </div>
-          </div>
+            </div>
           </div>
         </div>
       </footer>

@@ -15,6 +15,9 @@ module.exports = {
     extend: {
       backgroundImage: {
         'emailBackground': "url('/bg/emailBg.jpg')",
+        'about-background': "url('/bg/about/1.png')",
+        'about-background2': "url('/bg/about/2.png')",
+        'about-background3': "url('/bg/about/3.png')",
       },
     },
   },

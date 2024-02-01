@@ -462,7 +462,7 @@ const EmailToPrimeraMaleApplication: React.FC<EmailToPrimeraMaleApplicationProps
                   {siteConfig.address}
                 </Text>
                 <Text className="text-center text-gray-500 mt-2">
-                    Created by <Link href={siteConfig.createdBy}>Robert Quintero</Link>
+                    Created by <Link href={siteConfig.createdByUrl}>{siteConfig.createByName}</Link>
                 </Text>
               </Section>
             </Container>

@@ -45,7 +45,7 @@ const WorkSlug = ({ work, params }: workSlugProps) => {
 
   return (
     <article className="w-full h-full ">
-      <div className="flex flex-col  gap-4 sm:gap-6 md:gap-8 w-full  max-w-4xl mx-auto">
+      <div className="flex flex-col  gap-4 sm:gap-6 md:gap-8 w-full  max-w-7xl mx-auto">
           <Breadcrumbs >
           <BreadcrumbItem>
             <Link  href="/">Work</Link>
@@ -61,7 +61,7 @@ const WorkSlug = ({ work, params }: workSlugProps) => {
           radius="none"
           width={1920}
           height={1920}
-          className="w-full max-w-5xl aspect-video object-cover object-center "
+          className="w-full max-w-7xl aspect-video object-cover object-center "
         />
           <figcaption className=" self-end  rounded-sm w-fit   px-2 text-default-500 text-xs  md:text-sm empty:hidden">
             {work.portfolioImages[0].title}
@@ -113,7 +113,7 @@ const WorkSlug = ({ work, params }: workSlugProps) => {
 
 
       {work.portfolioImages.length > 1 ? (
-      <div className="w-full mx-auto max-w-4xl  ">
+      <div className="w-full mx-auto max-w-7xl  ">
         <Swiper
           zoom={true}
           pagination={{
