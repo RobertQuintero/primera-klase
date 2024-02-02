@@ -2,10 +2,7 @@
 import { Button, Divider, Input, Link } from "@nextui-org/react";
 import React from "react";
 import { siteConfig } from "@/config/site";
-
-import NextLink from "next/link";
-import { FaceFrownIcon } from "@heroicons/react/24/outline";
-import { paragraph, title } from "./primitives";
+import {title } from "./primitives";
 import { AnimatedButtonNavLink } from "./animation/animatedButtonLink";
 import {
   FacebookIcon,
@@ -14,6 +11,7 @@ import {
   TwitterIcon,
 } from "./icons";
 import { AnimatedLogo } from "./animation/animatedLogo";
+import NextLink from "next/link";
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
@@ -22,8 +20,9 @@ export const Footer = () => {
       <footer className="container mx-auto max-w-7xl px-4 sm:px-8 py-12 ">
         <div className="max-w-7xl mx-auto grid grid-cols-8 w-full my-8 sm:my-12 gap-8">
           <div className="flex flex-col justify-center items-center gap-4  col-span-8  md:col-span-4 w-full  order-3 md:order-2">
+            <Link as={NextLink} href="/">
             <AnimatedLogo className="w-72 h-72" />
-
+            </Link>
             <p
               className={`!font-normal !text-default-500 !text-center ${title({
                 size: "sm",
@@ -44,7 +43,7 @@ export const Footer = () => {
               })}`}
             >
               Created by{" "}
-              <Link href={siteConfig.createdByUrl}>
+              <Link as={NextLink} href={siteConfig.createdByUrl} target="_blank">
                 {siteConfig.createByName}
               </Link>
             </p>
@@ -94,6 +93,7 @@ export const Footer = () => {
                 </Button>
               </div>
               <div className="flex flex-row justify-center md:justify-start  gap-2 w-full">
+                {siteConfig.links.instagram ? (
                 <Link
                   isExternal
                   href={siteConfig.links.instagram}
@@ -101,6 +101,8 @@ export const Footer = () => {
                 >
                   <InstagramIcon className="text-default-500 hover:text-warning transition-all" />
                 </Link>
+                ) : null}
+                {siteConfig.links.facebook ? (
                 <Link
                   isExternal
                   href={siteConfig.links.facebook}
@@ -108,6 +110,8 @@ export const Footer = () => {
                 >
                   <FacebookIcon className="text-default-500 hover:text-warning transition-all" />
                 </Link>
+                ) : null}
+                {siteConfig.links.twitter ? (
                 <Link
                   isExternal
                   href={siteConfig.links.twitter}
@@ -115,6 +119,8 @@ export const Footer = () => {
                 >
                   <TwitterIcon className="text-default-500 hover:text-warning transition-all" />
                 </Link>
+                ) : null}
+                {siteConfig.links.linkedin ? (
                 <Link
                   isExternal
                   href={siteConfig.links.linkedin}
@@ -123,6 +129,7 @@ export const Footer = () => {
                 >
                   <LinkedInIcon className="text-default-500 w-7 hover:text-warning transition-all" />
                 </Link>
+                ) : null}
               </div>
             </div>
           </div>

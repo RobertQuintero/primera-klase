@@ -154,6 +154,7 @@ export const Navbar = () => {
                   }
                   startContent={icons[item.href.split("/")[1]]}
                   href={item.href}
+                  as={NextLink}
                 >
                   <span
                     className={
@@ -184,6 +185,7 @@ export const Navbar = () => {
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
+          {siteConfig.links.instagram ? (
           <Link
             isExternal
             href={siteConfig.links.instagram}
@@ -191,6 +193,8 @@ export const Navbar = () => {
           >
             <InstagramIcon className="text-default-500 hover:text-warning transition-all" />
           </Link>
+          ) : null}
+          {siteConfig.links.facebook ? (
           <Link
             isExternal
             href={siteConfig.links.facebook}
@@ -198,9 +202,13 @@ export const Navbar = () => {
           >
             <FacebookIcon className="text-default-500 hover:text-warning transition-all" />
           </Link>
+          ) : null}
+          {siteConfig.links.twitter ? (
           <Link isExternal href={siteConfig.links.twitter} aria-label="twitter">
             <TwitterIcon className="text-default-500 hover:text-warning transition-all" />
           </Link>
+          ) : null}
+          {siteConfig.links.linkedin ? (
           <Link
             isExternal
             href={siteConfig.links.linkedin}
@@ -209,7 +217,7 @@ export const Navbar = () => {
           >
             <LinkedInIcon className="text-default-500 w-7 hover:text-warning transition-all" />
           </Link>
-
+          ) : null}
           <ThemeSwitch className=""/>
         </NavbarItem>
       </NavbarContent>
@@ -233,6 +241,7 @@ export const Navbar = () => {
                 }
                 href="#"
                 size="lg"
+                as={NextLink}
               >
                 {item.label}
               </Link>

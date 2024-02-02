@@ -3,22 +3,31 @@ import { create } from "domain";
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-	name: "sample site name",
-	description: "Robert Portfolio",
+
+
 	url: "",
 	image:"/siteLogo.png",
-	address: "Primera Klase, 1234, Manila, Philippines",
 	keywords: ["Modeling Agency", "Filipino Model", "Philippines Modeling Agency", "Modeling Training Agency"],
 	lang: "en-US",
 	locale: "en_us",
-	email: "info@primeklase.com",
+
 	becomePrimeKlase: "becomeprimera@primeklase.com",
 	google: "UA-XXXXXXXX-X",
 	bing: "UA-XXXXXXXX-X",
 	yandex: "UA-XXXXXXXX-X",
 	yahoo: "UA-XXXXXXXX-X",
+
+	// Company details
+	name: "sample site name",
+	description: "Modeling Agency and training center",
+	email: "info@primeklase.com",
+	telephone: "+63 999 999 9999",
+	mobile: "+63 999 999 9999",
+	address: "Primera Klase, 1234, Manila, Philippines",
+	// Creator details
 	createdByUrl: "https://robertquintero.me",
 	createByName: " Robert Quintero",
+
 	navItems: [
 	{
 		label: "Work",

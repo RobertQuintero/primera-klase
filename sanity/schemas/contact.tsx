@@ -7,9 +7,14 @@ export default defineType({
     title: "Contact Information",
     type: "document",
     fields: [
-
         defineField({
-        name: "Address",
+        name: "name",
+        title: "Name",
+        type: "string",
+        validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+        name: "address",
         title: "Address",
         type: "string",
         validation: (Rule) => Rule.required(),
@@ -33,7 +38,6 @@ export default defineType({
         name: "telephone",
         title: "Telephone",
         type: "string",
-        validation: (Rule) => Rule.required(),
         }),
 
         defineField({
