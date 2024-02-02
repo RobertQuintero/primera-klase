@@ -52,8 +52,6 @@ export const Footer = () => {
           <div className="flex flex-row justify-center gap-4 col-span-8 md:col-span-2 w-full order-2  md:order-1">
             <div className="flex flex-col gap-2 ">
               <AnimatedButtonNavLink link="/" titleLink="Work" />
-              <AnimatedButtonNavLink link="/women" titleLink="Women" />
-              <AnimatedButtonNavLink link="/men" titleLink="Men" />
               <AnimatedButtonNavLink link="/talents" titleLink="Talents" />
               <AnimatedButtonNavLink
                 link="/instructors"

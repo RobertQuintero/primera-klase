@@ -221,6 +221,57 @@ export const LinkedInIcon: React.FC<IconSvgProps> = ({
   );
 };
 
+export const FemaleIcon: React.FC<IconSvgProps> = ({
+  size = 30,
+  width,
+  height,
+  ...props
+}) => {
+  return (
+    <svg
+      height={size || height}
+      viewBox="0 0 24 24"
+      width={size || width}
+      {...props}
+		stroke="currentColor"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+		strokeWidth={1.8}
+		fill="none"
+    >
+  <path d="M12 15.75A7.125 7.125 0 1 0 12 1.5a7.125 7.125 0 0 0 0 14.25Z"></path>
+  <path d="M12 15.75v6.75"></path>
+  <path d="M14.719 19.5H9.28"></path>
+</svg>
+  );
+};
+export const MaleIcon: React.FC<IconSvgProps> = ({
+  size = 30,
+  width,
+  height,
+  ...props
+}) => {
+  return (
+    <svg
+      height={size || height}
+      viewBox="0 0 24 24"
+      width={size || width}
+      {...props}
+		stroke="currentColor"
+		strokeLinecap="round"
+		strokeLinejoin="round"
+		strokeWidth={1.8}
+		fill="none"
+    >
+
+    {/* // fillRule="evenodd"
+    // clipRule="evenodd" */}
+  <path d="M10.125 21a7.125 7.125 0 1 0 0-14.25 7.125 7.125 0 0 0 0 14.25Z"></path>
+  <path d="M21 7.5V3h-4.5"></path>
+  <path d="M15.188 8.813 21 3"></path>
+</svg>
+  );
+};
 export const NextUILogo: React.FC<IconSvgProps> = (props) => {
   const { width, height = 40 } = props;
 

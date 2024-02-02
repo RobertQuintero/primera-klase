@@ -40,10 +40,14 @@ export default defineType({
         }),
 
         // Gender should be a dropdown
+        // Male and Female
         defineField({
         name: "gender",
         title: "Gender",
         type: "string",
+        options: {
+            list: [ "Female","Male"],
+        },
         validation: (Rule) => Rule.required(),
         }),
 

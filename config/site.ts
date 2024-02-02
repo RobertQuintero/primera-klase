@@ -35,11 +35,6 @@ export const siteConfig = {
 		description: "Work page",
 	},
 	{
-		label: "Talents",
-		href: "/talents",
-		description: "Talents page",
-	},
-	{
 		label: "Instructors",
 		href: "/instructors",
 		description: "Talents page",
@@ -59,11 +54,11 @@ export const siteConfig = {
 	// 	href: "/schedules",
 	// 	description: "Schedules page",
 	// },
-	{
-		label: "Testimonials",
-		href: "/testimonials",
-		description: "Testimonials page",
-	},
+	// {
+	// 	label: "Testimonials",
+	// 	href: "/testimonials",
+	// 	description: "Testimonials page",
+	// },
 	{
 		label: "Be PrimeKlase",
 		href: "/application",
@@ -74,6 +69,23 @@ export const siteConfig = {
 		href: "/contact",
 		description: "Contact Us page",
 	}
+	],
+	navItemsTalents: [
+	{
+		label: "Talents",
+		href: "/talents",
+		description: "Talents page",
+	},
+	{
+		label: "Female",
+		href: "/talents/female",
+		description: "Female description"
+	},
+	{
+		label: "Male",
+		href: "/talents/male",
+		description: "Male description"
+	},
 	],
 	navMenuItems: [
 	{

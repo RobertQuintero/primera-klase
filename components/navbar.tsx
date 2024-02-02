@@ -20,7 +20,7 @@ import NextLink from "next/link";
 import clsx from "clsx";
 
 import { ThemeSwitch } from "@/components/theme-switch";
-import { TwitterIcon, Logo, LinkedInIcon, FacebookIcon, InstagramIcon } from "@/components/icons";
+import { TwitterIcon, Logo, LinkedInIcon, FacebookIcon, InstagramIcon, FemaleIcon, MaleIcon } from "@/components/icons";
 
 import {
   CalendarDaysIcon,
@@ -29,10 +29,12 @@ import {
   EnvelopeIcon,
   InformationCircleIcon,
   PaperAirplaneIcon,
+  SparklesIcon,
   SwatchIcon,
 } from "@heroicons/react/24/outline";
 import React from "react";
 import { AnimatedLogo } from "./animation/animatedLogo";
+import talents from "@/sanity/schemas/talents";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -85,6 +87,33 @@ export const Navbar = () => {
         }
       />
     ),
+    talents: (
+      <SparklesIcon
+        className={
+          pathname === "/talents"
+            ? "text-warning w-8 h-8"
+            : "text-default-500 w-8 h-8 group-hover:text-warning"
+        }
+      />
+    ),
+    female: (
+      <FemaleIcon
+        className={
+          pathname === "/talents/female"
+            ? "text-warning w-9 h-9"
+            : "text-default-500 w-9 h-9 group-hover:text-warning"
+        }
+      />
+    ),
+    male: (
+      <MaleIcon
+        className={
+          pathname === "/talents/male"
+            ? "text-warning w-9 h-9"
+            : "text-default-500 w-9 h-9 group-hover:text-warning"
+        }
+      />
+    ),
   };
 
   return (
@@ -95,7 +124,68 @@ export const Navbar = () => {
     >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.slice(0, 3).map((item) => (
+          <NavbarItem>
+            <NextLink href="/" className={pathname === "/" ? "text-warning font-semibold" : " text-default-500 hover:text-warning"}>
+              Work
+            </NextLink>
+          </NavbarItem>
+
+          <Dropdown classNames={{ trigger: "" }} radius="none" shadow="sm">
+            <NavbarItem>
+              <DropdownTrigger>
+                <Button
+                  disableRipple
+                  className={clsx(
+                    "h-fit p-0 -mx-1 bg-transparent data-[hover=true]:bg-transparent text-base",
+                    pathname === "/talents" ||
+                    pathname === "/talents/female" ||
+                    pathname === "/talents/male"
+                      ? "text-warning font-semibold"
+                      : "text-default-500"
+                  )}
+                  endContent={<ChevronDownIcon className="w-4 h-4" />}
+                  radius="none"
+                  variant="light"
+                >
+                  Talents
+                </Button>
+              </DropdownTrigger>
+            </NavbarItem>
+            {/* // change the color of the dropdown if the pathname is equal to the href */}
+            <DropdownMenu
+              itemClasses={{
+                base: "text-default-500  gap-3 !rounded-none group ",
+                title: "text-base group-hover:text-warning-500",
+                description: "group-hover:text-warning-500",
+                // change the color of description if the pathname is equal to the what is active path
+              }}
+            >
+              {siteConfig.navItemsTalents.map((item) => (
+                <DropdownItem
+                  key={item.href}
+                  description={
+                    <p
+                      className={pathname === item.href ? "text-warning " : ""}
+                    >
+                      {item.description}
+                    </p>
+                  }
+                  startContent={icons[item.href.split("/").pop()!]}
+                  href={item.href}
+                  as={NextLink}
+                >
+                  <span
+                    className={
+                      pathname === item.href ? "text-warning font-semibold" : ""
+                    }
+                  >
+                    {item.label}
+                  </span>
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </Dropdown>
+          {/* {siteConfig.navItems.slice(0, 3).map((item) => (
             <NavbarItem key={item.href}>
               <NextLink
                 className={clsx(
@@ -108,8 +198,10 @@ export const Navbar = () => {
                 {item.label}
               </NextLink>
             </NavbarItem>
-            //add limit of 3 item only
-          ))}
+          ))} */}
+          <NextLink href="/" className={pathname === "/instructors" ? "text-warning font-semibold" : " text-default-500 hover:text-warning"}>
+              Instructors
+          </NextLink>
           <Dropdown classNames={{ trigger: "" }} radius="none" shadow="sm">
             <NavbarItem>
               <DropdownTrigger>
@@ -142,7 +234,7 @@ export const Navbar = () => {
                 // change the color of description if the pathname is equal to the what is active path
               }}
             >
-              {siteConfig.navItems.slice(3).map((item) => (
+              {siteConfig.navItems.slice(2).map((item) => (
                 <DropdownItem
                   key={item.href}
                   description={
@@ -167,6 +259,7 @@ export const Navbar = () => {
               ))}
             </DropdownMenu>
           </Dropdown>
+
         </ul>
       </NavbarContent>
 
