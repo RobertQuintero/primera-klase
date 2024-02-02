@@ -15,7 +15,6 @@ export default async function Page({ params }: Props) {
   const slug = params.slug;
   const work = await getWorkPage(slug);
 
-  console.log(work);
   return (
     <React.Fragment>
       <WorkSlug work={work} params={params} />

@@ -20,7 +20,15 @@ import NextLink from "next/link";
 import clsx from "clsx";
 
 import { ThemeSwitch } from "@/components/theme-switch";
-import { TwitterIcon, Logo, LinkedInIcon, FacebookIcon, InstagramIcon, FemaleIcon, MaleIcon } from "@/components/icons";
+import {
+  TwitterIcon,
+  Logo,
+  LinkedInIcon,
+  FacebookIcon,
+  InstagramIcon,
+  FemaleIcon,
+  MaleIcon,
+} from "@/components/icons";
 
 import {
   CalendarDaysIcon,
@@ -125,7 +133,14 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
           <NavbarItem>
-            <NextLink href="/" className={pathname === "/" ? "text-warning font-semibold" : " text-default-500 hover:text-warning"}>
+            <NextLink
+              href="/"
+              className={
+                pathname === "/"
+                  ? "text-warning font-semibold"
+                  : " text-default-500 hover:text-warning"
+              }
+            >
               Work
             </NextLink>
           </NavbarItem>
@@ -138,8 +153,8 @@ export const Navbar = () => {
                   className={clsx(
                     "h-fit p-0 -mx-1 bg-transparent data-[hover=true]:bg-transparent text-base",
                     pathname === "/talents" ||
-                    pathname === "/talents/female" ||
-                    pathname === "/talents/male"
+                      pathname === "/talents/female" ||
+                      pathname === "/talents/male"
                       ? "text-warning font-semibold"
                       : "text-default-500"
                   )}
@@ -156,7 +171,7 @@ export const Navbar = () => {
               itemClasses={{
                 base: "text-default-500  gap-3 !rounded-none group ",
                 title: "text-base group-hover:text-warning-500",
-                description: "group-hover:text-warning-500",
+                description: "group-hover:text-warning-500 max-w-[12rem] ",
                 // change the color of description if the pathname is equal to the what is active path
               }}
             >
@@ -199,8 +214,15 @@ export const Navbar = () => {
               </NextLink>
             </NavbarItem>
           ))} */}
-          <NextLink href="/" className={pathname === "/instructors" ? "text-warning font-semibold" : " text-default-500 hover:text-warning"}>
-              Instructors
+          <NextLink
+            href="/"
+            className={
+              pathname === "/instructors"
+                ? "text-warning font-semibold"
+                : " text-default-500 hover:text-warning"
+            }
+          >
+            Instructors
           </NextLink>
           <Dropdown classNames={{ trigger: "" }} radius="none" shadow="sm">
             <NavbarItem>
@@ -259,7 +281,6 @@ export const Navbar = () => {
               ))}
             </DropdownMenu>
           </Dropdown>
-
         </ul>
       </NavbarContent>
 
@@ -279,39 +300,43 @@ export const Navbar = () => {
       >
         <NavbarItem className="hidden sm:flex gap-2">
           {siteConfig.links.instagram ? (
-          <Link
-            isExternal
-            href={siteConfig.links.instagram}
-            aria-label="instagram"
-          >
-            <InstagramIcon className="text-default-500 hover:text-warning transition-all" />
-          </Link>
+            <Link
+              isExternal
+              href={siteConfig.links.instagram}
+              aria-label="instagram"
+            >
+              <InstagramIcon className="text-default-500 hover:text-warning transition-all" />
+            </Link>
           ) : null}
           {siteConfig.links.facebook ? (
-          <Link
-            isExternal
-            href={siteConfig.links.facebook}
-            aria-label="facebook"
-          >
-            <FacebookIcon className="text-default-500 hover:text-warning transition-all" />
-          </Link>
+            <Link
+              isExternal
+              href={siteConfig.links.facebook}
+              aria-label="facebook"
+            >
+              <FacebookIcon className="text-default-500 hover:text-warning transition-all" />
+            </Link>
           ) : null}
           {siteConfig.links.twitter ? (
-          <Link isExternal href={siteConfig.links.twitter} aria-label="twitter">
-            <TwitterIcon className="text-default-500 hover:text-warning transition-all" />
-          </Link>
+            <Link
+              isExternal
+              href={siteConfig.links.twitter}
+              aria-label="twitter"
+            >
+              <TwitterIcon className="text-default-500 hover:text-warning transition-all" />
+            </Link>
           ) : null}
           {siteConfig.links.linkedin ? (
-          <Link
-            isExternal
-            href={siteConfig.links.linkedin}
-            aria-label="LinkedIn"
-            className=""
-          >
-            <LinkedInIcon className="text-default-500 w-7 hover:text-warning transition-all" />
-          </Link>
+            <Link
+              isExternal
+              href={siteConfig.links.linkedin}
+              aria-label="LinkedIn"
+              className=""
+            >
+              <LinkedInIcon className="text-default-500 w-7 hover:text-warning transition-all" />
+            </Link>
           ) : null}
-          <ThemeSwitch className=""/>
+          <ThemeSwitch className="" />
         </NavbarItem>
       </NavbarContent>
 
@@ -322,24 +347,76 @@ export const Navbar = () => {
 
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
+            <NavbarMenuItem>
               <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
-                href="#"
+                color={pathname === "/" ? "warning" : "foreground"}
+                href="/talents"
                 size="lg"
-                as={NextLink}
+              >
+                Work
+              </Link>
+            </NavbarMenuItem>
+          {siteConfig.navItemsTalents.map((item) => (
+            <NavbarMenuItem key={item.label}>
+              <Link
+                color={pathname === item.href ? "warning" : "foreground"}
+                href={item.href}
+                size="lg"
               >
                 {item.label}
               </Link>
             </NavbarMenuItem>
           ))}
+          {siteConfig.navItems.slice(1).map((item) => (
+            <NavbarMenuItem key={item.label}>
+              <Link
+                color={pathname === item.href ? "warning" : "foreground"}
+                href={item.href}
+                size="lg"
+              >
+                {item.label}
+              </Link>
+            </NavbarMenuItem>
+          ))}
+          <div className="flex flex-row justify-center md:justify-start  mt-3 gap-2 w-full">
+            {siteConfig.links.instagram ? (
+              <Link
+                isExternal
+                href={siteConfig.links.instagram}
+                aria-label="instagram"
+              >
+                <InstagramIcon className="text-default-500 hover:text-warning transition-all" />
+              </Link>
+            ) : null}
+            {siteConfig.links.facebook ? (
+              <Link
+                isExternal
+                href={siteConfig.links.facebook}
+                aria-label="facebook"
+              >
+                <FacebookIcon className="text-default-500 hover:text-warning transition-all" />
+              </Link>
+            ) : null}
+            {siteConfig.links.twitter ? (
+              <Link
+                isExternal
+                href={siteConfig.links.twitter}
+                aria-label="twitter"
+              >
+                <TwitterIcon className="text-default-500 hover:text-warning transition-all" />
+              </Link>
+            ) : null}
+            {siteConfig.links.linkedin ? (
+              <Link
+                isExternal
+                href={siteConfig.links.linkedin}
+                aria-label="LinkedIn"
+                className=""
+              >
+                <LinkedInIcon className="text-default-500 w-7 hover:text-warning transition-all" />
+              </Link>
+            ) : null}
+          </div>
         </div>
       </NavbarMenu>
     </NextUINavbar>

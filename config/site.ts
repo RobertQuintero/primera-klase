@@ -74,61 +74,20 @@ export const siteConfig = {
 	{
 		label: "Talents",
 		href: "/talents",
-		description: "Talents page",
+		description: "Explore diverse talents, focusing on fashion and models",
 	},
 	{
 		label: "Female",
 		href: "/talents/female",
-		description: "Female description"
+		description: "Celebrating style and grace in female modeling"
 	},
 	{
 		label: "Male",
 		href: "/talents/male",
-		description: "Male description"
+		description: "Spotlighting male models and their unique charisma"
 	},
 	],
-	navMenuItems: [
-	{
-		label: "Work",
-		href: "/",
-		description: "Work page",
-	},
-	{
-		label: "Talents",
-		href: "/talents",
-		description: "Talents page",
-	},
-	{
-		label: "Instructors",
-		href: "/instructors",
-		description: "Talents page",
-	},
-    {
-      	label: "About",
-      	href: "/about",
-		description: "About page",
-    },
-	{
-		label: "Events",
-		href: "/events",
-		description: "Events page",
-	},
-	{
-		label: "Schedules",
-		href: "/schedules",
-		description: "Schedules page",
-	},
-	{
-		label: "Testimonials",
-		href: "/testimonials",
-		description: "Testimonials page",
-	},
-	{
-		label: "Contact Us",
-		href: "/contact",
-		description: "Contact Us page",
-	}
-	],
+
 	links: {
 		twitter: "https://twitter.com/getnextui",
 		facebook: "https://www.facebook.com/getnextui",

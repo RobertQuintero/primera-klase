@@ -53,6 +53,8 @@ export const Footer = () => {
             <div className="flex flex-col gap-2 ">
               <AnimatedButtonNavLink link="/" titleLink="Work" />
               <AnimatedButtonNavLink link="/talents" titleLink="Talents" />
+              <AnimatedButtonNavLink link="/talents/female" titleLink="Female" />
+              <AnimatedButtonNavLink link="/talents/male" titleLink="Male" />
               <AnimatedButtonNavLink
                 link="/instructors"
                 titleLink="Instructors"
@@ -66,7 +68,7 @@ export const Footer = () => {
                 titleLink="Testimonials"
               />
               <AnimatedButtonNavLink link="/application" titleLink="Be Primera" />
-              <AnimatedButtonNavLink link="/contact" titleLink="contacts" />
+              <AnimatedButtonNavLink link="/contact" titleLink="Contacts" />
             </div>
           </div>
 
