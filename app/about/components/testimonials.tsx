@@ -24,7 +24,7 @@ const AboutTestimonials = ({ aboutTestimonials }: testimonialsProps) => {
       </AnimatedDivLeftRightUpDown>
       <div className="max-w-7xl mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 break-inside-avoid h-auto pt-8 pb-14 sm:pb-16 md:pb-24 lg:pb-28 xl:pb-32">
         {aboutTestimonials.map((testimonial,index) => (
-          <div className="break-inside-avoid h-auto">
+          <div className="break-inside-avoid h-auto" key={testimonial.name}>
             <AnimatedDivLeftRightUpDown direction="up" delay={index}>
               <TestimonialCard testimonial={testimonial} />
             </AnimatedDivLeftRightUpDown>

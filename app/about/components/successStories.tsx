@@ -3,6 +3,7 @@
 import { SuccessStoriesCard } from "@/components/Cards/successStoriesCard";
 import { AnimatedDivLeftRightUpDown } from "@/components/animation/animatedDiv";
 import { paragraph, title } from "@/components/primitives";
+import { siteConfig } from "@/config/site";
 import { SuccessStories } from "@/types/successStoriesType";
 import React from "react";
 
@@ -20,20 +21,21 @@ const AboutSuccessStories = ({
         className="flex flex-col items-center "
       >
         <h2
-          className={`!font-bold mb-8 text-warning max-w-7xl !text-5xl sm:!text-6xl lg:!text-7xl: xl:!text-8xl ${title(
+          className={`!font-bold mb-8 text-warning max-w-7xl !text-5xl sm:!text-6xl lg:!text-7xl ${title(
             { size: "xxxl" }
           )}`}
         >
-          Success Stories of our Clients
+          Model & Trainee Success Stories
         </h2>
         <p className={`max-w-2xl text-center ${paragraph({size:"md"})}`}>
-          Our clients have achieved great success with our services. Here are
-          some of the success stories of our clients who have achieved their
-          goals with our services.
+          Discover inspiring journeys at {siteConfig.name}. Our models and trainees achieve incredible milestones, realizing their goals through our exceptional services.
+
         </p>
       </AnimatedDivLeftRightUpDown>
       <div className="max-w-7xl mx-auto my-8 sm:mb-16 md:mb-24 xl:mb-32">
+      <AnimatedDivLeftRightUpDown direction="up" className="w-full">
         <SuccessStoriesCard successStories={aboutSuccessStories} className="max-w-xl mx-auto"/>
+      </AnimatedDivLeftRightUpDown>
       </div>
     </React.Fragment>
   );

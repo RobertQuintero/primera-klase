@@ -13,19 +13,20 @@ type faqsProps = {
 const Faqs = ({ faqs }: faqsProps) => {
   return (
     <React.Fragment>
+
+      <div className="max-w-7xl mx-auto py-14 sm:py-16 md:py-24 lg:py-28 xl:py-32">
       <AnimatedDivLeftRightUpDown
         direction="down"
-        className="flex flex-col items-center"
+        className="flex flex-col mb-4"
       >
         <h2
           className={`!font-bold text-warning  ${title(
-            { size: "xxxl" }
+            { size: "xxxl", color: "yellow2"}
           )}`}
         >
           Frequently Asked Questions
         </h2>
       </AnimatedDivLeftRightUpDown>
-      <div className="max-w-7xl mx-auto py-14 sm:py-16 md:py-24 lg:py-28 xl:py-32">
         <Accordion>
           {faqs.map((faq) => (
             <AccordionItem

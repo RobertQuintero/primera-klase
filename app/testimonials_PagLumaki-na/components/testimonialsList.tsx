@@ -13,7 +13,7 @@ const TestimonialsList = ({testimonialsList}:testimonialsProps) => {
       <div className="w-full h-full flex flex-col justify-center items-center">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 w-full h-full ">
                 {testimonialsList.map((testimonial) => (
-                    <TestimonialCard testimonial={testimonial} />
+                    <TestimonialCard testimonial={testimonial} key={testimonial.name} />
                 ))}
           </div>
       </div>

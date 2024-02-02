@@ -25,10 +25,11 @@ export default async function AboutPage() {
     <React.Fragment>
       <IntroductionMissionHistory introductionMissionHistory={aboutData} />
       {/* <AboutValues aboutValues={aboutData.values} /> */}
-      <AboutServices aboutServices={servicesData} />
-      <Teams teams={teamsData} />
       <AboutSuccessStories aboutSuccessStories={aboutData.successStories} />
       <AboutTestimonials aboutTestimonials={aboutData.testimonials} />
+      <AboutServices aboutServices={servicesData} />
+      <Teams teams={teamsData} />
+
       <Faqs faqs={faqsData} />
     </React.Fragment>
   );

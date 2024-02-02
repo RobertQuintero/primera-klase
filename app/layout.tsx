@@ -39,11 +39,11 @@ export default function RootLayout({
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-						{/* <Navbar /> */}
+						<Navbar />
 						<main >
 							{children}
 						</main>
-						{/* <Footer/> */}
+						<Footer/>
 				</Providers>
 			</body>
 		</html>

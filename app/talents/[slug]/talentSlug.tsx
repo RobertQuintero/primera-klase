@@ -10,6 +10,7 @@ import { DocumentArrowDownIcon } from "@heroicons/react/24/solid";
 
 import { Button, Chip, Divider, Image, Link, Tooltip } from "@nextui-org/react";
 import { motion } from "framer-motion";
+import { it } from "node:test";
 import React from "react";
 
 type talentSlugProps = {
@@ -64,10 +65,10 @@ const TalentSlug = ({ talent, params }: talentSlugProps) => {
               />
             ) : null}
 
-            {info.map((item, index) =>
+            {info.map((item) =>
               item.value ? (
                 <p
-                  key={index}
+                  key={item.label}
                   className={`before:text-default-500 before:font-normal  before:text-sm before:content-['${
                     item.label
                   }__:__'] font-semibold empty:hidden ${paragraph({
