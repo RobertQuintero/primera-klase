@@ -32,22 +32,22 @@ export const siteConfig = {
 	{
 		label: "Work",
 		href: "/",
-		description: "Work page",
+		description: "Explore our creative hub and projects",
 	},
 	{
 		label: "Instructors",
 		href: "/instructors",
-		description: "Talents page",
+		description: "Meet the masters, your guides to unlocking talents and potential",
 	},
     {
       	label: "About",
       	href: "/about",
-		description: "About page",
+		description: "Unveil the narrative of innovation and passion",
     },
 	{
 		label: "Events",
 		href: "/events",
-		description: "Events page",
+		description: "Discover upcoming highlights for unforgettable experiences",
 	},
 	// {
 	// 	label: "Schedules",
@@ -67,7 +67,7 @@ export const siteConfig = {
 	{
 		label: "Contact Us",
 		href: "/contact",
-		description: "Contact Us page",
+		description: "Connect with us and let's craft the next chapter together",
 	}
 	],
 	navItemsTalents: [

@@ -215,7 +215,7 @@ export const Navbar = () => {
             </NavbarItem>
           ))} */}
           <NextLink
-            href="/"
+            href="/instructors"
             className={
               pathname === "/instructors"
                 ? "text-warning font-semibold"
@@ -252,7 +252,7 @@ export const Navbar = () => {
               itemClasses={{
                 base: "text-default-500  gap-3 !rounded-none group ",
                 title: "text-base group-hover:text-warning-500",
-                description: "group-hover:text-warning-500",
+                description: "group-hover:text-warning-500 max-w-[12rem]",
                 // change the color of description if the pathname is equal to the what is active path
               }}
             >

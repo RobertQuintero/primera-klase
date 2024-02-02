@@ -41,7 +41,7 @@ const AboutServices = ({ aboutServices }: aboutServicesProps) => {
 
 
       </AnimatedDivLeftRightUpDown>
-      <div className="max-w-7xl mx-auto grid gap-4 sm:gap-8 grid-cols-2 lg:grid-cols-3 my-12 sm:mb-16 md:mb-24 xl:mb-32">
+      <div className="max-w-7xl mx-auto grid gap-4 sm:gap-8 grid-cols-2 lg:grid-cols-3 mt-8 mb-14 sm:mb-16 md:mb-24 lg:mb-28 xl:mb-32 2xl:mb-64">
         {aboutServices.map((services, index) => (
           <AnimatedDivLeftRightUpDown
             key={services.title}

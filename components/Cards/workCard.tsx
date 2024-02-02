@@ -39,7 +39,8 @@ const WorkCard = ({ placement, work }: workCardProps) => {
       <Card
         onPress={onOpen}
         isPressable
-        className=" max-w-2xl relative"
+        // flex-row and flex-row-reverse
+        className={`w-full h-full  mb-14 sm:mb-16 md:mb-24 lg:mb-28  ${placement === "left" ? "flex-row" : "flex-row-reverse"}`}
         radius="none"
         isBlurred
         shadow="none"
@@ -49,16 +50,16 @@ const WorkCard = ({ placement, work }: workCardProps) => {
             isZoomed
             src={work.portfolioImages[0].image}
             alt={work.title}
-            width={800}
-            height={800}
-            className=" object-cover object-center h-56 sm:h-[22rem] md:h-[28rem] 2xl:h-[36rem]"
+            width={1800}
+            height={1800}
+            className=" object-cover object-center lg:w-full max-h-[35rem] max-w-3xl"
             radius="none"
           />
         ) : null}
 
-        <CardFooter className="p-2 sm:p-4 justify-center absolute z-20">
-          <AnimatedDivLeftRightUpDown direction={placement} className="w-full">
-            <h2 className="capitalize font-bold text-center text-lg md:text-xl lg:text-3xl xl:text-5xl">
+        <CardFooter className="p-2 sm:p-4 justify-center max-w-4xl absolute z-10 lg:relative">
+          <AnimatedDivLeftRightUpDown direction={placement} className="w-full" delay={1.5}>
+            <h2 className="capitalize text-warning font-bold text-center text-lg md:text-xl lg:text-3xl xl:text-5xl">
               {work.title}
             </h2>
           </AnimatedDivLeftRightUpDown>
