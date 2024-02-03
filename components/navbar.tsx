@@ -343,7 +343,7 @@ export const Navbar = () => {
             <NavbarMenuItem>
               <Link
                 color={pathname === "/" ? "warning" : "foreground"}
-                href="/talents"
+                href="/"
                 size="lg"
               >
                 Work

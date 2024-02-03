@@ -1,3 +1,11 @@
+import { siteConfig } from "@/config/site";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: siteConfig.navItems[3].label ,
+  description: siteConfig.navItems[3].description,
+}
+
 export default function EventsLayout({
 	children,
 }: {

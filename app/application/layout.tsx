@@ -1,3 +1,11 @@
+import { siteConfig } from "@/config/site";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: siteConfig.navItems[4].label,
+  description: siteConfig.navItems[4].description,
+};
+console.log(metadata);
 export default function ContactLayout({
   children,
 }: {

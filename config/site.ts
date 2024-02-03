@@ -1,5 +1,3 @@
-import { create } from "domain";
-
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
@@ -32,7 +30,7 @@ export const siteConfig = {
 	{
 		label: "Work",
 		href: "/",
-		description: "Explore our creative hub and projects",
+		description: "Modeling Agency and training center",
 	},
 	{
 		label: "Instructors",

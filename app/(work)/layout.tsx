@@ -1,3 +1,11 @@
+import { siteConfig } from "@/config/site";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: siteConfig.navItems[0].label,
+	description: siteConfig.navItems[0].description,
+};
+
 export default function WorksLayout({
 	children,
 }: {

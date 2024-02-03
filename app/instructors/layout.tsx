@@ -1,3 +1,11 @@
+import { siteConfig } from "@/config/site";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: siteConfig.navItems[1].label ,
+  description: siteConfig.navItems[1].description,
+}
+
 export default function InstructorLayout({
 	children,
 }: {
