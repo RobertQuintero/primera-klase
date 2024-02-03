@@ -25,8 +25,10 @@ export default function Contact() {
           radius="none"
           aria-label="Tabs form"
           variant="bordered"
+          color="warning"
+          classNames={{tabContent: "font-bold text-lg"}}
         >
-          <Tab key="Female" title="Female">
+          <Tab key="Female" title="Female" >
             <ApplicationFormFemale />
           </Tab>
           <Tab key="Male" title="Male">

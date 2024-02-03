@@ -129,9 +129,10 @@ export const Navbar = () => {
       maxWidth="xl"
       shouldHideOnScroll
       onMenuOpenChange={setIsMenuOpen}
+      className="dark:bg-transparent"
     >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
+        <ul className="hidden lg:flex gap-4 justify-start ml-2 ">
           <NavbarItem>
             <NextLink
               href="/"

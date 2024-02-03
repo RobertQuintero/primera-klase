@@ -38,11 +38,11 @@ const WorkCard = ({ placement, work }: workCardProps) => {
     <React.Fragment>
       <Card
         onPress={onOpen}
+
         isPressable
         // flex-row and flex-row-reverse
-        className={`w-full h-full  mb-14 sm:mb-16 md:mb-24 lg:mb-28  ${placement === "left" ? "flex-row" : "flex-row-reverse"}`}
+        className={`w-full h-full bg-transparent mb-2 sm:mb-16 md:mb-24 lg:mb-28  ${placement === "left" ? "flex-col md:flex-row " : "md:flex-row-reverse flex-col"}`}
         radius="none"
-        isBlurred
         shadow="none"
       >
         {work.portfolioImages ? (
@@ -52,14 +52,15 @@ const WorkCard = ({ placement, work }: workCardProps) => {
             alt={work.title}
             width={1800}
             height={1800}
-            className=" object-cover object-center lg:w-full max-h-[35rem] max-w-3xl"
+            className=" object-cover object-center h-[60vh] w-screen"
             radius="none"
           />
         ) : null}
 
-        <CardFooter className="p-2 sm:p-4 justify-center max-w-4xl absolute z-10 lg:relative">
-          <AnimatedDivLeftRightUpDown direction={placement} className="w-full" delay={1.5}>
-            <h2 className="capitalize text-warning font-bold text-center text-lg md:text-xl lg:text-3xl xl:text-5xl">
+        <CardFooter className="p-2 sm:p-4 justify-start max-w-4xl ">
+          <AnimatedDivLeftRightUpDown direction={placement} className="w-full" delay={1}>
+            <h2 className={`capitalize text-warning !font-bold !text-xl md:!text-3xl lg:!text-4xl xl:!text-5xl ${placement === "left" ? "!text-left " : "!text-right"}`}
+            >
               {work.title}
             </h2>
           </AnimatedDivLeftRightUpDown>
@@ -73,7 +74,7 @@ const WorkCard = ({ placement, work }: workCardProps) => {
           body: "flex xl:flex-row p-2 sm:p-4 lg:p-6",
           footer: "p-0 flex-col",
           header: "p-0  pb-2",
-          base: "rounded-none",
+          base: "rounded-none ",
         }}
       >
         <ModalContent>
