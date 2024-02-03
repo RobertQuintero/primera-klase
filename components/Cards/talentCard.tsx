@@ -22,7 +22,7 @@ import { DateComponent } from "../time/date";
 import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { DocumentArrowDownIcon } from "@heroicons/react/24/solid";
-import SocialMediaShareTalent from "../links/socialMediaShareTelent";
+import SocialMediaShareTalent from "../links/socialMediaShareTalent";
 
 type talentCardProps = {
   talent: TalentsType;

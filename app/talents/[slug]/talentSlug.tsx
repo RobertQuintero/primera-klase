@@ -1,7 +1,7 @@
 "use client";
 
 import { SocialMediaLink } from "@/components/links/socialMediaLink";
-import { SocialMediaShareTalent } from "@/components/links/socialMediaShareTelent";
+import { SocialMediaShareTalent } from "@/components/links/socialMediaShareTalent";
 import { paragraph, title } from "@/components/primitives";
 import { AgeComponent } from "@/components/time/age";
 import { DateComponent } from "@/components/time/date";

@@ -17,7 +17,7 @@ export default async function Test() {
 
   return (
     <React.Fragment>
-                <AnimatedFirstPageLoad />
+                <AnimatedLoading />
     </React.Fragment>
   );
 }
