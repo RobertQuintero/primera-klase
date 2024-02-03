@@ -13,7 +13,7 @@ type aboutServicesProps = {
 };
 const AboutServices = ({ aboutServices }: aboutServicesProps) => {
   return (
-    <React.Fragment>
+    <div className="w-full h-full" id="services">
       <AnimatedDivLeftRightUpDown
         direction="left"
         className="flex flex-col max-w-7xl gap-6 mx-auto"
@@ -72,7 +72,7 @@ const AboutServices = ({ aboutServices }: aboutServicesProps) => {
           </AnimatedDivLeftRightUpDown>
         ))}
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 

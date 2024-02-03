@@ -3,6 +3,8 @@ import { Testimonials } from "./testimonialsType"
 
 // about page types
 export type aboutType={
+    _createdAt: string,
+    _updatedAt: string,
     image: string,
     company: string,
     companyPhrase: string,

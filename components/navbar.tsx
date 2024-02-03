@@ -133,6 +133,7 @@ export const Navbar = () => {
     >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <ul className="hidden lg:flex gap-4 justify-start ml-2 ">
+          {/* Work */}
           <NavbarItem>
             <NextLink
               href="/"
@@ -146,6 +147,7 @@ export const Navbar = () => {
             </NextLink>
           </NavbarItem>
 
+          {/* Talents */}
           <Dropdown classNames={{ trigger: "" }} radius="none" shadow="sm">
             <NavbarItem>
               <DropdownTrigger>
@@ -201,20 +203,8 @@ export const Navbar = () => {
               ))}
             </DropdownMenu>
           </Dropdown>
-          {/* {siteConfig.navItems.slice(0, 3).map((item) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  pathname === item.href
-                    ? "text-warning font-semibold"
-                    : " text-default-500 hover:text-warning"
-                )}
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
-          ))} */}
+
+          {/* Instructors */}
           <NextLink
             href="/instructors"
             className={
@@ -225,6 +215,8 @@ export const Navbar = () => {
           >
             Instructors
           </NextLink>
+
+          {/* Resources , about , events, application , contact */}
           <Dropdown classNames={{ trigger: "" }} radius="none" shadow="sm">
             <NavbarItem>
               <DropdownTrigger>
@@ -285,6 +277,7 @@ export const Navbar = () => {
         </ul>
       </NavbarContent>
 
+
       <NavbarBrand as="li" className="gap-3 max-w-fit">
         <NextLink
           className="flex justify-start items-center gap-6 mt-2"
@@ -342,8 +335,7 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <ThemeSwitch />
-        <NavbarMenuToggle />
+        <NavbarMenuToggle className="text-warning"/>
       </NavbarContent>
 
       <NavbarMenu>
@@ -417,6 +409,7 @@ export const Navbar = () => {
                 <LinkedInIcon className="text-default-500 w-7 hover:text-warning transition-all" />
               </Link>
             ) : null}
+            <ThemeSwitch />
           </div>
         </div>
       </NavbarMenu>
