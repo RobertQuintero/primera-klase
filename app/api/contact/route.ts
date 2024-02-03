@@ -1,9 +1,10 @@
 // api/send/route.ts
 import { EmailContactResponse } from "@/emails/emailContactResponse";
+import { EmailToPrimeraContactApplication } from "@/emails/emailToPrimeraContactApplication";
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { resendApi } from "../env";
-
+import { siteConfig } from "@/config/site";
 
 const resend = new Resend(resendApi);
 
@@ -11,14 +12,28 @@ const resend = new Resend(resendApi);
 export async function POST(request: NextRequest) {
   const { name, email, message, subject } = await request.json();
 
-  await resend.emails.send({
-    from: "Robert Quintero <work@robertquintero.me>",
-    to: [email, "work@robertquintero.me"],
-    subject: "Thank you for messaging me on my website!",
+  await resend.batch.send([
+  {
+    from: "Primera Klase <work@robertquintero.me>",
+    to: [email],
+    subject: subject,
     reply_to: "work@robertquintero.me",
     react: EmailContactResponse({ name, email, message, subject }),
-    text: "This is a plain text version of the email content.", // Add this line
-  });
+    text: "", // Add this line
+  },
+  {
+    from: "Primera Klase <work@robertquintero.me>",
+    to:  [
+        siteConfig.recruiter.person1,
+        siteConfig.recruiter.person2,
+        siteConfig.recruiter.person3,
+      ],
+    subject: subject,
+    reply_to: "work@robertquintero.me",
+    react: EmailToPrimeraContactApplication({ name, email, message, subject }),
+    text: "", // Add this line
+  },
+  ]);
   return NextResponse.json({ status: "ok" });
 }
 

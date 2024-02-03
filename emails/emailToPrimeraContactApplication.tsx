@@ -17,21 +17,21 @@ import {
 import { siteConfig } from "@/config/site";
 import React from "react";
 
-type EmailContactResponseProps = {
+type EmailToPrimeraContactApplicationProps = {
   name: string;
   email: string;
   subject: string;
   message: string;
 };
 
-const EmailContactResponse: React.FC<EmailContactResponseProps> = ({
+const EmailToPrimeraContactApplication: React.FC<EmailToPrimeraContactApplicationProps> = ({
   name,
   email,
   message,
   subject,
-}: EmailContactResponseProps) => {
+}: EmailToPrimeraContactApplicationProps) => {
   const baseUrl = siteConfig.url ? `${siteConfig.url}` : "";
-  const previewText = `Thank you, ${name}! Your Inquiry has been Received.`;
+  const previewText = `Inquiry Name ${name} and ${subject}`;
   const currentYear = new Date().getFullYear();
 
   return (
@@ -55,46 +55,8 @@ const EmailContactResponse: React.FC<EmailContactResponseProps> = ({
 
               <Heading className="text-3xl text-center font-bold text-black ">
                 <br />
-                Thank You for Your Inquiry, {name}!
+                Inquiry Name {name} and {subject}
               </Heading>
-              <Text className="text-2xl font-bold text-center ">
-                Your inquiry has been received, and we appreciate your interest.
-              </Text>
-
-              <Section className="px-6">
-                <Text className="text-base">
-                  Dear <strong>{name}</strong>,
-                </Text>
-                <Text>
-                  Thank you for reaching out with your inquiry to{" "}
-                  <strong>{siteConfig.name}</strong>. We appreciate your
-                  interest and the opportunity to assist you.
-                </Text>
-                <Text>
-                  We have received your inquiry and our team is eager to address
-                  your questions and provide the information you are seeking.
-                  Your detailed message has given us a better understanding of
-                  your needs, and we are committed to assisting you in the best
-                  way possible.
-                </Text>
-                <Text>
-                  Our team will carefully review your inquiry, and we aim to
-                  provide you with a response within the next{" "}
-                  <strong>48 hours</strong>. We understand the importance of
-                  your inquiry and want to ensure that we address it promptly.
-                </Text>
-                <Text>
-                  In the meantime, if there are any additional details or
-                  specific points you&apos;d like to emphasize, please feel free
-                  to respond to this email or use our online portal to provide
-                  further information.
-                </Text>
-                <Text>
-                  Thank you once again for considering {siteConfig.name}. We
-                  value the opportunity to assist you and look forward to
-                  connecting with you soon.
-                </Text>
-              </Section>
 
               <Section className="px-2">
                 <Text className="text-2xl text-center mt-4  font-bold text-black">
@@ -263,4 +225,4 @@ const EmailContactResponse: React.FC<EmailContactResponseProps> = ({
   );
 };
 
-export { EmailContactResponse };
+export { EmailToPrimeraContactApplication };

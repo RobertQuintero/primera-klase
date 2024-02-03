@@ -281,7 +281,7 @@ const ApplicationFormMale = () => {
                 { size: "lg" }
               )}`}
             >
-              Your personal information is valuable to us. If you're under 18,
+              Your personal information is valuable to us. If you&apos;re under 18,
               kindly obtain parental/guardian consent before providing your
               details. This step ensures a secure and trustworthy experience for
               everyone.
@@ -719,7 +719,7 @@ const ApplicationFormMale = () => {
               Please wear clothes that fit well in the photos, so we can see
               your body shape clearly. Avoid using makeup or large accessories
               like hoop earrings or bracelets, as they might be distracting.
-              Please don't smile, just be your natural and confident self and
+              Please don&apos;t smile, just be your natural and confident self and
               relax!
             </p>
           </div>

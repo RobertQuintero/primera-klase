@@ -146,7 +146,7 @@ const EmailFemaleResponse: React.FC<EmailFemaleResponseProps> = ({
                 </Text>
                 <Text>
                   In the meantime, if there are any additional materials or
-                  updates you'd like to share, feel free to respond to this
+                  updates you&apos;d like to share, feel free to respond to this
                   email or provide them through our online portal.
                 </Text>
 
@@ -432,7 +432,7 @@ const EmailFemaleResponse: React.FC<EmailFemaleResponseProps> = ({
               {/* Site  */}
               <Section className="px-2 mt-8">
                 <Text className="text-center mt-4 text-gray-500">
-                  If you didn't request this email, there's nothing to worry
+                  If you didn&apos;t request this email, there&apos;s nothing to worry
                   about, you can safely ignore it.
                 </Text>
                 <Text className="text-center mt-4 text-gray-500">

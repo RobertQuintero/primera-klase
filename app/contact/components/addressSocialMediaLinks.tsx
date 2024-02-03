@@ -44,7 +44,7 @@ const AddressSocialMediaLinks = ({
           })}`}
         >
           Are you looking for models for your next shoot or just want to talk to
-          us without obligation? Give us a call or write to us and we’ll get
+          us without obligation? Give us a call or write to us and we&apos;ll get
           back to you as soon as possible. We look forward to hearing from you!
         </p>
       </div>
@@ -64,7 +64,7 @@ const AddressSocialMediaLinks = ({
             </p>
           </CardHeader>
           <CardBody>
-            Thank you for reaching out to [Your Modeling Agency's Name]! Whether
+            Thank you for reaching out to {siteConfig.name}! Whether
           </CardBody>
           <CardFooter>
             <Button

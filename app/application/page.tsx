@@ -13,9 +13,9 @@ export default function Contact() {
         <h1 className={`!font-bold mb-6 ${title({size:"xl"})}`}>Become a Primera Klase</h1>
 
         <p className={`!text-default-500 mb-8  ${paragraph({size:"lg"})}`}>
-          If you're keen on modeling, feel free to share your story and pictures
-          using the hashtag provided.<br/> Primera doesn't conduct in-person 'open
-          calls' at the office. Instead, please submit all talent applications
+          If you&apos;re keen on modeling, feel free to share your story and pictures
+          using the hashtag provided.<br/> Primera doesn&apos;t conduct in-person &apos;open
+          calls&apos; at the office. Instead, please submit all talent applications
           via email to {siteConfig.becomePrimeKlase}.<br/> Keep in mind that applicants
           must be 18 years old or have written parental consent to be considered
         </p>

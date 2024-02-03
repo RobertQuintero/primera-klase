@@ -102,8 +102,8 @@ const ContactForm = () => {
               })}`}
             >
               Thank you for reaching out to {siteConfig.name}.
-              Whether you're interested in booking our models, collaborating on
-              projects, or have general inquiries, we'd love to hear from you.
+              Whether you&apos;re interested in booking our models, collaborating on
+              projects, or have general inquiries, we&apos;d love to hear from you.
             </p>
             <InputField
               type="text"
