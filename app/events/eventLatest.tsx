@@ -43,7 +43,7 @@ const EventLatest = ({ placement, eventLatest }: eventLatestProps) => {
       <Card
         onPress={onOpen}
         isPressable
-        className="sm:flex-row w-full max-h-[34rem] max-w-7xl mx-auto relative mb-4 sm:mb-6 md:mb-8 2xl:mb-10"
+        className="sm:flex-row w-full max-h-[34rem] max-w-7xl mx-auto relative mb-4 sm:mb-6 md:mb-8 2xl:mb-10 bg-transparent"
         radius="none"
         shadow="none"
       >
@@ -59,7 +59,7 @@ const EventLatest = ({ placement, eventLatest }: eventLatestProps) => {
             />
         ) : null}
 
-        <CardFooter className="bg-gradient-to-t from-background/0 via-background/10 to-background  p-2 sm:p-4  flex-col gap-1 md:absolute z-10 h-[50%]">
+        <CardFooter className="bg-gradient-to-t from-warning/0 via-warning/10 to-warning/5  p-2 sm:p-4  flex-col gap-1 md:absolute z-10 h-[50%]">
           <DateComponent
             className={` ${title({ size: "xl" })}`}
             iconClassName="hidden"

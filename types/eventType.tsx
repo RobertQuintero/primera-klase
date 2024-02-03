@@ -1,4 +1,4 @@
-import { specialGuestType } from "./worksType"
+
 
 export type EventType = {
     _createdAt: string,
@@ -13,4 +13,9 @@ export type EventType = {
     eventLink: string,
     eventType: string,
     specialGuest: specialGuestType[],
+}
+
+export type specialGuestType = {
+    title: string,
+    name: string,
 }

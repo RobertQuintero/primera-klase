@@ -34,7 +34,7 @@ const EventCard = ({ placement, event }: eventCardProps) => {
       <Card
         onPress={onOpen}
         isPressable
-        className="sm:flex-row w-full "
+        className="sm:flex-row w-full bg-transparent"
         radius="none"
         shadow="sm"
       >
