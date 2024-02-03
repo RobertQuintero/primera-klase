@@ -6,6 +6,8 @@ import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 import React from "react";
 import { AddressSocialMediaLinks } from "../contact/components/addressSocialMediaLinks";
 import { getContacts } from "@/sanity/utils/sanity-contact";
+import { AnimatedLoading } from "@/components/animation/animatedLoading";
+import { AnimatedFirstPageLoad } from "@/components/animation/animatedFirstPageLoading";
 
 
 
@@ -15,7 +17,7 @@ export default async function Test() {
 
   return (
     <React.Fragment>
-                <AddressSocialMediaLinks contacts={contacts}/>
+                <AnimatedFirstPageLoad />
     </React.Fragment>
   );
 }

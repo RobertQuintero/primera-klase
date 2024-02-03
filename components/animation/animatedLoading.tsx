@@ -19,7 +19,7 @@ function AnimatedLoading({
   }, []);
 
   return (
-    <motion.div className="flex bg-background  justify-center items-center "
+    <motion.div className="flex bg-transparent  justify-center items-center "
       animate={isPageLoaded ? { scale: 0, opacity: 1, borderRadius: '50%' } : { scale: 1, opacity: 1, borderRadius: '0%' }}
       transition={{ duration: .7, ease: [0.43, 0.13, 0.23, 0.96] }} // Change duration as needed
     >

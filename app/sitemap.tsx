@@ -1,7 +1,7 @@
 import { siteConfig } from "@/config/site";
 import { getAboutData, getServicesData } from "@/sanity/utils/sanity-about";
 import { getEventsData } from "@/sanity/utils/sanity-events";
-import { getInstructorsData, getTalentsData, getTalentsFemaleData, getTalentsMaleData } from "@/sanity/utils/sanity-talents-instructors";
+import { getInstructorsData, getTalentsData} from "@/sanity/utils/sanity-talents-instructors";
 import { getWorksData } from "@/sanity/utils/sanity-work";
 import { MetadataRoute } from "next";
 
@@ -35,7 +35,6 @@ export default async function sitemap( ): Promise<MetadataRoute.Sitemap> {
             priority: 1,
         };
     });
-
 
     const instructorPage = instructors.map((instructor) => {
         return {
