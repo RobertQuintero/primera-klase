@@ -44,7 +44,7 @@ const WorkSlug = ({ work, params }: workSlugProps) => {
   const swiperRefMini = useRef<any>(null);
 
   return (
-    <article className="w-full h-full ">
+    <article className="w-full h-full px-4 sm:px-8">
       <div className="flex flex-col  gap-4 sm:gap-6 md:gap-8 w-full  max-w-7xl mx-auto">
           <Breadcrumbs >
           <BreadcrumbItem>
