@@ -3,7 +3,7 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
 
 
-	url: "",
+	url: "https://primera-klase.vercel.app",
 	image:"/siteLogo.png",
 	keywords: ["Modeling Agency", "Filipino Model", "Philippines Modeling Agency", "Modeling Training Agency"],
 	lang: "en-US",
