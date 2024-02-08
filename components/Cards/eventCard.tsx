@@ -68,6 +68,7 @@ const EventCard = ({ placement, event }: eventCardProps) => {
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
+        scrollBehavior="inside"
         size="4xl"
         classNames={{
           body: "flex xl:flex-row p-2 sm:p-4 lg:p-6",
