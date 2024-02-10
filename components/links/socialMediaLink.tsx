@@ -31,7 +31,7 @@ const projectTypeIcons = {
   LinkedIn: LinkedInIcon,
   Pinterest: PinterestIcon,
   Tiktok: TiktokIcon,
-  YoutubeIcon: YoutubeIcon,
+  Youtube: YoutubeIcon,
   Website: GlobeAltIcon,
   Phone:DevicePhoneMobileIcon,
   Email:AtSymbolIcon,
