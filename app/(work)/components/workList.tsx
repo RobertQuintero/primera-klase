@@ -10,17 +10,23 @@ type worksListProps = {
 };
 
 const WorksList = ({ works }: worksListProps) => {
+  const directions = ["up", "down", "left", "right"]; // Possible directions
+
   return (
-    <div className="flex flex-col w-full">
-      {works.map((work, index) => (
-        <AnimatedDivLeftRightUpDown
-          key={work.title}
-          direction={index % 2 === 0 ? "left" : "right"}
-          className={`w-fit h-fit my-8 ${index % 2 === 0 ? 'pl-8 md:pl-12 lg:pl-20 2xl:pl-28 mr-auto' : 'pr-8 md:pr-12 lg:pr-20 2xl:pr-28 ml-auto'}`}
-        >
-            <WorkCard placement={index % 2 === 0 ? "left" : "right"} work={work} />
-        </AnimatedDivLeftRightUpDown>
-      ))}
+    <div className="columns-1 gap-2 md:gap-3 sm:columns-2 lg:columns-3 xl:columns-4 ">
+      {works.map((work, index) => {
+        const randomDirection = directions[Math.floor(Math.random() * directions.length)]; // Select a random direction
+
+        return (
+          <AnimatedDivLeftRightUpDown
+            key={work.title}
+            direction={randomDirection}
+            className={`flex flex-col break-inside-avoid h-auto mb-2 md:mb-3`}
+          >
+              <WorkCard work={work} />
+          </AnimatedDivLeftRightUpDown>
+        );
+      })}
     </div>
   );
 };

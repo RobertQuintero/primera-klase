@@ -31,7 +31,7 @@ type workCardProps = {
   placement?: "left" | "right";
 };
 
-const WorkCard = ({ placement, work }: workCardProps) => {
+const WorkCard = ({ placement,work }: workCardProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
@@ -40,7 +40,7 @@ const WorkCard = ({ placement, work }: workCardProps) => {
         onPress={onOpen}
         isPressable
         // flex-row and flex-row-reverse
-        className={`w-full h-full bg-transparent mb-2 sm:mb-16 md:mb-24 lg:mb-28  ${placement === "left" ? "flex-col md:flex-row " : "md:flex-row-reverse flex-col"}`}
+        className={`w-full h-full bg-transparent break-inside-avoid-page `}
         radius="none"
         shadow="none"
       >
@@ -51,14 +51,14 @@ const WorkCard = ({ placement, work }: workCardProps) => {
             alt={work.title}
             width={1800}
             height={1800}
-            className=" object-cover object-center h-[60vh] w-screen"
+            className=" w-full h-full object-cover  !object-center"
             radius="none"
           />
         ) : null}
 
         <CardFooter className="p-2 sm:p-4 justify-start max-w-4xl ">
           <AnimatedDivLeftRightUpDown direction={placement} className="w-full" delay={1}>
-            <h2 className={`capitalize text-warning !font-bold !text-xl md:!text-3xl lg:!text-4xl xl:!text-5xl ${placement === "left" ? "!text-left " : "!text-right"}`}
+            <h2 className={`capitalize text-warning !font-bold !text-2xl md:!text-3xl lg:!text-4xl xl:!text-5xl ${placement === "left" ? "!text-left " : "!text-right"}`}
             >
               {work.title}
             </h2>
