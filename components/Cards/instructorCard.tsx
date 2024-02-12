@@ -58,7 +58,7 @@ const InstructorCard = ({ instructor }: instructorCardProps) => {
         onOpenChange={onOpenChange}
         scrollBehavior="inside"
         size="4xl"
-        classNames={{ body: "flex xl:flex-row p-2 sm:p-4 lg:p-6",footer: "p-0 ",header: "p-0  pb-2",base: "rounded-none",closeButton:"z-30 bg-warning-500/50 scale-125" }}
+        classNames={{ body: "flex xl:flex-row p-2 sm:p-4 lg:p-6",footer: "p-0 ",header: "p-0  pb-2",base: "rounded-none",closeButton:"z-30 bg-warning-500/50 scale-125 rounded-none" }}
       >
         <ModalContent>
 

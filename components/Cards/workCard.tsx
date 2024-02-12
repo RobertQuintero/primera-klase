@@ -75,7 +75,7 @@ const WorkCard = ({ placement, work }: workCardProps) => {
           footer: "p-0 flex-col",
           header: "p-0  pb-2",
           base: "rounded-none ",
-          closeButton:"z-30 bg-warning-500/50 scale-125"
+          closeButton:"z-30 bg-warning-500/50 scale-125 rounded-none"
         }}
       >
         <ModalContent>
