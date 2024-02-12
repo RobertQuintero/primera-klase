@@ -30,7 +30,7 @@ const AddressSocialMediaLinks = ({
   return (
     <React.Fragment>
       <div className="flex flex-col justify-center items-center gap-16 ">
-        <AnimatedLogo className="w-44 h-44"/>
+        <AnimatedLogo className="w-40 h-40 md:w-60 md:h-60"/>
         <h1
           className={`!font-bold text-warning text-center !text-5xl sm:!text-6xl ${title(
             { size: "xxxl" }

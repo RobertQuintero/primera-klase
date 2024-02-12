@@ -31,7 +31,7 @@ const AnimatedLogo = ({ url, delay=1,hidden,hidden2, className, ...props }: Logo
   return (
     <div className={cn("flex flex-col items-center ", className)} {...props}>
       <motion.svg
-        className={`w-full relative h-52 ${hidden2} ` }
+        className={`w-full relative h-full ${hidden2} ` }
         width="1888"
         height="2627"
         viewBox="0 0 1888 2627"
@@ -69,7 +69,7 @@ const AnimatedLogo = ({ url, delay=1,hidden,hidden2, className, ...props }: Logo
         viewBox="0 0 1875 964"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className={`w-40  h-full relative ${hidden} ` }
+        className={`w-full  h-full relative ${hidden} ` }
         initial="hidden"
         animate="visible"
       >

@@ -17,7 +17,7 @@ function AnimatedLoading({
       <motion.div
         className="flex justify-center items-center flex-col max-w-[10rem] md:max-w-xs lg:max-w-sm"
       >
-        <AnimatedLogo/>
+        <AnimatedLogo className="w-52 h-52 md:w-80 md:h-80"/>
       </motion.div>
     </motion.div>
   )

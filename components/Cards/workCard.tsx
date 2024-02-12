@@ -38,7 +38,6 @@ const WorkCard = ({ placement, work }: workCardProps) => {
     <React.Fragment>
       <Card
         onPress={onOpen}
-
         isPressable
         // flex-row and flex-row-reverse
         className={`w-full h-full bg-transparent mb-2 sm:mb-16 md:mb-24 lg:mb-28  ${placement === "left" ? "flex-col md:flex-row " : "md:flex-row-reverse flex-col"}`}

@@ -21,7 +21,7 @@ export const Footer = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-8 w-full my-8 sm:my-12 gap-8">
           <div className="flex flex-col justify-center items-center gap-4  col-span-8  md:col-span-4 w-full  order-3 md:order-2">
             <Link as={NextLink} href="/">
-            <AnimatedLogo className="w-72 h-72" />
+            <AnimatedLogo className="w-60 h-60" />
             </Link>
             <p
               className={`!font-normal !text-default-500 !text-center ${title({

@@ -280,11 +280,11 @@ export const Navbar = () => {
 
       <NavbarBrand as="li" className="gap-3 max-w-fit">
         <NextLink
-          className="flex justify-start items-center gap-6 mt-2"
+          className="flex justify-start items-center gap-1 mt-2"
           href="/"
         >
           <AnimatedLogo className="w-10 h-10" hidden="hidden" />
-          <AnimatedLogo className="w-9 h-9" hidden2="hidden" />
+          <AnimatedLogo className="w-14 h-9" hidden2="hidden" />
         </NextLink>
       </NavbarBrand>
 

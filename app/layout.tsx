@@ -6,7 +6,7 @@ import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
 import clsx from "clsx";
 import { Footer } from "@/components/footer";
-
+import { AnimatedFirstPageLoad } from "@/components/animation/animatedFirstPageLoading";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -76,6 +76,7 @@ export default function RootLayout({
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+          <AnimatedFirstPageLoad />
 						<Navbar />
 						<main >
 							{children}

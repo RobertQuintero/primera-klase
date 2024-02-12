@@ -20,7 +20,7 @@ const IntroductionMissionHistory = ({
           {/* <h2 className="font-extrabold text-center text text-default-900/5 text-[6rem] sm:text-[10rem] lg:text-[12rem] xl:text-[14rem]"  >
             Primer Klase
           </h2> */}
-          <AnimatedLogo delay={0} className="md:w-96 md:h-96 mx-auto" hidden2="md:w-96 md:h-96" hidden="md:w-96 md:h-96" />
+          <AnimatedLogo delay={0} className="w-52 h-52 md:w-80 md:h-80 mx-auto"  />
         </AnimatedDivLeftRightUpDown>
         <AnimatedDivLeftRightUpDown direction="up" delay={1}>
           <p className={`!text-default-500 text-center mx-auto max-w-5xl ${paragraph({ size: "xl",  })}`}>
