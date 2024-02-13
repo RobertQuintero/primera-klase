@@ -18,20 +18,16 @@ import { usePathname } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
-
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
   TwitterIcon,
-  Logo,
   LinkedInIcon,
   FacebookIcon,
   InstagramIcon,
   FemaleIcon,
   MaleIcon,
 } from "@/components/icons";
-
 import {
-  CalendarDaysIcon,
   ChatBubbleBottomCenterTextIcon,
   ChevronDownIcon,
   EnvelopeIcon,
@@ -42,10 +38,10 @@ import {
 } from "@heroicons/react/24/outline";
 import React from "react";
 import { AnimatedLogo } from "./animation/animatedLogo";
-import talents from "@/sanity/schemas/talents";
+
 
 export const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useReducer((current) => !current, false);
   const pathname = usePathname();
   const icons: { [key: string]: JSX.Element } = {
     // Change the icon color to text-warning if the pathname is equal to the href
@@ -128,11 +124,11 @@ export const Navbar = () => {
     <NextUINavbar
       maxWidth="xl"
       shouldHideOnScroll
-      onMenuOpenChange={setIsMenuOpen}
+      isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}
       className="dark:bg-transparent"
     >
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <ul className="hidden lg:flex gap-4 justify-start ml-2 ">
+      <NavbarContent className="hidden lg:flex gap-4 justify-start ml-2 " justify="start">
+
           {/* Work */}
           <NavbarItem>
             <NextLink
@@ -274,13 +270,13 @@ export const Navbar = () => {
               ))}
             </DropdownMenu>
           </Dropdown>
-        </ul>
+
       </NavbarContent>
 
 
-      <NavbarBrand as="li" className="gap-3 max-w-fit">
+      <NavbarBrand as="li" className="flex w-ful ml-[36%] sm:ml-[46%] lg:ml-[10%] xl:ml-[19%] " >
         <NextLink
-          className="flex justify-start items-center gap-1 mt-2"
+          className="flex justify-end  items-end w-fit gap-1 mt-2"
           href="/"
         >
           <AnimatedLogo className="w-10 h-10" hidden="hidden" />
@@ -288,9 +284,7 @@ export const Navbar = () => {
         </NextLink>
       </NavbarBrand>
 
-      <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
-        justify="end"
+      <NavbarContent className="hidden lg:flex" justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
           {siteConfig.links.instagram ? (
@@ -334,27 +328,25 @@ export const Navbar = () => {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <NavbarMenuToggle className="text-warning"/>
-      </NavbarContent>
-
-      <NavbarMenu>
-        <div className="mx-4 mt-2 flex flex-col gap-2">
+      <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} className="text-warning lg:hidden "/>
+      <NavbarMenu className="hideScroll">
             <NavbarMenuItem>
-              <Link
+              <Link as={NextLink}
                 color={pathname === "/" ? "warning" : "foreground"}
                 href="/"
                 size="lg"
+                onPress={() => setIsMenuOpen()}
               >
                 Work
               </Link>
             </NavbarMenuItem>
-          {siteConfig.navItemsTalents.map((item) => (
-            <NavbarMenuItem key={item.label}>
+          {siteConfig.navItemsTalents.map((item,index) => (
+            <NavbarMenuItem key={`${item}-${index}`}>
               <Link
                 color={pathname === item.href ? "warning" : "foreground"}
                 href={item.href}
                 size="lg"
+                onPress={() => setIsMenuOpen()}
               >
                 {item.label}
               </Link>
@@ -366,6 +358,7 @@ export const Navbar = () => {
                 color={pathname === item.href ? "warning" : "foreground"}
                 href={item.href}
                 size="lg"
+                onPress={() => setIsMenuOpen()}
               >
                 {item.label}
               </Link>
@@ -410,7 +403,6 @@ export const Navbar = () => {
               </Link>
             ) : null}
             <ThemeSwitch />
-          </div>
         </div>
       </NavbarMenu>
     </NextUINavbar>

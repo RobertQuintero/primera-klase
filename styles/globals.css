@@ -6,6 +6,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
 
+.hideScroll::-webkit-scrollbar {
+    display: none;
+}
+
 .swiper-slide {
   background-size: cover;
   background-position: center;
