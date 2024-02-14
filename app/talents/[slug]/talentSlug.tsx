@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatedCarouselTalent } from "@/components/animation/animatedCarousel";
 import { SocialMediaLink } from "@/components/links/socialMediaLink";
 import { SocialMediaShareTalent } from "@/components/links/socialMediaShareTalent";
 import { paragraph, title } from "@/components/primitives";
@@ -8,10 +9,10 @@ import { DateComponent } from "@/components/time/date";
 import { TalentsType } from "@/types/talentsType.";
 import { DocumentArrowDownIcon } from "@heroicons/react/24/solid";
 
-import { Button, Chip, Divider, Image, Link, Tooltip } from "@nextui-org/react";
+import { Button, Chip, Divider, Image, Link, Modal, ModalContent, Tooltip, useDisclosure } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { it } from "node:test";
-import React from "react";
+import React, { useState } from "react";
 
 type talentSlugProps = {
   params: { slug: string };
@@ -19,6 +20,13 @@ type talentSlugProps = {
 };
 
 const TalentSlug = ({ talent, params }: talentSlugProps) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [clickedIndex, setClickedIndex] = useState(0);
+
+  const handleImageClick = (index:any) => {
+    setClickedIndex(index);
+    onOpen();
+  };
   const info = [
     { label: "Gender", value: talent.gender },
     { label: "Nationality", value: talent.nationality },
@@ -170,16 +178,21 @@ const TalentSlug = ({ talent, params }: talentSlugProps) => {
         </div>
       </div>
 
-      <div className="w-full mx-auto max-w-7xl  columns-2 md:columns-3 gap-2 md:gap-6 xl:gap-8 ">
+      <Divider orientation="horizontal" className="max-w-7xl mx-auto my-3 md:my-6" />
+      <div className="w-full mx-auto max-w-7xl  columns-2 md:columns-3  gap-2 md:gap-3 ">
         {/* // start from 1 to avoid the first image */}
         {talent.portfolioImages.slice(1).map((image) => (
           <div
             className="flex flex-col break-inside-avoid h-auto "
-            key={image.title}
+            key={image.image}
           >
             <motion.div
-              className="break-inside-avoid-page mb-2 md:mb-6 xl:mb-8"
-              whileHover={{ scale: 1.1 }}
+              onClick={() =>
+                handleImageClick(talent.portfolioImages.indexOf(image))
+              }
+              className="break-inside-avoid-page mb-2 md:mb-3 cursor-pointer"
+              whileHover={{ scale: 1.1, zIndex: 30 }}
+              whileTap={{ scale: 0.9, zIndex: 50 }}
             >
               <Image
                 src={image.image}
@@ -198,6 +211,22 @@ const TalentSlug = ({ talent, params }: talentSlugProps) => {
             </motion.div>
           </div>
         ))}
+        <Modal
+          isOpen={isOpen}
+          onClose={onClose}
+          scrollBehavior="inside"
+          radius="sm"
+          backdrop="opaque"
+          classNames={{
+            closeButton:
+              "z-30 bg-warning-500/50 scale-125 rounded-none hover:bg-warning-500/40 transition duration-300 ease-in-out",
+            base: "bg-transparent max-w-7xl shadow-none backdrop-none",
+          }}
+        >
+          <ModalContent>
+            <AnimatedCarouselTalent talent={talent} startIndex={clickedIndex} />
+          </ModalContent>
+        </Modal>
       </div>
     </article>
   );

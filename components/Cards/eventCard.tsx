@@ -75,7 +75,7 @@ const EventCard = ({ placement, event }: eventCardProps) => {
           footer: "p-0 flex-col",
           header: "p-0  pb-2",
           base: "rounded-none",
-          closeButton:"z-30 bg-warning-500/50 scale-125 rounded-none"
+          closeButton:"z-30 bg-warning-500/50 scale-125 rounded-none hover:bg-warning-500/40 transition duration-300 ease-in-out"
         }}
       >
         <ModalContent>

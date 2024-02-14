@@ -274,7 +274,7 @@ export const Navbar = () => {
       </NavbarContent>
 
 
-      <NavbarBrand as="li" className="flex w-ful ml-[36%] sm:ml-[46%] lg:ml-[10%] xl:ml-[19%] " >
+      <NavbarBrand as="li" className="flex w-ful ml-[35%] sm:ml-[46%] lg:ml-[10%] xl:ml-[19%] " >
         <NextLink
           className="flex justify-end  items-end w-fit gap-1 mt-2"
           href="/"
