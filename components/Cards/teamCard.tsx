@@ -14,9 +14,9 @@ const TeamCard = ({ team, className }: TeamCardProps) => {
         <div className={` ${className}`}>
                       <div
             key={team.name}
-            className="relative max-w-sm group overflow-hidden"
+            className="relative group overflow-hidden"
           >
-            <Image src={team.image} alt={team.name} radius="none" />
+            <Image src={team.image} alt={team.name} radius="none" classNames={{img:"aspect-square object-cover object-top"}} />
             <div className="flex flex-col  px-4 py-1">
               <p
                 className={`!font-semibold text-center capitalize text-warning ${title(
@@ -33,7 +33,7 @@ const TeamCard = ({ team, className }: TeamCardProps) => {
                 {team.position}
               </p>
             </div>
-            <div className="flex flex-col items-center justify-center absolute z-10 top-[30rem] group-hover:top-0 h-full w-full bg-warning-50/10 animate duration-1000 group-hover:duration-1000 ease-in-out group-hover:ease-in-out  ">
+            <div className="flex flex-col items-center justify-center absolute z-10 top-[100vh] group-hover:top-0 h-full w-full bg-default-100/60 animate duration-1000 group-hover:duration-1000 ease-in-out group-hover:ease-in-out  ">
               {team.socialMedia ? (
                 <SocialMediaLink
                   socialMediaLinks={team.socialMedia}
