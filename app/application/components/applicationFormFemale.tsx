@@ -862,7 +862,7 @@ const ApplicationFormFemale = () => {
             type="submit"
             radius="none"
             size="lg"
-            // isDisabled={!isFormValid}
+            isDisabled={!isFormValid}
             startContent={
               isLoading ? (
                 <CircularProgress
