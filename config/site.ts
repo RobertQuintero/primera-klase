@@ -16,7 +16,7 @@ export const siteConfig = {
 	yahoo: "UA-XXXXXXXX-X",
 
 	// Company details
-	name: "sample site name",
+	name: "Primera Klase",
 	description: "Modeling Agency and training center",
 	email: "info@primeklase.com",
 	telephone: "+63 999 999 9999",
