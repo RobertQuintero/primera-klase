@@ -23,7 +23,7 @@ const WorksList = ({ works }: worksListProps) => {
             direction={randomDirection}
             className={`flex flex-col break-inside-avoid h-auto mb-2 md:mb-3`}
           >
-              <WorkCard work={work} />
+              <WorkCard work={work} placement={index % 2 === 0 ? "left" : "right"} />
           </AnimatedDivLeftRightUpDown>
         );
       })}

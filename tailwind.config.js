@@ -13,6 +13,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        playFair: ['var(--font-playfair-display)'],
+      },
       backgroundImage: {
         'emailBackground': "url('/bg/emailBg.jpg')",
         'about-background': "url('/bg/about/1.png')",

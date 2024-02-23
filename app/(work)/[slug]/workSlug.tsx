@@ -61,7 +61,7 @@ const WorkSlug = ({ work, params }: workSlugProps) => {
           radius="none"
           width={1920}
           height={1920}
-          className="w-full max-w-7xl aspect-video object-cover object-center "
+          className="w-full max-w-7xl aspect-video object-cover object-top "
         />
           <figcaption className=" self-end  rounded-sm w-fit   px-2 text-default-500 text-xs  md:text-sm empty:hidden">
             {work.portfolioImages[0].title}

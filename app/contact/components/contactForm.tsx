@@ -81,7 +81,7 @@ const ContactForm = () => {
   return (
     <React.Fragment>
         {!isSubmitted ? (
-          <form className=" flex flex-col gap-4 max-w-4xl mx-auto" onSubmit={handleSubmit}>
+          <form className=" flex flex-col gap-4 max-w-4xl mx-auto" id="ContactForm" onSubmit={handleSubmit}>
             <p
               className={`text-warning !text-center ${title({
                 size: "xxxl",

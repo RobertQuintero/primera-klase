@@ -49,7 +49,7 @@ const AnimatedCarouselTalent = ({ talent,startIndex}:AnimatedCarouselTalentProps
                     className={`absolute inset-y-[45%] !z-50 left-0 bg-warning-500/50`}
                     onClick={() => setIndex(index - 1)}
                   >
-                    <ChevronLeftIcon className="h-6 w-6" />
+                    <ChevronLeftIcon className="h-6 w-6 text-background" />
                   </Button>
                 )}
               </AnimatePresence>
@@ -65,7 +65,7 @@ const AnimatedCarouselTalent = ({ talent,startIndex}:AnimatedCarouselTalentProps
                     className={`absolute inset-y-[45%] !z-50 right-0 bg-warning-500/50`}
                     onClick={() => setIndex(index + 1)}
                   >
-                    <ChevronRightIcon className="h-6 w-6" />
+                    <ChevronRightIcon className="h-6 w-6 text-background" />
                   </Button>
                 )}
               </AnimatePresence>

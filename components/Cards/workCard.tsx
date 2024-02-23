@@ -58,7 +58,7 @@ const WorkCard = ({ placement,work }: workCardProps) => {
 
         <CardFooter className="p-2 sm:p-4 justify-start max-w-4xl ">
           <AnimatedDivLeftRightUpDown direction={placement} className="w-full" delay={1}>
-            <h2 className={`capitalize text-warning !font-bold !text-2xl md:!text-3xl lg:!text-4xl xl:!text-5xl ${placement === "left" ? "!text-left " : "!text-right"}`}
+            <h2 className={`capitalize text-warning !font-bold !text-2xl md:!text-3xl lg:!text-4xl xl:!text-5xl !font-playFair ${placement === "left" ? "!text-left " : "!text-right"}`}
             >
               {work.title}
             </h2>
@@ -75,7 +75,7 @@ const WorkCard = ({ placement,work }: workCardProps) => {
           footer: "p-0 flex-col",
           header: "p-0  pb-2",
           base: "rounded-none ",
-          closeButton:"z-30 bg-warning-500/50 scale-125 rounded-none hover:bg-warning-500/40 transition duration-300 ease-in-out"
+          closeButton:"z-30 bg-warning-500/50 text-background scale-125 rounded-none hover:bg-warning-500/40 transition duration-300 ease-in-out"
         }}
       >
         <ModalContent>

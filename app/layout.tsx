@@ -1,12 +1,12 @@
 import "@/styles/globals.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
 import clsx from "clsx";
 import { Footer } from "@/components/footer";
 import { AnimatedFirstPageLoad } from "@/components/animation/animatedFirstPageLoading";
+import { fontPlayfairDisplay } from "@/config/fonts";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -50,15 +50,17 @@ export const metadata: Metadata = {
           'application/xml': `${siteConfig.url}/sitemap.xml`,
   }
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "[#0c0802]" },
-  ],
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
+};
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "dark" },
+  ],
 };
 
 export default function RootLayout({
@@ -72,7 +74,7 @@ export default function RootLayout({
 			<body
 				className={clsx(
 					"min-h-screen bg-warning/5 font-sans antialiased",
-					fontSans.variable
+					fontPlayfairDisplay.variable
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>

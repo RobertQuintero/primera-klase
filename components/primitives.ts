@@ -20,8 +20,8 @@ export const title = tv({
 			lg: "text-xl md:text-2xl leading-6 2xl:leading-7 pb-1 ",
 			xl: "text-3xl md:text-4xl",
 			v2xl: "text-2xl md:text-3xl",
-			xxl: "text-4xl md:text-5xl scroll-m-20 pb-[0.5rem]  font-bold",
-			xxxl: "text-4xl md:text-5xl 2xl:text-6xl font-bold",
+			xxl: "text-4xl md:text-5xl scroll-m-20 pb-[0.5rem]  font-bold !font-playFair",
+			xxxl: "text-4xl md:text-5xl 2xl:text-6xl font-bold font-playFair",
 		},
 	},
 	defaultVariants: {

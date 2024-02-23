@@ -219,7 +219,7 @@ const TalentSlug = ({ talent, params }: talentSlugProps) => {
           backdrop="opaque"
           classNames={{
             closeButton:
-              "z-30 bg-warning-500/50 scale-125 rounded-none hover:bg-warning-500/40 transition duration-300 ease-in-out",
+              "z-30 bg-warning-500/50 text-background scale-125 rounded-none hover:bg-warning-500/40 transition duration-300 ease-in-out",
             base: "bg-transparent max-w-7xl shadow-none backdrop-none",
           }}
         >

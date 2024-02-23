@@ -31,7 +31,7 @@ const IntroductionMissionHistory = ({
       <div className="py-14 sm:py-16 md:py-24 lg:py-28 xl:py-32 bg-about-background3 bg-no-repeat bg-center bg-contain md:bg-cover">
         <div className="max-w-7xl mx-auto">
         <AnimatedDivLeftRightUpDown direction="left">
-          <h2 className={`!font-bold  !text-5xl sm:!text-6xl lg:!text-7xl: xl:!text-8xl 2xl:!text-9xl ${title({ size: "xxxl",color:"yellow"  })}`}>
+          <h2 className={`!font-bold  !text-5xl sm:!text-6xl lg:!text-7xl: xl:!text-8xl 2xl:!text-9xl font ${title({ size: "xxxl",color:"yellow"  })}`}>
             Mission
           </h2>
         </AnimatedDivLeftRightUpDown>
