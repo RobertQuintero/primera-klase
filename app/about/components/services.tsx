@@ -49,8 +49,8 @@ const AboutServices = ({ aboutServices }: aboutServicesProps) => {
             delay={0.3 * (index + 1)}
             className="w-full h-full"
           >
-            <Card className={`p-2 bg-warning-500/5 dark:bg-warning/5 w-full h-full`} isPressable radius="none" isBlurred shadow="none" >
-              <CardHeader className="gap-2 md:gap-4 sm:flex-row flex-col items-start">
+            <Card className={`p-0 bg-warning-500/5 dark:bg-warning/5 w-full h-full`} isPressable radius="none" isBlurred shadow="none" >
+              <CardHeader className="p-2 md:p-4 gap-2 md:gap-4 sm:flex-row flex-col items-start">
                 <Image
                   src={services.image}
                   alt={services.title}
