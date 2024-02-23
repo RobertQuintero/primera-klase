@@ -17,7 +17,7 @@ const Faqs = ({ faqs }: faqsProps) => {
 
       <div className="max-w-7xl mx-auto py-14 sm:mb-16 md:mb-24 lg:mb-28 ">
       <AnimatedDivLeftRightUpDown
-        direction="down"
+        direction="left"
         className="flex flex-col gap-6 mb-4"
       >
         <h2
@@ -37,6 +37,10 @@ const Faqs = ({ faqs }: faqsProps) => {
         </p>
 
       </AnimatedDivLeftRightUpDown>
+      <AnimatedDivLeftRightUpDown
+        direction="left"
+        className="w-full  mx-auto"
+      >
         <Accordion>
           {faqs.map((faq) => (
             <AccordionItem
@@ -49,6 +53,7 @@ const Faqs = ({ faqs }: faqsProps) => {
             </AccordionItem>
           ))}
         </Accordion>
+      </AnimatedDivLeftRightUpDown>
       </div>
     </React.Fragment>
   );

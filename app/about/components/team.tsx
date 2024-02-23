@@ -39,7 +39,7 @@ const Teams = ({ teams }: teamsProps) => {
       </AnimatedDivLeftRightUpDown>
       <div className="max-w-7xl mx-auto  grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-8 mb-14 sm:mb-16 md:mb-24 lg:mb-28 xl:mb-32 2xl:mb-64">
         {teams.map((team, index) => (
-          <AnimatedDivLeftRightUpDown direction="right" key={team.name} delay={index}>
+          <AnimatedDivLeftRightUpDown direction="left" key={team.name} delay={0.3 * (index + 1)}>
             <TeamCard key={team.name} team={team} />
           </AnimatedDivLeftRightUpDown>
         ))}

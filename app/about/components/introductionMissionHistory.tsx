@@ -50,7 +50,7 @@ const IntroductionMissionHistory = ({
             </h2>
           </AnimatedDivLeftRightUpDown>
           <AnimatedDivLeftRightUpDown direction="right" delay={1}>
-            <p className={`!text-default-500 ml-auto max-w-5xl pl-2 ${paragraph({ size: "lg" })}`}>
+            <p className={`!text-default-500 ml-auto max-w-5xl text-right pl-2 ${paragraph({ size: "lg" })}`}>
               {introductionMissionHistory.history}
             </p>
           </AnimatedDivLeftRightUpDown>

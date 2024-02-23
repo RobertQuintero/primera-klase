@@ -45,8 +45,8 @@ const AboutServices = ({ aboutServices }: aboutServicesProps) => {
         {aboutServices.map((services, index) => (
           <AnimatedDivLeftRightUpDown
             key={services.title}
-            direction="right"
-            delay={index}
+            direction="left"
+            delay={0.3 * (index + 1)}
             className="w-full h-full"
           >
             <Card className={`p-2 bg-warning-500/5 dark:bg-warning/5 w-full h-full`} isPressable radius="none" isBlurred shadow="none" >
