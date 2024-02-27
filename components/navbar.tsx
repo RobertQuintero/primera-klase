@@ -144,7 +144,7 @@ export const Navbar = () => {
           </NavbarItem>
 
           {/* Talents */}
-          <Dropdown classNames={{ trigger: "" }} radius="none" shadow="sm">
+          <Dropdown radius="none" shadow="sm">
             <NavbarItem>
               <DropdownTrigger>
                 <Button
@@ -201,19 +201,21 @@ export const Navbar = () => {
           </Dropdown>
 
           {/* Instructors */}
-          <NextLink
-            href="/instructors"
-            className={
-              pathname === "/instructors"
-                ? "text-warning font-semibold"
-                : " text-default-500 hover:text-warning"
-            }
-          >
-            Instructors
-          </NextLink>
+          <NavbarItem>
+            <NextLink
+              href="/instructors"
+              className={
+                pathname === "/instructors"
+                  ? "text-warning font-semibold"
+                  : " text-default-500 hover:text-warning"
+              }
+            >
+              Instructors
+            </NextLink>
+          </NavbarItem>
 
           {/* Resources , about , events, application , contact */}
-          <Dropdown classNames={{ trigger: "" }} radius="none" shadow="sm">
+          <Dropdown  radius="none" shadow="sm">
             <NavbarItem>
               <DropdownTrigger>
                 <Button
@@ -274,10 +276,11 @@ export const Navbar = () => {
       </NavbarContent>
 
 
-      <NavbarBrand as="li" className="flex w-ful ml-[35%] sm:ml-[46%] lg:ml-[10%] xl:ml-[19%] " >
+      <NavbarBrand className="flex w-ful ml-[35%] sm:ml-[46%] lg:ml-[10%] xl:ml-[19%] " >
         <NextLink
           className="flex justify-end  items-end w-fit gap-1 mt-2"
           href="/"
+          aria-label="Home"
         >
           <AnimatedLogo className="w-10 h-10" hidden="hidden" />
           <AnimatedLogo className="w-14 h-9" hidden2="hidden" />

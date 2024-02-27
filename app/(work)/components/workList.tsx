@@ -15,12 +15,11 @@ const WorksList = ({ works }: worksListProps) => {
   return (
     <div className="columns-1 gap-2 md:gap-3 sm:columns-2 lg:columns-3 xl:columns-4 ">
       {works.map((work, index) => {
-        const randomDirection = directions[Math.floor(Math.random() * directions.length)]; // Select a random direction
 
         return (
           <AnimatedDivLeftRightUpDown
             key={work.title}
-            direction={randomDirection}
+            direction={directions[index % 4]}
             className={`flex flex-col break-inside-avoid h-auto mb-2 md:mb-3`}
           >
               <WorkCard work={work} placement={index % 2 === 0 ? "left" : "right"} />

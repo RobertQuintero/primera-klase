@@ -20,7 +20,7 @@ export const Footer = () => {
       <footer className="container mx-auto max-w-7xl px-4 sm:px-8 py-12 ">
         <div className="max-w-7xl mx-auto grid grid-cols-8 w-full my-8 sm:my-12 gap-8">
           <div className="flex flex-col justify-center items-center gap-4  col-span-8  md:col-span-4 w-full  order-3 md:order-2">
-            <Link as={NextLink} href="/">
+            <Link as={NextLink} href="/" aria-label="Primera Klase">
             <AnimatedLogo className="w-60 h-60" />
             </Link>
             <p
@@ -43,7 +43,7 @@ export const Footer = () => {
               })}`}
             >
               Created by{" "}
-              <Link as={NextLink} href={siteConfig.createdByUrl} target="_blank">
+              <Link as={NextLink} color="warning" href={siteConfig.createdByUrl} target="_blank">
                 {siteConfig.createByName}
               </Link>
             </p>

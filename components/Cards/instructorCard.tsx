@@ -63,7 +63,7 @@ const InstructorCard = ({ instructor }: instructorCardProps) => {
         <ModalContent>
 
           <ModalBody>
-            <div className="flex justify-center items-center w-full bg-default-100 ">
+            <div className="self-center w-full sm:max-w-md lg:max-w-xl bg-default-100">
               <Image
                 src={instructor.portfolioImages[0].image}
                 alt={instructor.fullName}

@@ -48,7 +48,7 @@ const WorkCard = ({ placement,work }: workCardProps) => {
           <Image
             isZoomed
             src={work.portfolioImages[0].image}
-            alt={work.title}
+            alt={work.portfolioImages[0].title}
             width={1800}
             height={1800}
             className=" w-full h-full object-cover  !object-center"
@@ -57,7 +57,7 @@ const WorkCard = ({ placement,work }: workCardProps) => {
         ) : null}
 
         <CardFooter className="p-2 sm:p-4 justify-start max-w-4xl ">
-          <AnimatedDivLeftRightUpDown direction={placement} className="w-full" delay={1}>
+          <AnimatedDivLeftRightUpDown direction={placement} className="w-full " delay={1}>
             <h2 className={`capitalize text-warning !font-bold !text-2xl md:!text-3xl lg:!text-4xl xl:!text-5xl !font-playFair ${placement === "left" ? "!text-left " : "!text-right"}`}
             >
               {work.title}
@@ -74,16 +74,16 @@ const WorkCard = ({ placement,work }: workCardProps) => {
           body: "flex xl:flex-row p-2 sm:p-4 lg:p-6",
           footer: "p-0 flex-col",
           header: "p-0  pb-2",
-          base: "rounded-none ",
+          base: "rounded-none hideScroll",
           closeButton:"z-30 bg-warning-500/50 text-background scale-125 rounded-none hover:bg-warning-500/40 transition duration-300 ease-in-out"
         }}
       >
         <ModalContent>
           <ModalBody>
-            <div className="flex justify-center items-center w-full sm:max-w-md lg:max-w-xl bg-default-100 ">
+            <div className=" self-center w-full sm:max-w-md lg:max-w-xl bg-default-100 ">
               <Image
                 src={work.portfolioImages[0].image}
-                alt={work.title}
+                alt={work.portfolioImages[0].title}
                 radius="none"
                 width={500}
                 height={500}
