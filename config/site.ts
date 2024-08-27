@@ -17,7 +17,7 @@ export const siteConfig = {
 
 	// Company details
 	name: "Primera Klase",
-	description: "Modeling Agency and training center",
+	description:"Primera Klase is a modeling agency and training center that focuses on fashion and models. We are committed to providing the best training and opportunities for aspiring models and talents.",
 	email: "info@primeklase.com",
 	telephone: "+63 999 999 9999",
 	mobile: "+63 999 999 9999",
