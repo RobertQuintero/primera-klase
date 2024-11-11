@@ -2,12 +2,12 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-// import { resendApi } from "../env";
+import { resendApi } from "../env";
 import { EmailMaleResponse } from "@/emails/emailMaleResponse";
 import { siteConfig } from "@/config/site";
 import { EmailToPrimeraMaleApplication } from "@/emails/emailToPrimeraMaleApplication";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(resendApi);
 
 export async function POST(request: NextRequest) {
   const {
