@@ -7,7 +7,8 @@ import { EmailMaleResponse } from "@/emails/emailMaleResponse";
 import { siteConfig } from "@/config/site";
 import { EmailToPrimeraMaleApplication } from "@/emails/emailToPrimeraMaleApplication";
 
-const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
+const resend = new Resend("re_EpK8k7Dx_Evv2pamt9ntARVebZtgzy1ak");
+
 
 export async function POST(request: NextRequest) {
   const {

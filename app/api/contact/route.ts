@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { siteConfig } from "@/config/site";
 
-const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
+const resend = new Resend("re_EpK8k7Dx_Evv2pamt9ntARVebZtgzy1ak");
 
 
 export async function POST(request: NextRequest) {
@@ -36,6 +36,8 @@ export async function POST(request: NextRequest) {
   ]);
   return NextResponse.json({ status: "ok" });
 }
+
+console.log(resend);
 
 //why is this not working?? I'm getting a 504 Gateway Timeout error when I try to send a message
 //I'm not sure what I'm doing wrong here. I'm following the docs exactly.
