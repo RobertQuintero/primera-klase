@@ -1,12 +1,12 @@
 // api/send/route.ts
+// .env
 import { EmailContactResponse } from "@/emails/emailContactResponse";
 import { EmailToPrimeraContactApplication } from "@/emails/emailToPrimeraContactApplication";
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { resendApi } from "../env";
 import { siteConfig } from "@/config/site";
 
-const resend = new Resend(resendApi);
+const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
 
 export async function POST(request: NextRequest) {
