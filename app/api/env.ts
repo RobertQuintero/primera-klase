@@ -1,14 +1,18 @@
 //api/send/env.ts
-export const resendApi = assertValue(
-  process.env.RESEND_API_KEY,
-  'Missing environment variable: RESEND_API_KEY'
-)
+import { config } from 'dotenv';
+config();
 
-export const useCdn = false
+export const resendApi = assertValue(
+  process.env.NEXT_PUBLIC_RESEND_API_KEY,
+  'Missing environment variable: NEXT_PUBLIC_RESEND_API_KEY'
+);
+
+export const useCdn = false;
+
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {
-    throw new Error(errorMessage)
+    throw new Error(errorMessage);
   }
 
-  return v
+  return v;
 }

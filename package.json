@@ -35,6 +35,7 @@
     "autoprefixer": "10.4.16",
     "clsx": "^2.0.0",
     "dayjs": "^1.11.10",
+    "dotenv": "^16.4.5",
     "eslint": "8.48.0",
     "eslint-config-next": "14.0.2",
     "framer-motion": "^10.18.0",
@@ -60,6 +61,7 @@
     "uploadthing": "^6.2.0"
   },
   "devDependencies": {
+    "@types/dotenv": "^8.2.3",
     "@types/rss": "^0.0.32"
   }
 }
