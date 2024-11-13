@@ -1,12 +1,12 @@
 // api/send/route.ts
-// .env
 import { EmailContactResponse } from "@/emails/emailContactResponse";
 import { EmailToPrimeraContactApplication } from "@/emails/emailToPrimeraContactApplication";
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { resendApi } from "../env";
 import { siteConfig } from "@/config/site";
 
-const resend = new Resend("re_EpK8k7Dx_Evv2pamt9ntARVebZtgzy1ak");
+const resend = new Resend(resendApi);
 
 
 export async function POST(request: NextRequest) {
@@ -36,8 +36,6 @@ export async function POST(request: NextRequest) {
   ]);
   return NextResponse.json({ status: "ok" });
 }
-
-console.log(resend);
 
 //why is this not working?? I'm getting a 504 Gateway Timeout error when I try to send a message
 //I'm not sure what I'm doing wrong here. I'm following the docs exactly.
